@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="product">
+    <h1>{{ .Title }}</h1>
+    
+    {{ if .Params.image }}
+    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="product-image">
+    {{ end }}
+    
+    {{ if .Params.price }}
+    <div class="price">${{ .Params.price }}</div>
+    {{ end }}
+    
+    <div class="content">
+        {{ .Content }}
+    </div>
+    
+    {{ if .Params.stripe_link }}
+    <a href="{{ .Params.stripe_link }}" class="buy-button" target="_blank">
+        Buy Now
+    </a>
+    {{ end }}
+</article>
+{{ end }}

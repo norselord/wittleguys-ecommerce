@@ -1,0 +1,41 @@
+# Hugo generated files
+/public/
+/resources/
+.hugo_build.lock
+
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment variables (IMPORTANT - keeps your Stripe keys secret!)
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build outputs
+dist/
+build/

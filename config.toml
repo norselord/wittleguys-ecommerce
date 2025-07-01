@@ -1,0 +1,35 @@
+baseURL = "https://wittleguys.net/"
+title = "wittleguys"
+theme = "tailbliss"
+languageCode = "en-us"
+
+[params]
+  description = "Handmade, organic, sustainable sewing crafts and bags"
+  author = "pigpen"
+  theme = "light-blue"
+
+[menu]
+  [[menu.main]]
+    name = "Shop"
+    url = "/shop/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+  [[menu.main]]
+    name = "Philosophy"
+    url = "/philosophy/"
+    weight = 3
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 4
+
+[params.assets]
+  custom_css = ["css/custom.css"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Title }}</title>
+    {{ $css := resources.Get "css/custom.css" }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head>
+<body>
+    <nav>
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+    </nav>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+       <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+     <div class="bg-white p-6 rounded shadow-lg w-96">
+       <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+       <ul id="cart-items" class="mb-4"></ul>
+       <div class="flex justify-between items-center">
+         <span class="font-bold">Total: $<span id="cart-total">0</span></span>
+         <button id="checkout-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Checkout</button>
+       </div>
+       <button id="close-cart" class="mt-4 text-red-500">Close</button>
+     </div>
+   </div>
+   <script src="/js/cart.js"></script>
+   <script src="https://js.stripe.com/v3/"></script>
+</body>
+</html>

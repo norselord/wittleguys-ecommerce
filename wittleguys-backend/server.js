@@ -20,21 +20,32 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
     const { items } = req.body;
-    if (!items || !Array.isArray(items)) return res.status(400).json({ error: 'Invalid items' });
-    const line_items = items.map(item => ({
-      price: item.price,
-      quantity: item.quantity
-    }));
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Invalid cart items' });
+    }
+
+    const lineItems = items.map(item => {
+      // Use stripePriceId from frontend, or look up from mapping
+      const priceId = item.stripePriceId || (PRODUCT_MAPPING[item.id] && PRODUCT_MAPPING[item.id].priceId);
+      if (!priceId) throw new Error(`Missing Stripe price ID for item: ${item.id}`);
+      return {
+        price: priceId,
+        quantity: item.quantity
+      };
+    });
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items,
+      line_items: lineItems,
       mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/success`,
-      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/cart`
     });
+
     res.json({ sessionId: session.id });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    res.status(500).json({ error: error.message });
   }
 });
 

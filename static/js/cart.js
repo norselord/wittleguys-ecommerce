@@ -216,6 +216,14 @@ async function checkout() {
     }
 }
 
+function showCart() {
+    document.getElementById('cart-modal').classList.remove('hidden');
+    updateCartUI();
+}
+function hideCart() {
+    document.getElementById('cart-modal').classList.add('hidden');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     validateCart();
     console.log('Cart.js loaded, current cart:', cart);
@@ -231,5 +239,7 @@ window.updateQuantity = updateQuantity;
 window.removeFromCart = removeFromCart;
 window.checkout = checkout;
 window.cart = cart;
+window.showCart = showCart;
+window.hideCart = hideCart;
 
 console.log('Cart.js functions exposed globally');

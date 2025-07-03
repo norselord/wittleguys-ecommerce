@@ -103,15 +103,17 @@
 
     <!-- Cart Modal -->
     <div id="cart-modal" class="cart-modal hidden">
-        <div class="cart-content">
-            <h2>Your Cart</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                <span>Total: $<span id="cart-total">0.00</span></span>
-                <button id="checkout-btn" class="btn">Checkout</button>
-            </div>
-            <button id="close-cart" class="close-btn">×</button>
+      <div class="cart-content">
+        <h2>Your Cart</h2>
+        <div class="cart-items"></div>
+        <div class="cart-summary">
+          <div>Subtotal: <span class="subtotal">$0.00</span></div>
+          <div>Tax: <span class="tax">$0.00</span></div>
+          <div>Total: <span class="total">$0.00</span></div>
+          <button id="checkout-btn" class="btn">Checkout</button>
         </div>
+        <button id="close-cart" class="close-btn" onclick="hideCart()">×</button>
+      </div>
     </div>
 
     <!-- Scripts -->

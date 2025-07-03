@@ -1,21 +1,21 @@
 ---
-title: "Premium Cutting Board"
-price: 34.99
+title: "Handsewn Cotton Dress"
+price: 89.99
 stripe_price_id: "price_2DEF456"
-image: "/images/premium-cutting-board.jpg"
-emoji: "🎯"
-description: "Professional-grade cutting board made from bamboo. Antimicrobial surface with juice groove and easy-grip handles."
+image: "/images/cotton-dress.jpg"
+emoji: "👗"
+description: "Beautifully handsewn cotton dress with natural fit and sustainable design. Made from 100% pure cotton with no synthetic materials."
 draft: false
 ---
 
-Professional-grade cutting board made from sustainable bamboo. Features an antimicrobial surface with juice groove and easy-grip handles for safe, comfortable use.
+Beautifully handsewn cotton dress with natural fit and sustainable design. Made from 100% pure cotton with no synthetic materials, featuring a comfortable fit and timeless style.
 
 ## Features
-- Made from sustainable bamboo
-- Antimicrobial surface
-- Juice groove to catch liquids
-- Easy-grip handles for safe handling
-- Professional-grade thickness
-- Dimensions: 18" x 12" x 1.5"
+- 100% pure cotton fabric
+- Handsewn with precision
+- Natural, breathable material
+- Comfortable fit and style
+- No synthetic materials
+- Available in sizes XS-XL
 
-Perfect for both home and professional kitchens. The bamboo construction is naturally antimicrobial and gentle on knife edges. 
+Perfect for everyday wear or special occasions. Each dress is uniquely crafted with sustainable practices and pure materials. 

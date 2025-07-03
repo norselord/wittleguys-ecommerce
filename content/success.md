@@ -6,12 +6,12 @@ draft: false
 
 # Thank You for Your Order! 🎉
 
-Your order has been successfully placed and we're excited to craft your beautiful wooden products.
+Your order has been successfully placed and we're excited to handcraft your beautiful sustainable goods.
 
 ## What's Next?
 
 1. **Order Confirmation**: You'll receive an email confirmation shortly
-2. **Processing**: We'll begin crafting your items within 1-2 business days
+2. **Handcrafting**: We'll begin handsewing your items within 1-2 business days
 3. **Shipping**: Your order will ship within 5-7 business days
 4. **Tracking**: You'll receive tracking information via email
 

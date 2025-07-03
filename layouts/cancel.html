@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="container" style="padding: 4rem 0; text-align: center;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">😊</div>
+        <h1 style="color: #6c757d; margin-bottom: 2rem;">{{ .Title }}</h1>
+        
+        <div style="text-align: left; line-height: 1.8;">
+            {{ .Content }}
+        </div>
+        
+        <div style="margin-top: 3rem;">
+            <a href="/products/" class="btn" style="display: inline-block; margin-right: 1rem;">Browse Products</a>
+            <a href="/about/" class="btn" style="display: inline-block; background: #6c757d;">Learn About Us</a>
+        </div>
+    </div>
+</div>
+{{ end }} 

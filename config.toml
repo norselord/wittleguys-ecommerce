@@ -1,33 +1,46 @@
 baseURL = "https://wittleguys.net/"
-title = "wittleguys"
+title = "Wittle Guys"
 theme = "tailbliss"
 languageCode = "en-us"
 
 [params]
-  description = "Handmade, organic, sustainable sewing crafts and bags"
-  author = "pigpen"
-  theme = "light-blue"
+  description = "Handcrafted wooden products with passion and precision"
+  tagline = "Crafting beautiful wooden products with passion and precision since 2024"
+  author = "Wittle Guys"
+  email = "hello@wittleguys.net"
+  phone = "(555) 123-4567"
+  
+  [params.hero]
+    title = "Handcrafted Wooden Products"
+    subtitle = "Beautiful, sustainable wooden items crafted with love and attention to detail. Each piece tells a story."
+  
+  [params.products]
+    title = "Our Products"
+  
+  [params.social]
+    instagram = "#"
+    facebook = "#"
+    twitter = "#"
+  
+  [params.stripe]
+    publishableKey = "***REMOVED***YOUR_STRIPE_PUBLISHABLE_KEY_HERE"
 
 [menu]
   [[menu.main]]
-    name = "Shop"
-    url = "/shop/"
+    name = "Products"
+    url = "/products/"
     weight = 1
   [[menu.main]]
     name = "About"
     url = "/about/"
     weight = 2
   [[menu.main]]
-    name = "Philosophy"
-    url = "/philosophy/"
+    name = "Contact"
+    url = "/contact/"
     weight = 3
-  [[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 4
 
 [params.assets]
-  custom_css = ["css/custom.css"]
+  custom_css = ["css/main.css"]
 
 [markup]
   [markup.goldmark]

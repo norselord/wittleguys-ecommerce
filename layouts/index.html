@@ -1,0 +1,39 @@
+{{ define "main" }}
+<section class="hero">
+    <div class="container">
+        <h1>{{ .Params.hero.title | default "Handcrafted Wooden Products" }}</h1>
+        <p>{{ .Params.hero.subtitle | default "Beautiful, sustainable wooden items crafted with love and attention to detail. Each piece tells a story." }}</p>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="container">
+        <h2 class="section-title">{{ .Params.products.title | default "Our Products" }}</h2>
+        <div class="product-grid">
+            {{ range where .Site.RegularPages "Section" "products" }}
+            <div class="product-card">
+                <div class="product-image">
+                    {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    {{ else }}
+                        {{ .Params.emoji | default "📦" }} {{ .Title }}
+                    {{ end }}
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">{{ .Title }}</h3>
+                    <p class="product-description">{{ .Params.description | default .Summary }}</p>
+                    <div class="product-price">${{ .Params.price | default "0.00" }}</div>
+                    <button class="btn" onclick="addToCart('{{ .Params.stripe_price_id }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}')">
+                        <span class="btn-text">Add to Cart</span>
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Processing...
+                        </div>
+                    </button>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }} 

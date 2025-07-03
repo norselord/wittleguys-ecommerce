@@ -1,32 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>{{ .Title }}</title>
-    {{ $css := resources.Get "css/custom.css" }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Styles -->
+    {{ $css := resources.Get "css/main.css" }}
+    {{ if $css }}
+        {{ $css = $css | resources.ToCSS | resources.Minify }}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    {{ end }}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <nav>
-        {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}">{{ .Name }}</a>
-        {{ end }}
-    </nav>
+    <header>
+        <nav class="container">
+            <a href="{{ .Site.BaseURL }}" class="logo">{{ .Site.Title }}</a>
+            <ul class="nav-links">
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+            <div class="cart-icon" onclick="showCart()">
+                🛒
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
     <main>
         {{ block "main" . }}{{ end }}
     </main>
-       <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-     <div class="bg-white p-6 rounded shadow-lg w-96">
-       <h2 class="text-xl font-bold mb-4">Your Cart</h2>
-       <ul id="cart-items" class="mb-4"></ul>
-       <div class="flex justify-between items-center">
-         <span class="font-bold">Total: $<span id="cart-total">0</span></span>
-         <button id="checkout-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Checkout</button>
-       </div>
-       <button id="close-cart" class="mt-4 text-red-500">Close</button>
-     </div>
-   </div>
-   <script src="/js/cart.js"></script>
-   <script src="https://js.stripe.com/v3/"></script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ .Site.Title }}</h3>
+                    <p>{{ .Site.Params.tagline | default "Crafting beautiful wooden products with passion and precision." }}</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: {{ .Site.Params.email | default "hello@wittleguys.net" }}</p>
+                    <p>Phone: {{ .Site.Params.phone | default "(555) 123-4567" }}</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    {{ with .Site.Params.social }}
+                        {{ with .instagram }}<p><a href="{{ . }}">Instagram</a></p>{{ end }}
+                        {{ with .facebook }}<p><a href="{{ . }}">Facebook</a></p>{{ end }}
+                        {{ with .twitter }}<p><a href="{{ . }}">Twitter</a></p>{{ end }}
+                    {{ end }}
+                </div>
+            </div>
+            <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal hidden">
+        <div class="cart-content">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <span>Total: $<span id="cart-total">0.00</span></span>
+                <button id="checkout-btn" class="btn">Checkout</button>
+            </div>
+            <button id="close-cart" class="close-btn">×</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    {{ $js := resources.Get "js/cart.js" }}
+    {{ if $js }}
+        {{ $js = $js | resources.Minify }}
+        <script src="{{ $js.RelPermalink }}"></script>
+    {{ end }}
+    
+    <!-- Initialize Stripe -->
+    <script>
+        // Initialize Stripe (Replace with your publishable key)
+        const stripe = Stripe('{{ .Site.Params.stripe.publishableKey | default "***REMOVED***YOUR_STRIPE_PUBLISHABLE_KEY_HERE" }}');
+    </script>
 </body>
 </html>

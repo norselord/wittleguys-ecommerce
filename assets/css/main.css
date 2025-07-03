@@ -391,7 +391,7 @@ footer {
 }
 
 .site-logo img {
-    height: 80px;
+    height: 120px;
     width: auto;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(30, 50, 40, 0.25);
@@ -403,7 +403,7 @@ footer {
 }
 @media (max-width: 768px) {
     .site-logo img {
-        height: 60px;
+        height: 80px;
     }
 }
 

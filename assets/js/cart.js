@@ -123,16 +123,16 @@ function showCart() {
         return;
     }
     
-    // Render cart items
-    cartItems.innerHTML = cart.map(item => `
+    // Render cart items with remove buttons
+    cartItems.innerHTML = cart.map((item, idx) => `
         <div class="cart-item">
             <div>
-                <strong>${item.productName}</strong>
-                <br>
+                <strong>${item.productName}</strong><br>
                 <small>Qty: ${item.quantity}</small>
             </div>
             <div>
                 $${(item.price * item.quantity).toFixed(2)}
+                <button class="remove-btn" data-idx="${idx}" style="margin-left:10px;color:#c00;background:none;border:none;cursor:pointer;font-size:1.1em;">✕</button>
             </div>
         </div>
     `).join('');
@@ -143,6 +143,22 @@ function showCart() {
     
     // Show modal
     modal.classList.remove('hidden');
+
+    // Add event listeners for remove buttons
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const idx = parseInt(this.getAttribute('data-idx'));
+            removeFromCart(idx);
+        });
+    });
+}
+
+// Remove item from cart by index
+function removeFromCart(idx) {
+    cart.splice(idx, 1);
+    saveCart();
+    updateCartCount();
+    showCart(); // re-render cart modal
 }
 
 // Hide cart modal
@@ -226,4 +242,5 @@ window.addToCart = addToCart;
 window.buyProduct = buyProduct;
 window.showCart = showCart;
 window.hideCart = hideCart;
-window.clearCart = clearCart; 
+window.clearCart = clearCart;
+window.removeFromCart = removeFromCart; 

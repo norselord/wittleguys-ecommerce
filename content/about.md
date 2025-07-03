@@ -7,6 +7,8 @@ description: About Us
 featured_image: ../assets/images/featured/featured-img-placeholder.png
 ---
 
+We create handmade, handsewn clothing and accessories, including bags, dresses, aprons, and more, using only pure, high-quality materials like 100% cotton. Guided by Leviticus 19:19, our garments are crafted from a single material, honoring biblical principles. Each piece is thoughtfully designed to promote sustainability and contribute to a better world.
+
 # h1 Heading :blush:
 ## h2 Heading
 ### h3 Heading

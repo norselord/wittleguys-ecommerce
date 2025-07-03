@@ -1,12 +1,12 @@
 ---
 title: "Welcome to Wittle Guys"
 hero:
-  title: "Handcrafted Wooden Products"
-  subtitle: "Beautiful, sustainable wooden items crafted with love and attention to detail. Each piece tells a story."
+  title: "Handmade & Sustainable"
+  subtitle: "Beautiful bags, dresses and more crafted with pure cotton and natural materials. No synthetics, only pure."
 products:
-  title: "Our Products"
+  title: "Our Handmade Collection"
 ---
 
-Welcome to our handcrafted collection of sustainable, organic wooden goods. Each piece is made with care and attention to detail.
+Welcome to our handcrafted collection of sustainable, environmentally conscious sewn goods. Each piece is made with pure cotton and natural materials, handsewn with care and attention to detail.
 
-[Visit our products](/products/) to see our latest creations.
+[Visit our collection](/products/) to see our latest handmade creations.

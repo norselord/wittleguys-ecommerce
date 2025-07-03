@@ -1,20 +1,21 @@
 ---
-title: "Artisan Storage Box"
+title: "Handmade Cotton Tote Bag"
 price: 49.99
 stripe_price_id: "price_1ABC123"
-image: "/images/artisan-storage-box.jpg"
-emoji: "📦"
-description: "Beautifully crafted wooden storage box perfect for jewelry, keepsakes, or desk organization. Made from sustainable hardwood."
+image: "/images/cotton-tote-bag.jpg"
+emoji: "👜"
+description: "Beautifully handsewn cotton tote bag perfect for shopping, beach trips, or everyday use. Made from 100% pure cotton with reinforced handles."
 draft: false
 ---
 
-Beautifully crafted wooden storage box perfect for jewelry, keepsakes, or desk organization. Made from sustainable hardwood with precision joinery and a smooth finish.
+Beautifully handsewn cotton tote bag perfect for shopping, beach trips, or everyday use. Made from 100% pure cotton with reinforced handles and durable construction.
 
 ## Features
-- Handcrafted from sustainable hardwood
-- Precision joinery for durability
-- Smooth, natural finish
-- Perfect for jewelry, keepsakes, or desk organization
-- Dimensions: 8" x 6" x 4"
+- 100% pure cotton fabric
+- Handsewn with reinforced stitching
+- Sturdy cotton handles
+- Roomy interior with side pockets
+- Eco-friendly and sustainable
+- Dimensions: 16" x 14" x 4"
 
-Each piece is unique and crafted with attention to detail, making it a perfect gift or personal treasure. 
+Each bag is unique and crafted with attention to detail, making it a perfect sustainable alternative to plastic bags. 

@@ -3,18 +3,18 @@ title = "Wittle Guys"
 languageCode = "en-us"
 
 [params]
-  description = "Handcrafted wooden products with passion and precision"
-  tagline = "Crafting beautiful wooden products with passion and precision since 2024"
+  description = "Handmade, environmentally sustainable bags, dresses and more"
+  tagline = "Crafting beautiful handmade goods with pure materials and passion since 2024"
   author = "Wittle Guys"
   email = "hello@wittleguys.net"
   phone = "(555) 123-4567"
   
   [params.hero]
-    title = "Handcrafted Wooden Products"
-    subtitle = "Beautiful, sustainable wooden items crafted with love and attention to detail. Each piece tells a story."
+    title = "Handmade & Sustainable"
+    subtitle = "Beautiful bags, dresses and more crafted with pure cotton and natural materials. No synthetics, only pure."
   
   [params.products]
-    title = "Our Products"
+    title = "Our Handmade Collection"
   
   [params.social]
     instagram = "#"

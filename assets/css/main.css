@@ -74,7 +74,7 @@ nav {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #007aff;
+    background: #2d7d5a;
     color: white;
     border-radius: 50%;
     width: 20px;
@@ -88,7 +88,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #93e9be 0%, #7dd3a8 100%);
     color: white;
     padding: 4rem 0;
     text-align: center;
@@ -179,13 +179,13 @@ nav {
 .product-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #007aff;
+    color: #2d7d5a;
     margin-bottom: 1rem;
 }
 
 /* Buttons */
 .btn {
-    background: #007aff;
+    background: #2d7d5a;
     color: white;
     border: none;
     padding: 0.8rem 2rem;
@@ -202,7 +202,7 @@ nav {
 }
 
 .btn:hover {
-    background: #0056b3;
+    background: #1f5a3f;
     transform: translateY(-1px);
 }
 

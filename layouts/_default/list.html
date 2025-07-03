@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="container" style="padding: 4rem 0;">
+    <h1 class="section-title">{{ .Title }}</h1>
+    
+    {{ if .Content }}
+    <div class="content" style="margin-bottom: 3rem;">
+        {{ .Content }}
+    </div>
+    {{ end }}
+    
+    <div class="product-grid">
+        {{ range .Pages }}
+        <div class="product-card">
+            <div class="product-image">
+                {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                {{ else }}
+                    {{ .Params.emoji | default "📦" }} {{ .Title }}
+                {{ end }}
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">{{ .Title }}</h3>
+                <p class="product-description">{{ .Params.description | default .Summary }}</p>
+                <div class="product-price">${{ .Params.price | default "0.00" }}</div>
+                <button class="btn" onclick="addToCart('{{ .Params.stripe_price_id }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}')">
+                    <span class="btn-text">Add to Cart</span>
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Processing...
+                    </div>
+                </button>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }} 

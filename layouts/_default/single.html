@@ -1,0 +1,34 @@
+{{ define "main" }}
+<article class="container" style="padding: 4rem 0; max-width: 800px; margin: 0 auto;">
+    <header style="margin-bottom: 2rem;">
+        <h1>{{ .Title }}</h1>
+        {{ if .Params.price }}
+        <div class="product-price" style="font-size: 1.5rem; font-weight: 700; color: #007aff; margin: 1rem 0;">
+            ${{ .Params.price }}
+        </div>
+        {{ end }}
+    </header>
+    
+    {{ if .Params.image }}
+    <div class="product-image" style="margin: 2rem 0;">
+        <img src="{{ .Params.image }}" alt="{{ .Title }}" style="max-width: 100%; height: auto;">
+    </div>
+    {{ end }}
+    
+    <div class="content">
+        {{ .Content }}
+    </div>
+    
+    {{ if .Params.stripe_price_id }}
+    <div style="margin-top: 2rem;">
+        <button class="btn" onclick="addToCart('{{ .Params.stripe_price_id }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}')">
+            <span class="btn-text">Add to Cart</span>
+            <div class="loading">
+                <div class="spinner"></div>
+                Processing...
+            </div>
+        </button>
+    </div>
+    {{ end }}
+</article>
+{{ end }} 

@@ -277,6 +277,14 @@ footer {
     color: #aef6e2;
 }
 
+.footer-section {
+    text-align: center;
+}
+
+.footer-section a {
+    justify-content: center;
+}
+
 .footer-section p, .footer-section a {
     color: #aef6e2;
     text-decoration: none;

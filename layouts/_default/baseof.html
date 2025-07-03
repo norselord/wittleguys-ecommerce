@@ -126,5 +126,9 @@
         // Initialize Stripe (Replace with your publishable key)
         const stripe = Stripe('{{ .Site.Params.stripe.publishableKey | default "***REMOVED***YOUR_STRIPE_PUBLISHABLE_KEY_HERE" }}');
     </script>
+    <script>
+      window.STRIPE_PUBLISHABLE_KEY = "***REMOVED***51RbkoIGDLGsdgzhZpNitRIAQjIBIfiaQHtXtd4KDntlmZyt4LkvIxaiUyBEvEgvXPG1p7ndaIyZgq1Spv5yzB3Rw00EYNgTiYi"; // Replace with your Stripe test publishable key
+      window.BACKEND_URL = "http://localhost:3001";
+    </script>
 </body>
 </html>

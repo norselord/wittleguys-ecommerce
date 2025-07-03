@@ -22,7 +22,7 @@ languageCode = "en-us"
     twitter = "#"
   
   [params.stripe]
-    publishableKey = "***REMOVED***YOUR_STRIPE_PUBLISHABLE_KEY_HERE"
+    publishableKey = "***REMOVED***51RbkoIGDLGsdgzhZpNitRIAQjIBIfiaQHtXtd4KDntlmZyt4LkvIxaiUyBEvEgvXPG1p7ndaIyZgq1Spv5yzB3Rw00EYNgTiYi"
 
 [menu]
   [[menu.main]]

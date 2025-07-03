@@ -22,7 +22,7 @@
                 <h3 class="product-title">{{ .Title }}</h3>
                 <p class="product-description">{{ .Params.description | default .Summary }}</p>
                 <div class="product-price">${{ .Params.price | default "0.00" }}</div>
-                <button class="btn" onclick="addToCart('{{ .Params.stripe_price_id }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}')">
+                <button class="btn" onclick="addToCart('{{ .File.BaseFileName }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}', '{{ .Params.stripe_price_id }}')">
                     <span class="btn-text">Add to Cart</span>
                     <div class="loading">
                         <div class="spinner"></div>

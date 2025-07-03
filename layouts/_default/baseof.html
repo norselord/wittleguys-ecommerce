@@ -20,21 +20,54 @@
     {{ end }}
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon/caterpillar.png">
 </head>
 <body>
     <header>
-        <nav class="container">
-            <a href="{{ .Site.BaseURL }}" class="logo">wittle guys!!</a>
+        <nav class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center;">
+                <a href="{{ .Site.BaseURL }}" class="logo">wittle guys!!</a>
+            </div>
             <ul class="nav-links">
                 {{ range .Site.Menus.main }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
+                    <a href="{{ .URL }}">{{ .Name }}</a>
+                    {{ if eq .Name "Products" }}
+                    <div class="dropdown-menu">
+                        <div class="dropdown-category">
+                            <div class="dropdown-category-title">Bags</div>
+                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "bags" }}
+                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            {{ end }}
+                        </div>
+                        <div class="dropdown-category">
+                            <div class="dropdown-category-title">Dresses</div>
+                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "dresses" }}
+                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            {{ end }}
+                        </div>
+                        <div class="dropdown-category">
+                            <div class="dropdown-category-title">Aprons</div>
+                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "apron" }}
+                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            {{ end }}
+                        </div>
+                        <div class="dropdown-category">
+                            <div class="dropdown-category-title">Misc</div>
+                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "misc" }}
+                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </li>
                 {{ end }}
             </ul>
             <div class="cart-icon" onclick="showCart()">
                 🛒
                 <span class="cart-count" id="cart-count">0</span>
             </div>
+            <a href="/" class="site-logo" style="margin-left: 2rem;"><img src="/images/logo.png" alt="Wittle Guys Logo" style="height: 56px; width: auto;"></a>
         </nav>
     </header>
 

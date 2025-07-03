@@ -1,8 +1,9 @@
 ---
 title: "Handsewn Cotton Dress"
+category: "dresses"
 price: 89.99
 stripe_price_id: "price_2DEF456"
-image: "/images/hand_embroidered_dress.png"
+image: "/images/cotton-dress.png"
 emoji: "👗"
 description: "Beautifully handsewn cotton dress with natural fit and sustainable design. Made from 100% pure cotton with no synthetic materials."
 draft: false

@@ -158,7 +158,39 @@ function removeFromCart(idx) {
     cart.splice(idx, 1);
     saveCart();
     updateCartCount();
-    showCart(); // re-render cart modal
+    // If cart modal is open, re-render contents
+    const modal = document.getElementById('cart-modal');
+    if (modal && !modal.classList.contains('hidden')) {
+        // If cart is now empty, close modal
+        if (cart.length === 0) {
+            hideCart();
+        } else {
+            // Just re-render cart items and total
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItems.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.productName}</strong><br>
+                        <small>Qty: ${item.quantity}</small>
+                    </div>
+                    <div>
+                        $${(item.price * item.quantity).toFixed(2)}
+                        <button class="remove-btn" data-idx="${idx}" style="margin-left:10px;color:#c00;background:none;border:none;cursor:pointer;font-size:1.1em;">✕</button>
+                    </div>
+                </div>
+            `).join('');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2);
+            // Re-attach remove event listeners
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const idx = parseInt(this.getAttribute('data-idx'));
+                    removeFromCart(idx);
+                });
+            });
+        }
+    }
 }
 
 // Hide cart modal

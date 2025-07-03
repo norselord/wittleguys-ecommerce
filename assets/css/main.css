@@ -388,4 +388,63 @@ footer {
 
 .mt-4 {
     margin-top: 1rem;
+}
+
+.site-logo img {
+    height: 56px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(30, 50, 40, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.site-logo img:hover {
+    transform: scale(1.07) rotate(-2deg);
+    box-shadow: 0 4px 24px rgba(62, 198, 168, 0.3);
+}
+@media (max-width: 768px) {
+    .site-logo img {
+        height: 40px;
+    }
+}
+
+.nav-item.has-dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(30, 50, 40, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(30,50,40,0.3);
+    padding: 1rem 2rem;
+    min-width: 220px;
+    z-index: 200;
+    flex-direction: column;
+    gap: 1rem;
+}
+.nav-item.has-dropdown:hover .dropdown-menu {
+    display: flex;
+}
+.dropdown-category {
+    margin-bottom: 1rem;
+}
+.dropdown-category-title {
+    font-weight: 700;
+    color: #3ec6a8;
+    margin-bottom: 0.5rem;
+    font-size: 1.1em;
+}
+.dropdown-menu a {
+    display: block;
+    color: #aef6e2;
+    text-decoration: none;
+    padding: 0.2rem 0;
+    transition: color 0.2s;
+    font-size: 1em;
+}
+.dropdown-menu a:hover {
+    color: #fff;
+    text-decoration: underline;
 } 

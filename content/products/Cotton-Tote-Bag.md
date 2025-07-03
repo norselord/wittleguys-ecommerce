@@ -2,7 +2,7 @@
 title: "Handmade Cotton Tote Bag"
 price: 49.99
 stripe_price_id: "price_1ABC123"
-image: "/images/cotton-tote-bag.jpg"
+image: "/images/vintage_hand_sewn_bag.png"
 emoji: "👜"
 description: "Beautifully handsewn cotton tote bag perfect for shopping, beach trips, or everyday use. Made from 100% pure cotton with reinforced handles."
 draft: false

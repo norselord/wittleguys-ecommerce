@@ -1,54 +1,82 @@
-   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Wittleguys Cart.js - Real Cart with Stripe Checkout
+// Assumes window.STRIPE_PUBLISHABLE_KEY and window.BACKEND_URL are set in the template
 
-   function updateCartCount() {
-     document.getElementById('cart-count').textContent = cart.length;
-   }
+const CART_KEY = 'wittleguys_cart';
+let cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
 
-   function updateCartModal() {
-     const cartItems = document.getElementById('cart-items');
-     cartItems.innerHTML = '';
-     let total = 0;
-     cart.forEach((item, idx) => {
-       total += item.price;
-       cartItems.innerHTML += `<li>${item.title} - $${item.price} <button onclick="removeFromCart(${idx})" class="text-red-500 ml-2">Remove</button></li>`;
-     });
-     document.getElementById('cart-total').textContent = total.toFixed(2);
-   }
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+}
 
-   function removeFromCart(idx) {
-     cart.splice(idx, 1);
-     localStorage.setItem('cart', JSON.stringify(cart));
-     updateCartCount();
-     updateCartModal();
-   }
+function addToCart(productId, name, price, priceId) {
+  if (!cart[productId]) {
+    cart[productId] = { name, price, priceId, quantity: 1 };
+  } else {
+    cart[productId].quantity += 1;
+  }
+  saveCart();
+}
 
-   document.addEventListener('DOMContentLoaded', () => {
-     updateCartCount();
+function removeFromCart(productId) {
+  delete cart[productId];
+  saveCart();
+}
 
-     document.querySelectorAll('.add-to-cart').forEach(btn => {
-       btn.addEventListener('click', function() {
-         const item = {
-           title: this.dataset.title,
-           price: parseFloat(this.dataset.price),
-           image: this.dataset.image
-         };
-         cart.push(item);
-         localStorage.setItem('cart', JSON.stringify(cart));
-         updateCartCount();
-       });
-     });
+function updateQuantity(productId, delta) {
+  if (cart[productId]) {
+    cart[productId].quantity += delta;
+    if (cart[productId].quantity <= 0) {
+      removeFromCart(productId);
+    } else {
+      saveCart();
+    }
+  }
+}
 
-     document.getElementById('cart-icon').addEventListener('click', () => {
-       updateCartModal();
-       document.getElementById('cart-modal').classList.remove('hidden');
-     });
+function renderCart() {
+  const cartEl = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  if (!cartEl || !totalEl) return;
+  cartEl.innerHTML = '';
+  let total = 0;
+  Object.entries(cart).forEach(([id, item]) => {
+    const row = document.createElement('div');
+    row.className = 'cart-row';
+    row.innerHTML = `
+      <span>${item.name}</span>
+      <span>$${(item.price / 100).toFixed(2)}</span>
+      <button onclick="updateQuantity('${id}', -1)">-</button>
+      <span>${item.quantity}</span>
+      <button onclick="updateQuantity('${id}', 1)">+</button>
+      <button onclick="removeFromCart('${id}')">Remove</button>
+    `;
+    cartEl.appendChild(row);
+    total += item.price * item.quantity;
+  });
+  totalEl.textContent = `$${(total / 100).toFixed(2)}`;
+}
 
-     document.getElementById('close-cart').addEventListener('click', () => {
-       document.getElementById('cart-modal').classList.add('hidden');
-     });
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.updateQuantity = updateQuantity;
+window.renderCart = renderCart;
 
-     document.getElementById('checkout-btn').addEventListener('click', () => {
-       // You will implement Stripe Checkout here in Step 5
-       alert('Proceeding to checkout...');
-     });
-   });
+document.addEventListener('DOMContentLoaded', renderCart);
+
+document.getElementById('checkout-btn')?.addEventListener('click', async () => {
+  const items = Object.values(cart).map(item => ({
+    price: item.priceId,
+    quantity: item.quantity
+  }));
+  if (items.length === 0) return alert('Cart is empty!');
+  const res = await fetch(`${window.BACKEND_URL}/api/create-checkout-session`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items })
+  });
+  if (!res.ok) return alert('Checkout failed.');
+  const { sessionId } = await res.json();
+  const stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
+  stripe.redirectToCheckout({ sessionId });
+});

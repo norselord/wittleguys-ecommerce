@@ -724,4 +724,20 @@ footer {
     text-rendering: optimizeLegibility !important;
     font-feature-settings: "kern" 1 !important;
     font-kerning: normal !important;
+}
+
+/* More specific rule for tax element */
+#cart-drawer .cart-drawer-footer .cart-summary .tax,
+.cart-drawer .cart-drawer-footer .cart-summary .tax {
+    color: #e53935 !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    font-feature-settings: "kern" 1 !important;
+    font-kerning: normal !important;
+    display: inline-block !important;
 } 

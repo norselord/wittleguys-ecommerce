@@ -150,10 +150,6 @@ function updateCartSummary() {
     if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
     if (taxEl) {
         taxEl.textContent = `$${tax.toFixed(2)}`;
-        // Apply red styling directly
-        taxEl.style.color = '#e53935';
-        taxEl.style.fontWeight = 'bold';
-        taxEl.style.textShadow = '0 1px 2px rgba(255,255,255,0.3)';
     }
     if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
 }

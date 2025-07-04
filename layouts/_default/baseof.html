@@ -101,18 +101,33 @@
         </div>
     </footer>
 
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="cart-modal hidden">
-      <div class="cart-content">
-        <h2>Your Cart</h2>
-        <div class="cart-items"></div>
-        <div class="cart-summary">
-          <div>Subtotal: <span class="subtotal">$0.00</span></div>
-          <div>Tax: <span class="tax">$0.00</span></div>
-          <div>Total: <span class="total">$0.00</span></div>
+    <!-- Cart Overlay and Off-Canvas Cart Drawer -->
+    <div id="cart-overlay" class="cart-overlay hidden" onclick="hideCart()"></div>
+    <div id="cart-drawer" class="cart-drawer hidden">
+      <div class="cart-drawer-content">
+        <div class="cart-drawer-header">
+          <span class="cart-drawer-title">Your Cart</span>
+          <button class="cart-drawer-close" onclick="hideCart()">&times;</button>
+        </div>
+        <div class="cart-drawer-body">
+          <div class="cart-recommendations">
+            <h4>Recommended for you</h4>
+            <div id="cart-recommend-list"></div>
+          </div>
+          <div class="cart-items"></div>
+        </div>
+        <div class="cart-drawer-footer">
+          <div class="cart-summary">
+            <div>Subtotal: <span class="subtotal">$0.00</span></div>
+            <div>Tax: <span class="tax">$0.00</span></div>
+            <div>Total: <span class="total">$0.00</span></div>
+          </div>
+          <div class="cart-discount">
+            <input type="text" id="discount-code" placeholder="Discount code">
+            <button onclick="applyDiscount()">Apply</button>
+          </div>
           <button id="checkout-btn" class="btn">Checkout</button>
         </div>
-        <button id="close-cart" class="close-btn" onclick="hideCart()">×</button>
       </div>
     </div>
 

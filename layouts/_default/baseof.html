@@ -26,8 +26,8 @@
     <header>
         <nav class="container" style="display: flex; align-items: center; justify-content: space-between;">
             <div style="display: flex; align-items: center;">
-                <a href="{{ .Site.BaseURL }}" class="logo">
-                  <span class="logo-w">w</span><span class="logo-i">i</span><span class="logo-t1">t</span><span class="logo-t2">t</span><span class="logo-l">l</span><span class="logo-e">e</span> <span class="logo-g">g</span><span class="logo-u">u</span><span class="logo-y">y</span><span class="logo-s">s</span><span class="logo-ex1">!</span><span class="logo-ex2">!</span>
+                <a href="{{ .Site.BaseURL }}" class="logo" id="wittleguys-logo">
+                  <span>w</span><span>i</span><span>t</span><span>t</span><span>l</span><span>e</span> <span>g</span><span>u</span><span>y</span><span>s</span><span>!</span><span>!</span>
                 </a>
             </div>
             <ul class="nav-links">
@@ -144,5 +144,26 @@
       window.ALL_PRODUCTS = {{ $all | jsonify }};
     </script>
     <script src="/js/cart.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const logo = document.getElementById('wittleguys-logo');
+  if (!logo) return;
+  const colors = [
+    '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
+    '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
+    '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
+  ];
+  const used = new Set();
+  Array.from(logo.children).forEach(span => {
+    let color;
+    do {
+      color = colors[Math.floor(Math.random() * colors.length)];
+    } while (used.has(color) && used.size < colors.length);
+    used.add(color);
+    span.style.color = color;
+    span.style.fontWeight = 'bold';
+  });
+});
+</script>
 </body>
 </html>

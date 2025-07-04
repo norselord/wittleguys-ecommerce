@@ -245,13 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cartCountElement.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
     cartCountElement.style.transition = 'background 0.7s, color 0.7s';
   }
-
-  // Make the tax price in the cart always red
-  const taxEl = document.querySelector('.tax');
-  if (taxEl) {
-    taxEl.style.color = '#e53935'; // Material red
-    taxEl.style.fontWeight = 'bold';
-  }
 });
 </script>
 </body>

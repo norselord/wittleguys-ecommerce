@@ -131,9 +131,25 @@
 
     <!-- Scripts -->
     <!-- Remove Hugo asset pipeline for cart.js and old Stripe init -->
+    
+    <!-- TEMPORARY DEBUG - Remove after fixing -->
     <script>
-      window.STRIPE_PUBLISHABLE_KEY = "***REMOVED***51RbkoIGDLGsdgzhZpNitRIAQjIBIfiaQHtXtd4KDntlmZyt4LkvIxaiUyBEvEgvXPG1p7ndaIyZgq1Spv5yzB3Rw00EYNgTiYi"; // Replace with your Stripe test publishable key
-      window.BACKEND_URL = "http://localhost:3001";
+      console.log("Debug Info:");
+      console.log("Environment: {{ .Site.Params.environment }}");
+      console.log("Live key exists: {{ if .Site.Params.stripe.livePublishableKey }}true{{ else }}false{{ end }}");
+      console.log("Test key exists: {{ if .Site.Params.stripe.testPublishableKey }}true{{ else }}false{{ end }}");
+      console.log("Live key value: {{ .Site.Params.stripe.livePublishableKey }}");
+      console.log("Test key value: {{ .Site.Params.stripe.testPublishableKey }}");
+    </script>
+    
+    <script>
+      {{- if eq .Site.Params.environment "live" -}}
+        window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe.livePublishableKey }}";
+        window.BACKEND_URL = "https://api.wittleguys.net";
+      {{- else -}}
+        window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe.testPublishableKey }}";
+        window.BACKEND_URL = "http://localhost:3001";
+      {{- end -}}
     </script>
     {{- $all := slice -}}
     {{- range where .Site.RegularPages "Section" "products" -}}

@@ -38,7 +38,7 @@
   - Injects Stripe publishable key and backend URL via:
     ```html
     <script>
-      window.STRIPE_PUBLISHABLE_KEY = "***REMOVED***...";
+      window.STRIPE_PUBLISHABLE_KEY = "pk_test_...";
       window.BACKEND_URL = "http://localhost:3001";
     </script>
     <script src="/js/cart.js"></script>
@@ -74,7 +74,7 @@ document.getElementById('checkout-btn')?.addEventListener('click', async () => {
 ### Example template block
 ```html
 <script>
-  window.STRIPE_PUBLISHABLE_KEY = "***REMOVED***...";
+  window.STRIPE_PUBLISHABLE_KEY = "pk_test_...";
   window.BACKEND_URL = "http://localhost:3001";
 </script>
 <script src="/js/cart.js"></script>

@@ -42,14 +42,14 @@
 ## Environment Configuration:
 **Current .env (Test Mode):**
 ```
-STRIPE_SECRET_KEY=***REMOVED***...
+STRIPE_SECRET_KEY=sk_test_...
 FRONTEND_URL=http://localhost:1313
 PORT=3001
 ```
 
 **Production .env (Ready):**
 ```
-STRIPE_SECRET_KEY=***REMOVED***...
+STRIPE_SECRET_KEY=sk_live_...
 FRONTEND_URL=https://yourdomain.com
 PORT=3001
 NODE_ENV=production

@@ -236,77 +236,28 @@ function hideCart() {
 }
 
 function renderRecommendations() {
-    console.log('=== RECOMMENDATIONS DEBUG START ===');
-    console.log('renderRecommendations() called');
-    
-    // Check if ALL_PRODUCTS exists
-    let allProducts = window.ALL_PRODUCTS || ALL_PRODUCTS;
-    // Flatten if ALL_PRODUCTS is a nested array
-    if (Array.isArray(allProducts) && Array.isArray(allProducts[0])) {
-        console.warn('ALL_PRODUCTS is a nested array, flattening');
-        allProducts = allProducts[0];
-    }
-    console.log('ALL_PRODUCTS available:', typeof allProducts !== 'undefined');
-    console.log('ALL_PRODUCTS length:', allProducts?.length);
-    console.log('Sample product:', allProducts?.[0]);
-    
-    // Check current cart
-    console.log('Current cart:', cart);
-    console.log('Cart is array:', Array.isArray(cart));
-    
-    // Check container
-    const container = document.getElementById('cart-recommend-list');
-    console.log('Container found:', !!container);
-    console.log('Container element:', container);
-    
-    if (!allProducts || !container) {
-        console.error('Missing requirements:', { allProducts: !!allProducts, container: !!container });
-        return;
-    }
-    
-    // Check filtering logic
+    const allProducts = window.ALL_PRODUCTS || [];
     const cartProductIds = cart.map(item => item.id);
-    console.log('Cart product IDs:', cartProductIds);
-    
-    const availableProducts = allProducts.filter(product => !cartProductIds.includes(product.id));
-    console.log('Available products for recommendations:', availableProducts);
-    console.log('Available products count:', availableProducts.length);
-    
-    const recommendations = availableProducts.slice(0, 3);
-    console.log('Selected recommendations:', recommendations);
-    
-    // Clear container and rebuild
-    container.innerHTML = '';
-    console.log('Container cleared');
-    
-    if (recommendations.length === 0) {
-        console.log('No recommendations to show');
-        container.innerHTML = '<p>No recommendations available</p>';
-        return;
+    let recommend = allProducts.filter(p => !cartProductIds.includes(p.id));
+    if (recommend.length < 3) {
+        // If not enough, fill with random products (including those in cart)
+        const others = allProducts.filter(p => cartProductIds.includes(p.id));
+        recommend = recommend.concat(others).slice(0, 3);
+    } else {
+        recommend = recommend.slice(0, 3);
     }
-    
-    // Render each recommendation
-    recommendations.forEach((product, index) => {
-        console.log(`Rendering recommendation ${index + 1}:`, product);
-        
-        const productHtml = `
-            <div class="recommend-item">
-                <img src="${product.image}" alt="${product.name}" />
-                <div class="recommend-info">
-                    <h5>${product.name}</h5>
-                    <p class="recommend-price">$${(product.price / 100).toFixed(2)}</p>
-                    <button class="recommend-add" onclick="addToCart('${product.id}', '${product.name}', ${product.price}, '${product.image}', '${product.stripePrice || ''}')">
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML += productHtml;
-    });
-    
-    console.log('Recommendations rendered, final HTML:', container.innerHTML);
-    console.log('=== RECOMMENDATIONS DEBUG END ===');
+    const container = document.getElementById('cart-recommend-list');
+    if (!container) return;
+    container.innerHTML = recommend.map(p => `
+      <div class="recommend-item">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="recommend-info">
+          <div>${p.name}</div>
+          <div style="font-size:0.9em;color:#aef6e2;">$${Number(p.price).toFixed(2)}</div>
+        </div>
+        <button class="recommend-add" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}', '${p.stripePriceId}')">Add</button>
+      </div>
+    `).join('');
 }
 
 function applyDiscount() {

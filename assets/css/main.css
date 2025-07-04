@@ -80,12 +80,12 @@ nav {
     background: #3ec6a8;
     color: #1e3228;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 21.4px;
+    height: 21.4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     font-weight: 700;
     line-height: 1;
     box-shadow: 0 1px 4px #1e322855;

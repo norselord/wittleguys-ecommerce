@@ -496,15 +496,15 @@ footer {
 .cart-discount input { flex: 1; padding: 0.5rem; border-radius: 4px; border: 1px solid #3ec6a8; }
 .cart-discount button { padding: 0.5rem 1rem; border-radius: 4px; background: #3ec6a8; color: #1e3228; border: none; cursor: pointer; }
 .recommend-item img, .cart-item-image {
-  width: 36px !important;
-  height: 36px !important;
+  width: 48px !important;
+  height: 48px !important;
   border-radius: 8px;
   object-fit: cover;
 }
 .cart-item {
   display: flex;
   align-items: center;
-  gap: 0.75em;
+  gap: 1.25em;
   padding: 0.5rem 0;
   border-bottom: 1px solid #3ec6a8;
 }
@@ -513,7 +513,9 @@ footer {
   min-width: 0;
 }
 .cart-item-total {
-  text-align: right;
+  text-align: left;
+  margin-right: 1.5em;
+  min-width: 80px;
 }
 @media (max-width: 900px) {
   .cart-drawer { width: 100vw; }

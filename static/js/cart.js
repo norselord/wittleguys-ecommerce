@@ -118,7 +118,7 @@ function updateCartDisplay() {
                 </div>
             </div>
             <div class="cart-item-total">
-                <div style="color:#aef6e2;font-weight:600;">$${item.price.toFixed(2)}</div>
+                <div style="color:#aef6e2;font-weight:600;">$${Number(item.price).toFixed(2)}</div>
                 <button class="trash-btn" onclick="removeFromCart('${item.id}')" title="Remove">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
                 </button>
@@ -235,10 +235,17 @@ function hideCart() {
 }
 
 function renderRecommendations() {
-    // Example: Use a global JS array of products, or fetch from a Hugo-generated JSON
+    // Always show up to 3 other products, even if all are in the cart
     const allProducts = window.ALL_PRODUCTS || [];
     const cartIds = cart.map(item => item.id);
-    const recommend = allProducts.filter(p => !cartIds.includes(p.id)).slice(0, 3);
+    let recommend = allProducts.filter(p => !cartIds.includes(p.id));
+    if (recommend.length < 3) {
+        // If not enough, fill with random products (including those in cart)
+        const others = allProducts.filter(p => cartIds.includes(p.id));
+        recommend = recommend.concat(others).slice(0, 3);
+    } else {
+        recommend = recommend.slice(0, 3);
+    }
     const container = document.getElementById('cart-recommend-list');
     if (!container) return;
     container.innerHTML = recommend.map(p => `
@@ -246,7 +253,7 @@ function renderRecommendations() {
         <img src="${p.image}" alt="${p.name}">
         <div class="recommend-info">
           <div>${p.name}</div>
-          <div style="font-size:0.9em;color:#aef6e2;">$${(p.price/100).toFixed(2)}</div>
+          <div style="font-size:0.9em;color:#aef6e2;">$${Number(p.price).toFixed(2)}</div>
         </div>
         <button class="recommend-add" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}', '${p.stripePriceId}')">Add</button>
       </div>

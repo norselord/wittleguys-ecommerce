@@ -1,7 +1,7 @@
 ---
 title: "Hand Embroidered Dress"
 category: "dresses"
-price: 120.00
+price: 120
 stripe_price_id: "price_1Rgr1hGDLGsdgzhZ9oYWpblq"
 image: "/images/hand_embroidered_dress.png"
 emoji: "👗"

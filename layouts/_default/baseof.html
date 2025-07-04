@@ -166,19 +166,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Palette for other elements
-  const palette = [
-    '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
-    '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
-    '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
+  // Positive palette for prices, buttons, headers (no red, yellow, orange, brown, amber)
+  const positivePalette = [
+    '#3ec6e8', // blue
+    '#4ade80', // green
+    '#b388ff', // light purple
+    '#a3ffb0', // light green
+    '#7fdfff', // light blue
+    '#ff5eae', // hot pink
+    '#7cfb00', // lime green
+    '#00e6e6', // teal
+    '#a259e6', // purple
+    '#baffc9', // mint
+    '#bae1ff', // pale blue
+    '#e066ff', // magenta
+    '#b3baff', // periwinkle
+    '#b3fff6', // aqua
+    '#c2f0fc', // sky blue
+    '#e0b3ff', // lavender
+    '#b3ffd9', // seafoam
+    '#d1b3ff', // pastel purple
+    '#b3e6ff', // baby blue
+    '#baffea'  // pale aqua
   ];
 
   // Animate and randomize .btn (Add to Cart)
   const btns = document.querySelectorAll('.btn');
   btns.forEach(btn => {
-    let color = palette[Math.floor(Math.random() * palette.length)];
+    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
     btn.style.background = color;
-    btn.style.color = (['#ffe066','#a3ffb0','#baffc9','#bae1ff','#aaff80','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff'].includes(color)) ? '#222' : '#fff';
+    btn.style.color = (['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color)) ? '#222' : '#fff';
     btn.style.transition = 'background 0.7s, color 0.7s';
     btn.addEventListener('mouseenter', function() {
       btn.style.filter = 'brightness(1.15)';
@@ -191,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Animate and randomize .product-price
   const prices = document.querySelectorAll('.product-price');
   prices.forEach(price => {
-    let color = palette[Math.floor(Math.random() * palette.length)];
+    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
     price.style.color = color;
     price.style.transition = 'color 0.7s';
   });
@@ -199,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Animate and randomize .section-title and h1 (for Products, About, Contact)
   const headers = document.querySelectorAll('.section-title, h1');
   headers.forEach(header => {
-    let color = palette[Math.floor(Math.random() * palette.length)];
+    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
     header.style.color = color;
     header.style.transition = 'color 0.7s';
   });

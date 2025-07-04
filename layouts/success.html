@@ -15,3 +15,18 @@
     </div>
 </div>
 {{ end }} 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Clear the cart when success page loads
+    localStorage.removeItem('wittleguys_cart');
+    // Update cart display if cart functions are available
+    if (typeof updateCartDisplay === 'function') {
+        updateCartDisplay();
+    }
+    // Update cart count if function exists
+    if (typeof updateCartCount === 'function') {
+        updateCartCount();
+    }
+});
+</script> 

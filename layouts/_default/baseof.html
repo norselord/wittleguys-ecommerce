@@ -63,9 +63,13 @@
                 </li>
                 {{ end }}
             </ul>
-            <div class="cart-icon" onclick="showCart()">
-                🛒
-                <span class="cart-count" id="cart-count">0</span>
+            <div class="cart-icon" onclick="showCart()" style="position:relative;cursor:pointer;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3ec6a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+                <circle cx="9" cy="21" r="1.7" fill="#3ec6a8"/>
+                <circle cx="19" cy="21" r="1.7" fill="#3ec6a8"/>
+                <path d="M1 1h2l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              <span class="cart-count" id="cart-count" style="position:absolute;top:0.2em;right:0.2em;background:#3ec6a8;color:#1e3228;border-radius:50%;padding:0.1em 0.5em;font-size:1em;font-weight:700;">0</span>
             </div>
             <a href="/" class="site-logo" style="margin-left: 2rem;"><img src="/images/Logo.png" alt="Wittle Guys Logo" style="height: 56px; width: auto;"></a>
         </nav>
@@ -136,6 +140,14 @@
     <script>
       window.STRIPE_PUBLISHABLE_KEY = "***REMOVED***51RbkoIGDLGsdgzhZpNitRIAQjIBIfiaQHtXtd4KDntlmZyt4LkvIxaiUyBEvEgvXPG1p7ndaIyZgq1Spv5yzB3Rw00EYNgTiYi"; // Replace with your Stripe test publishable key
       window.BACKEND_URL = "http://localhost:3001";
+    </script>
+    {{- $all := slice -}}
+    {{- range where .Site.RegularPages "Section" "products" -}}
+      {{- $id := (or (and .File .File.BaseFileName) (.Title | urlize)) -}}
+      {{- $all = $all | append (dict "id" $id "name" .Title "price" .Params.price "image" .Params.image "stripePriceId" .Params.stripe_price_id) -}}
+    {{- end -}}
+    <script>
+      window.ALL_PRODUCTS = {{ $all | jsonify }};
     </script>
     <script src="/js/cart.js"></script>
 </body>

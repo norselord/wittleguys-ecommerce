@@ -86,6 +86,16 @@ function updateCartCount() {
     if (cartCountElement) {
         cartCountElement.textContent = totalItems;
         cartCountElement.style.display = totalItems > 0 ? 'inline-block' : 'none';
+        // Randomize color on update (positive palette)
+        const positivePalette = [
+            '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#7cfb00', '#00e6e6', '#a259e6',
+            '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9',
+            '#d1b3ff', '#b3e6ff', '#baffea'
+        ];
+        let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
+        cartCountElement.style.background = color;
+        cartCountElement.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
+        cartCountElement.style.transition = 'background 0.7s, color 0.7s';
     }
 }
 
@@ -149,6 +159,15 @@ function showNotification(message) {
         <img src="/images/cart.png" alt="Cart" class="cart-notification-icon">
         <span class="cart-notification-message">${message}</span>
     `;
+    // Randomize notification color (positive palette)
+    const positivePalette = [
+        '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#7cfb00', '#00e6e6', '#a259e6',
+        '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9',
+        '#d1b3ff', '#b3e6ff', '#baffea'
+    ];
+    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
+    notification.style.background = color;
+    notification.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
     document.body.appendChild(notification);
     // Add bounce-in animation
     notification.classList.add('cart-notification-bounce-in');

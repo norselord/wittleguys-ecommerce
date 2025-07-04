@@ -654,3 +654,18 @@ footer {
 .logo-ex1-dot { color: #00e6e6; font-weight: bold; }   /* teal dot */
 .logo-ex2-bar { color: #ff85a1; font-weight: bold; }   /* pink bar */
 .logo-ex2-dot { color: #aaff80; font-weight: bold; }   /* light green dot */ 
+
+#checkout-btn, .checkout-btn {
+  background: #7cfb00 !important;
+  color: #1a202c !important;
+  border: none;
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
+}
+#checkout-btn:hover, .checkout-btn:hover {
+  background: #6be000 !important;
+}
+.cart-summary .total {
+  color: #7cfb00 !important;
+  font-weight: 700;
+} 

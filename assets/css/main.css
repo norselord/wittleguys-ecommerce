@@ -648,3 +648,7 @@ footer {
 .logo-u { color: #a3ffb0; }      /* light green */
 .logo-y { color: #7fdfff; }      /* light blue */
 .logo-s { color: #ff4d4f; }      /* red */ 
+.logo-ex1-bar { color: #ffb347; font-weight: bold; }   /* orange-yellow bar */
+.logo-ex1-dot { color: #00e6e6; font-weight: bold; }   /* teal dot */
+.logo-ex2-bar { color: #ff85a1; font-weight: bold; }   /* pink bar */
+.logo-ex2-dot { color: #aaff80; font-weight: bold; }   /* light green dot */ 

@@ -146,22 +146,62 @@
     <script src="/js/cart.js"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Logo coloring (already present)
   const logo = document.getElementById('wittleguys-logo');
-  if (!logo) return;
-  const colors = [
+  if (logo) {
+    const colors = [
+      '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
+      '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
+      '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
+    ];
+    const used = new Set();
+    Array.from(logo.children).forEach(span => {
+      let color;
+      do {
+        color = colors[Math.floor(Math.random() * colors.length)];
+      } while (used.has(color) && used.size < colors.length);
+      used.add(color);
+      span.style.color = color;
+      span.style.fontWeight = 'bold';
+    });
+  }
+
+  // Palette for other elements
+  const palette = [
     '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
     '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
     '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
   ];
-  const used = new Set();
-  Array.from(logo.children).forEach(span => {
-    let color;
-    do {
-      color = colors[Math.floor(Math.random() * colors.length)];
-    } while (used.has(color) && used.size < colors.length);
-    used.add(color);
-    span.style.color = color;
-    span.style.fontWeight = 'bold';
+
+  // Animate and randomize .btn (Add to Cart)
+  const btns = document.querySelectorAll('.btn');
+  btns.forEach(btn => {
+    let color = palette[Math.floor(Math.random() * palette.length)];
+    btn.style.background = color;
+    btn.style.color = (['#ffe066','#a3ffb0','#baffc9','#bae1ff','#aaff80','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff'].includes(color)) ? '#222' : '#fff';
+    btn.style.transition = 'background 0.7s, color 0.7s';
+    btn.addEventListener('mouseenter', function() {
+      btn.style.filter = 'brightness(1.15)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      btn.style.filter = '';
+    });
+  });
+
+  // Animate and randomize .product-price
+  const prices = document.querySelectorAll('.product-price');
+  prices.forEach(price => {
+    let color = palette[Math.floor(Math.random() * palette.length)];
+    price.style.color = color;
+    price.style.transition = 'color 0.7s';
+  });
+
+  // Animate and randomize .section-title and h1 (for Products, About, Contact)
+  const headers = document.querySelectorAll('.section-title, h1');
+  headers.forEach(header => {
+    let color = palette[Math.floor(Math.random() * palette.length)];
+    header.style.color = color;
+    header.style.transition = 'color 0.7s';
   });
 });
 </script>

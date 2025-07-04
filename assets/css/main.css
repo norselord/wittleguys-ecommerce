@@ -23,7 +23,7 @@ body {
 header {
     background: rgba(20, 40, 30, 0.7);
     border-bottom: 1px solid #3ec6a8;
-    padding: 1rem 0;
+    padding: 0.95rem 0 0.85rem 0; /* 5% less vertical space, more top than bottom for upward shift */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -80,13 +80,17 @@ nav {
     background: #3ec6a8;
     color: #1e3228;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 1px 4px #1e322855;
+    pointer-events: none;
+    z-index: 2;
 }
 
 /* Hero Section */
@@ -260,7 +264,7 @@ nav {
 footer {
     background: rgba(20, 40, 30, 0.7);
     color: #aef6e2;
-    padding: 3rem 0;
+    padding: 2.67rem 0 2.37rem 0; /* 11% less vertical space, more bottom than top for downward shift */
     text-align: center;
 }
 

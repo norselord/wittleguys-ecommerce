@@ -37,7 +37,8 @@ function addToCart(productId, productName, productPrice, productImageOrPriceId, 
     } else if (arguments.length === 4) {
         stripePriceId = productImageOrPriceId;
     }
-    const price = productPrice > 100 ? productPrice / 100 : productPrice;
+    // FIX: Always treat productPrice as dollars (no division)
+    const price = Number(productPrice);
     const existingItem = cart.find(item => item.id === productId);
     if (existingItem) {
         existingItem.quantity += 1;

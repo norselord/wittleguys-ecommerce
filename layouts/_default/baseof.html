@@ -166,37 +166,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Positive palette for prices, buttons, headers (no red, yellow, orange, brown, amber)
+  // Positive palette for buttons and headers (pink allowed)
   const positivePalette = [
-    '#3ec6e8', // blue
-    '#4ade80', // green
-    '#b388ff', // light purple
-    '#a3ffb0', // light green
-    '#7fdfff', // light blue
-    '#ff5eae', // hot pink
-    '#7cfb00', // lime green
-    '#00e6e6', // teal
-    '#a259e6', // purple
-    '#baffc9', // mint
-    '#bae1ff', // pale blue
-    '#e066ff', // magenta
-    '#b3baff', // periwinkle
-    '#b3fff6', // aqua
-    '#c2f0fc', // sky blue
-    '#e0b3ff', // lavender
-    '#b3ffd9', // seafoam
-    '#d1b3ff', // pastel purple
-    '#b3e6ff', // baby blue
-    '#baffea'  // pale aqua
+    '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#ff5eae', '#7cfb00', '#00e6e6', '#a259e6', '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9', '#d1b3ff', '#b3e6ff', '#baffea', '#ff69b4'
+  ];
+  // Strictly non-red/pink/orange/amber palette for prices and cart count
+  const pricePalette = [
+    '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#7cfb00', '#00e6e6', '#a259e6', '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9', '#d1b3ff', '#b3e6ff', '#baffea'
   ];
 
   // Animate and randomize .btn (Add to Cart)
   const btns = document.querySelectorAll('.btn');
   btns.forEach(btn => {
-    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
-    btn.style.background = color;
-    btn.style.color = (['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color)) ? '#222' : '#fff';
+    // Always lime green background for buttons
+    btn.style.background = '#7cfb00';
     btn.style.transition = 'background 0.7s, color 0.7s';
+    
+    // Randomize the text colors
+    const text = btn.textContent;
+    btn.innerHTML = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
+      span.style.fontWeight = 'bold';
+      btn.appendChild(span);
+    }
+    
     btn.addEventListener('mouseenter', function() {
       btn.style.filter = 'brightness(1.15)';
     });
@@ -205,11 +201,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Animate and randomize .product-price
+  // Animate and randomize .product-price (each character different)
   const prices = document.querySelectorAll('.product-price');
   prices.forEach(price => {
-    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
-    price.style.color = color;
+    const text = price.textContent;
+    price.innerHTML = '';
+    const used = new Set();
+    for (let i = 0; i < text.length; i++) {
+      let color;
+      let tries = 0;
+      if (text[i] === '$') {
+        color = '#7cfb00'; // Always lime green for dollar sign
+      } else {
+        do {
+          color = pricePalette[Math.floor(Math.random() * pricePalette.length)];
+          tries++;
+        } while (used.has(color) && used.size < pricePalette.length && tries < 10);
+        used.add(color);
+      }
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.color = color;
+      span.style.fontWeight = 'bold';
+      price.appendChild(span);
+    }
     price.style.transition = 'color 0.7s';
   });
 
@@ -220,6 +235,15 @@ document.addEventListener('DOMContentLoaded', function() {
     header.style.color = color;
     header.style.transition = 'color 0.7s';
   });
+
+  // Randomize cart notification number color (no red/orange/pink/amber)
+  const cartCountElement = document.querySelector('.cart-count');
+  if (cartCountElement) {
+    let color = pricePalette[Math.floor(Math.random() * pricePalette.length)];
+    cartCountElement.style.background = color;
+    cartCountElement.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
+    cartCountElement.style.transition = 'background 0.7s, color 0.7s';
+  }
 });
 </script>
 </body>

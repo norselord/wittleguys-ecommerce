@@ -496,8 +496,8 @@ footer {
 .cart-discount input { flex: 1; padding: 0.5rem; border-radius: 4px; border: 1px solid #3ec6a8; }
 .cart-discount button { padding: 0.5rem 1rem; border-radius: 4px; background: #3ec6a8; color: #1e3228; border: none; cursor: pointer; }
 .recommend-item img, .cart-item-image {
-  width: 48px !important;
-  height: 48px !important;
+  width: 60px !important;
+  height: 60px !important;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -516,6 +516,72 @@ footer {
   text-align: left;
   margin-right: 1.5em;
   min-width: 80px;
+}
+.quantity-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #3ec6a8;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #22382e;
+}
+.qty-btn {
+  background: none;
+  border: none;
+  color: #3ec6a8;
+  font-size: 1.2em;
+  width: 2.2em;
+  height: 2.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.qty-btn:hover {
+  background: #2a4c3a;
+}
+.quantity {
+  display: inline-block;
+  width: 2.2em;
+  text-align: center;
+  font-size: 1.1em;
+  color: #aef6e2;
+  background: none;
+}
+.trash-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5em;
+  color: #aaa;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.trash-btn:hover {
+  color: #e74c3c;
+}
+.recommend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+.recommend-item .recommend-info {
+  flex: 1;
+}
+.recommend-item .recommend-add {
+  background: #3ec6a8;
+  color: #1e3228;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3em 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.recommend-item .recommend-add:hover {
+  background: #2a4c3a;
+  color: #aef6e2;
 }
 @media (max-width: 900px) {
   .cart-drawer { width: 100vw; }

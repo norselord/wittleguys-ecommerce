@@ -111,16 +111,17 @@ function updateCartDisplay() {
             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
             <div class="cart-item-details">
                 <h3>${item.name}</h3>
-                <p class="cart-item-price">$${item.price.toFixed(2)}</p>
                 <div class="quantity-controls">
-                    <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                    <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">&minus;</button>
                     <span class="quantity">${item.quantity}</span>
                     <button class="qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
                 </div>
             </div>
             <div class="cart-item-total">
-                <p>$${(item.price * item.quantity).toFixed(2)}</p>
-                <button class="remove-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+                <div style="color:#aef6e2;font-weight:600;">$${item.price.toFixed(2)}</div>
+                <button class="trash-btn" onclick="removeFromCart('${item.id}')" title="Remove">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+                </button>
             </div>
         </div>
     `).join('');
@@ -234,20 +235,20 @@ function hideCart() {
 }
 
 function renderRecommendations() {
-    // Placeholder: You can populate window.ALL_PRODUCTS in your template for real recommendations
+    // Example: Use a global JS array of products, or fetch from a Hugo-generated JSON
     const allProducts = window.ALL_PRODUCTS || [];
     const cartIds = cart.map(item => item.id);
     const recommend = allProducts.filter(p => !cartIds.includes(p.id)).slice(0, 3);
     const container = document.getElementById('cart-recommend-list');
     if (!container) return;
     container.innerHTML = recommend.map(p => `
-      <div class="recommend-item" style="display:flex;align-items:center;gap:0.5em;margin-bottom:1em;">
-        <img src="${p.image}" alt="${p.name}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;">
-        <div style="flex:1;">
+      <div class="recommend-item">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="recommend-info">
           <div>${p.name}</div>
           <div style="font-size:0.9em;color:#aef6e2;">$${(p.price/100).toFixed(2)}</div>
         </div>
-        <button onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}', '${p.stripePriceId}')">Add</button>
+        <button class="recommend-add" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}', '${p.stripePriceId}')">Add</button>
       </div>
     `).join('');
 }

@@ -148,25 +148,73 @@
 }
 </style>
 
-<!-- Cart Clearing Script -->
+<!-- Enhanced Cart Clearing Debug Script -->
 <script>
+console.log('Success page loaded - attempting to clear cart');
+
+window.addEventListener('load', function() {
+    console.log('Page fully loaded, clearing cart now');
+    // Try all possible cart keys
+    const keysToRemove = ['cart', 'shopping-cart', 'wittleguys-cart', 'cartItems', 'cart-data', 'wittleguys_cart'];
+    keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+        console.log('Removed:', key);
+    });
+    setTimeout(function() {
+        // Try standard function names
+        if (typeof updateCartDisplay === 'function') {
+            console.log('Found updateCartDisplay function, calling it');
+            updateCartDisplay();
+        } else {
+            console.log('updateCartDisplay function not found');
+        }
+        if (typeof updateCartCount === 'function') {
+            console.log('Found updateCartCount function, calling it');
+            updateCartCount();
+        } else {
+            console.log('updateCartCount function not found');
+        }
+        if (typeof refreshCart === 'function') {
+            console.log('Found refreshCart function, calling it');
+            refreshCart();
+        }
+        if (typeof renderCart === 'function') {
+            console.log('Found renderCart function, calling it');
+            renderCart();
+        }
+        // Manually update cart count display
+        const cartCountElements = document.querySelectorAll('.cart-count, .cart-counter, .cart-badge, .cart-num');
+        cartCountElements.forEach(element => {
+            console.log('Found cart count element:', element);
+            element.textContent = '0';
+            element.style.display = 'none';
+        });
+        // Force cart icon update
+        const cartIcons = document.querySelectorAll('.cart-icon, .cart-button, .cart-toggle');
+        cartIcons.forEach(icon => {
+            console.log('Found cart icon:', icon);
+            const badges = icon.querySelectorAll('.cart-count, .cart-counter, .cart-badge');
+            badges.forEach(badge => {
+                badge.textContent = '0';
+                badge.style.display = 'none';
+            });
+        });
+        // Trigger custom cart update event
+        if (typeof window.dispatchEvent === 'function') {
+            console.log('Dispatching cart update event');
+            window.dispatchEvent(new CustomEvent('cartUpdated'));
+        }
+        console.log('Cart clearing attempts completed');
+    }, 100);
+});
 document.addEventListener('DOMContentLoaded', function() {
-    // Clear the cart when success page loads
-    localStorage.removeItem('wittleguys_cart');
-    // Update cart display if cart functions are available
-    if (typeof updateCartDisplay === 'function') {
-        updateCartDisplay();
-    }
-    // Update cart count if function exists
-    if (typeof updateCartCount === 'function') {
-        updateCartCount();
-    }
-    // Force cart count to 0 if functions don't exist
-    const cartCount = document.querySelector('.cart-count');
-    if (cartCount) {
-        cartCount.textContent = '0';
-        cartCount.style.display = 'none';
-    }
+    console.log('DOM loaded, attempting immediate cart clear');
+    const keysToRemove = ['cart', 'shopping-cart', 'wittleguys-cart', 'cartItems', 'cart-data', 'wittleguys_cart'];
+    keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+    });
 });
 </script>
 {{ end }} 

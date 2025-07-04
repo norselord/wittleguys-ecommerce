@@ -217,11 +217,44 @@ async function checkout() {
 }
 
 function showCart() {
-    document.getElementById('cart-modal').classList.remove('hidden');
+    document.getElementById('cart-overlay').classList.add('open');
+    document.getElementById('cart-overlay').classList.remove('hidden');
+    document.getElementById('cart-drawer').classList.add('open');
+    document.getElementById('cart-drawer').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     updateCartUI();
+    renderRecommendations();
 }
 function hideCart() {
-    document.getElementById('cart-modal').classList.add('hidden');
+    document.getElementById('cart-overlay').classList.remove('open');
+    document.getElementById('cart-overlay').classList.add('hidden');
+    document.getElementById('cart-drawer').classList.remove('open');
+    document.getElementById('cart-drawer').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+function renderRecommendations() {
+    // Placeholder: You can populate window.ALL_PRODUCTS in your template for real recommendations
+    const allProducts = window.ALL_PRODUCTS || [];
+    const cartIds = cart.map(item => item.id);
+    const recommend = allProducts.filter(p => !cartIds.includes(p.id)).slice(0, 3);
+    const container = document.getElementById('cart-recommend-list');
+    if (!container) return;
+    container.innerHTML = recommend.map(p => `
+      <div class="recommend-item" style="display:flex;align-items:center;gap:0.5em;margin-bottom:1em;">
+        <img src="${p.image}" alt="${p.name}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;">
+        <div style="flex:1;">
+          <div>${p.name}</div>
+          <div style="font-size:0.9em;color:#aef6e2;">$${(p.price/100).toFixed(2)}</div>
+        </div>
+        <button onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}', '${p.stripePriceId}')">Add</button>
+      </div>
+    `).join('');
+}
+
+function applyDiscount() {
+    // Placeholder: Implement discount logic or integrate with Stripe Coupons
+    alert('Discount code feature coming soon!');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -241,5 +274,6 @@ window.checkout = checkout;
 window.cart = cart;
 window.showCart = showCart;
 window.hideCart = hideCart;
+window.applyDiscount = applyDiscount;
 
 console.log('Cart.js functions exposed globally');

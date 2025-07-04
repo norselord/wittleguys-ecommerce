@@ -1,0 +1,172 @@
+{{ define "main" }}
+<div class="success-page">
+    <div class="success-content">
+        <div class="success-icon">🎉</div>
+        <h1 class="success-title">Order Successful!</h1>
+        <h2 class="success-subtitle">Thank You for Your Order! 🎯</h2>
+        <p>Your order has been successfully placed and we're excited to handcraft your beautiful sustainable goods.</p>
+        <div class="what-next">
+            <h3>What's Next?</h3>
+            <ol>
+                <li><strong>Order Confirmation:</strong> You'll receive an email confirmation shortly</li>
+                <li><strong>Handcrafting:</strong> We'll begin handsewing your items within 1-2 business days</li>
+                <li><strong>Shipping:</strong> Your order will ship within 5-7 business days</li>
+                <li><strong>Tracking:</strong> You'll receive tracking information via email</li>
+            </ol>
+        </div>
+        <div class="order-details">
+            <h3>Order Details</h3>
+            <p>If you have any questions about your order, please contact us at <a href="mailto:hello@wittleguys.net">hello@wittleguys.net</a> with your order number.</p>
+            <p><a href="/contact">Contact Support</a> | <a href="/about">Our Story</a></p>
+        </div>
+        <div class="success-actions">
+            <a href="/" class="btn btn-primary">Continue Shopping</a>
+            <a href="/about" class="btn btn-secondary">Learn About Us</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.success-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+.success-content {
+    max-width: 600px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+.success-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #4ade80;
+}
+.success-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #e2e8f0;
+}
+.what-next {
+    text-align: left;
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+.what-next h3 {
+    color: #4ade80;
+    margin-bottom: 1rem;
+}
+.what-next ol {
+    margin-left: 1rem;
+}
+.what-next li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+.order-details {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+.order-details h3 {
+    color: #4ade80;
+    margin-bottom: 1rem;
+}
+.order-details a {
+    color: #4ade80;
+    text-decoration: none;
+}
+.order-details a:hover {
+    text-decoration: underline;
+}
+.success-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+.btn-primary {
+    background: #4ade80;
+    color: #1a202c;
+}
+.btn-primary:hover {
+    background: #22c55e;
+    transform: translateY(-2px);
+}
+.btn-secondary {
+    background: transparent;
+    color: #4ade80;
+    border: 2px solid #4ade80;
+}
+.btn-secondary:hover {
+    background: #4ade80;
+    color: #1a202c;
+    transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+    .success-content {
+        padding: 2rem;
+    }
+    .success-title {
+        font-size: 2rem;
+    }
+    .success-subtitle {
+        font-size: 1.2rem;
+    }
+    .success-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+</style>
+
+<!-- Cart Clearing Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Clear the cart when success page loads
+    localStorage.removeItem('wittleguys_cart');
+    // Update cart display if cart functions are available
+    if (typeof updateCartDisplay === 'function') {
+        updateCartDisplay();
+    }
+    // Update cart count if function exists
+    if (typeof updateCartCount === 'function') {
+        updateCartCount();
+    }
+    // Force cart count to 0 if functions don't exist
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        cartCount.textContent = '0';
+        cartCount.style.display = 'none';
+    }
+});
+</script>
+{{ end }} 

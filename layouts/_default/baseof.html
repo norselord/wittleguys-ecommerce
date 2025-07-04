@@ -218,11 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
     price.innerHTML = '';
     for (let i = 0; i < text.length; i++) {
       let color;
-      if (text[i] === '$') {
-        color = '#7cfb00'; // Always lime green for dollar sign
-      } else {
-        color = '#b3ffd9'; // Always seafoam green for numbers
-      }
+      // All price characters (including $) are seafoam green
+      color = '#b3ffd9';
       const span = document.createElement('span');
       span.textContent = text[i];
       span.style.color = color;
@@ -247,6 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
     cartCountElement.style.background = color;
     cartCountElement.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
     cartCountElement.style.transition = 'background 0.7s, color 0.7s';
+  }
+
+  // Make the tax price in the cart always red
+  const taxEl = document.querySelector('.tax');
+  if (taxEl) {
+    taxEl.style.color = '#e53935'; // Material red
+    taxEl.style.fontWeight = 'bold';
   }
 });
 </script>

@@ -34,12 +34,14 @@ app.post('/api/create-checkout-session', async (req, res) => {
       };
     });
 
+    const cancelUrl = `${process.env.FRONTEND_URL}/`;
+    console.log('Stripe cancel_url:', cancelUrl);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/`
+      cancel_url: cancelUrl
     });
 
     res.json({ sessionId: session.id });

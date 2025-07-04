@@ -182,15 +182,18 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.style.background = '#7cfb00';
     btn.style.transition = 'background 0.7s, color 0.7s';
     
-    // Randomize the text colors
-    const text = btn.textContent;
-    btn.innerHTML = '';
-    for (let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      span.style.color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
-      span.style.fontWeight = 'bold';
-      btn.appendChild(span);
+    // Randomize the text colors in the btn-text span
+    const btnTextSpan = btn.querySelector('.btn-text');
+    if (btnTextSpan) {
+      const text = btnTextSpan.textContent;
+      btnTextSpan.innerHTML = '';
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
+        span.style.fontWeight = 'bold';
+        btnTextSpan.appendChild(span);
+      }
     }
     
     btn.addEventListener('mouseenter', function() {
@@ -206,18 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
   prices.forEach(price => {
     const text = price.textContent;
     price.innerHTML = '';
-    const used = new Set();
     for (let i = 0; i < text.length; i++) {
       let color;
-      let tries = 0;
       if (text[i] === '$') {
         color = '#7cfb00'; // Always lime green for dollar sign
       } else {
-        do {
-          color = pricePalette[Math.floor(Math.random() * pricePalette.length)];
-          tries++;
-        } while (used.has(color) && used.size < pricePalette.length && tries < 10);
-        used.add(color);
+        color = '#b3ffd9'; // Always seafoam green for numbers
       }
       const span = document.createElement('span');
       span.textContent = text[i];

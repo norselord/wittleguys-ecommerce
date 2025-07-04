@@ -463,7 +463,7 @@ footer {
     text-decoration: underline;
 } 
 
-/* Off-Canvas Cart Drawer Styles */
+/* Off-Canvas Cart Drawer Styles (Updated for 50vw width and smaller images) */
 .cart-overlay {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background: rgba(30, 50, 40, 0.6);
@@ -471,7 +471,7 @@ footer {
   transition: opacity 0.3s;
 }
 .cart-drawer {
-  position: fixed; top: 0; right: 0; height: 100vh; width: 480px; max-width: 100vw;
+  position: fixed; top: 0; right: 0; height: 100vh; width: 50vw; max-width: 100vw;
   background: #1e3228;
   color: #aef6e2;
   z-index: 1001;
@@ -495,7 +495,27 @@ footer {
 .cart-discount { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
 .cart-discount input { flex: 1; padding: 0.5rem; border-radius: 4px; border: 1px solid #3ec6a8; }
 .cart-discount button { padding: 0.5rem 1rem; border-radius: 4px; background: #3ec6a8; color: #1e3228; border: none; cursor: pointer; }
-@media (max-width: 600px) {
+.recommend-item img, .cart-item-image {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #3ec6a8;
+}
+.cart-item-details {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.cart-item-total {
+  text-align: right;
+}
+@media (max-width: 900px) {
   .cart-drawer { width: 100vw; }
   .cart-recommendations { display: none; }
 } 

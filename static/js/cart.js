@@ -145,19 +145,14 @@ function updateCartSummary() {
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'cart-notification';
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #20b2aa;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 5px;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    notification.innerHTML = `
+        <img src="/images/cart.png" alt="Cart" class="cart-notification-icon">
+        <span class="cart-notification-message">${message}</span>
     `;
     document.body.appendChild(notification);
+    // Add bounce-in animation
+    notification.classList.add('cart-notification-bounce-in');
+    setTimeout(() => notification.classList.add('cart-notification-fade-out'), 2200);
     setTimeout(() => notification.remove(), 3000);
 }
 

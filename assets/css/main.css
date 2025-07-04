@@ -637,3 +637,14 @@ footer {
   80% { transform: scale(0.96) translateY(-4px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
 } 
+
+.logo-w { color: #ff69b4; }      /* pink */
+.logo-i { color: #ff9800; }      /* orange */
+.logo-t1 { color: #ffe066; }     /* yellow */
+.logo-t2 { color: #a259e6; }     /* purple */
+.logo-l { color: #3ec6e8; }      /* blue */
+.logo-e { color: #4ade80; }      /* green */
+.logo-g { color: #b388ff; }      /* light purple */
+.logo-u { color: #a3ffb0; }      /* light green */
+.logo-y { color: #7fdfff; }      /* light blue */
+.logo-s { color: #ff4d4f; }      /* red */ 

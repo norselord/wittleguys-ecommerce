@@ -240,7 +240,12 @@ function renderRecommendations() {
     console.log('renderRecommendations() called');
     
     // Check if ALL_PRODUCTS exists
-    const allProducts = window.ALL_PRODUCTS || ALL_PRODUCTS;
+    let allProducts = window.ALL_PRODUCTS || ALL_PRODUCTS;
+    // Flatten if ALL_PRODUCTS is a nested array
+    if (Array.isArray(allProducts) && Array.isArray(allProducts[0])) {
+        console.warn('ALL_PRODUCTS is a nested array, flattening');
+        allProducts = allProducts[0];
+    }
     console.log('ALL_PRODUCTS available:', typeof allProducts !== 'undefined');
     console.log('ALL_PRODUCTS length:', allProducts?.length);
     console.log('Sample product:', allProducts?.[0]);

@@ -12,7 +12,7 @@ No worries! Your order has been cancelled and no charges were made.
 
 If you had any issues during checkout or have questions about our products, we're here to help:
 
-- **Email**: [hello@wittleguys.net](mailto:hello@wittleguys.net)
+- **Email**: [support@wittleguys.net](mailto:support@wittleguys.net)
 - **Phone**: (555) 123-4567
 
 ## Continue Shopping

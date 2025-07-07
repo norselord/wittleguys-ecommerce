@@ -6,7 +6,7 @@ languageCode = "en-us"
   description = "Handmade, environmentally sustainable bags, dresses and more"
   tagline = "Crafting beautiful handmade goods with pure materials and passion since 2024"
   author = "Wittle Guys"
-  email = "hello@wittleguys.net"
+  email = "support@wittleguys.net"
   phone = "(555) 123-4567"
   
   [params.hero]

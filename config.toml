@@ -22,7 +22,11 @@ languageCode = "en-us"
     twitter = "#"
   
   [params.stripe]
-    publishableKey = "pk_test_51RbkoIGDLGsdgzhZpNitRIAQjIBIfiaQHtXtd4KDntlmZyt4LkvIxaiUyBEvEgvXPG1p7ndaIyZgq1Spv5yzB3Rw00EYNgTiYi"
+    # Stripe keys are no longer stored in config.toml for security.
+    # Set your publishable key as an environment variable at build time.
+    testPublishableKey = ""
+    livePublishableKey = ""
+    publishableKey = ""
 
 [menu]
   [[menu.main]]

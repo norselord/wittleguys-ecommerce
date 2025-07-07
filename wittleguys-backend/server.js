@@ -73,6 +73,7 @@ app.post('/api/contact', async (req, res) => {
         pass: process.env.SMTP_PASS
       }
     });
+    // Send message to support
     await transporter.sendMail({
       from: `Wittleguys Contact <support@wittleguys.net>` ,
       to: 'support@wittleguys.net',
@@ -80,6 +81,14 @@ app.post('/api/contact', async (req, res) => {
       replyTo: email,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `<p><strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br>')}</p>`
+    });
+    // Send confirmation to user
+    await transporter.sendMail({
+      from: `Wittle Guys <support@wittleguys.net>`,
+      to: email,
+      subject: 'We received your message! (Wittle Guys)',
+      text: `Hi ${name},\n\nThank you for contacting Wittle Guys! We have received your message and will get back to you as soon as possible.\n\nYour message:\n${message}\n\nIf you have any urgent questions, you can reply to this email.\n\nBest,\nThe Wittle Guys Team`,
+      html: `<p>Hi ${name},</p><p>Thank you for contacting <strong>Wittle Guys</strong>! We have received your message and will get back to you as soon as possible.</p><blockquote>${message.replace(/\n/g, '<br>')}</blockquote><p>If you have any urgent questions, you can reply to this email.<br><br>Best,<br>The Wittle Guys Team</p>`
     });
     res.json({ success: true, message: 'Message sent successfully!' });
   } catch (error) {

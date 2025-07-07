@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -48,6 +49,42 @@ app.post('/api/create-checkout-session', async (req, res) => {
   } catch (error) {
     console.error('Error creating checkout session:', error);
     res.status(500).json({ error: error.message });
+  }
+});
+
+// Contact form endpoint
+app.post('/api/contact', async (req, res) => {
+  const { name, email, message } = req.body;
+  // Basic validation
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'All fields are required.' });
+  }
+  if (typeof message !== 'string' || message.length < 10 || message.length > 2000) {
+    return res.status(400).json({ error: 'Message must be between 10 and 2000 characters.' });
+  }
+  try {
+    // Configure Nodemailer with SMTP2GO relay
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST, // e.g. 'mail.smtp2go.com'
+      port: process.env.SMTP_PORT || 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    });
+    await transporter.sendMail({
+      from: `Wittleguys Contact <support@wittleguys.net>` ,
+      to: 'support@wittleguys.net',
+      subject: `Contact Form Submission from ${name}`,
+      replyTo: email,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      html: `<p><strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br>')}</p>`
+    });
+    res.json({ success: true, message: 'Message sent successfully!' });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    res.status(500).json({ error: 'Failed to send message. Please try again later.' });
   }
 });
 

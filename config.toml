@@ -3,6 +3,7 @@ title = "Wittle Guys"
 languageCode = "en-us"
 
 [params]
+  environment = "live"
   description = "Handmade, environmentally sustainable bags, dresses and more"
   tagline = "Crafting beautiful handmade goods with pure materials and passion since 2024"
   author = "Wittle Guys"

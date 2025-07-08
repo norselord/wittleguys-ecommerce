@@ -28,6 +28,12 @@
     <header>
         <nav class="container nav-flex desktop-nav">
             <div class="nav-left">
+                <div id="wittleguys-title" class="wittleguys-title-desktop">
+                    <span>w</span><span>i</span><span>t</span><span>t</span><span>l</span><span>e</span> <span>g</span><span>u</span><span>y</span><span>s</span><span>!</span><span>!</span>
+                </div>
+            </div>
+            <div class="nav-center">
+                <img src="/images/Logo.png" alt="Wittle Guys Logo" id="caterpillar-logo" class="caterpillar-logo" tabindex="0">
                 <ul class="nav-links" id="nav-links">
                     {{ range .Site.Menus.main }}
                     <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
@@ -64,9 +70,6 @@
                     {{ end }}
                 </ul>
             </div>
-            <div class="nav-center">
-                <img src="/images/Logo.png" alt="Wittle Guys Logo" id="caterpillar-logo" class="caterpillar-logo" style="height: 56px; width: auto; display: block; margin: 0 auto;">
-            </div>
             <div class="nav-right">
                 <div class="cart-icon" onclick="showCart()">
                     <img src="/images/cart.png" alt="Cart" style="height: 36px; width: 36px; vertical-align: middle; filter: drop-shadow(0 2px 6px #1e3228aa);">
@@ -94,14 +97,14 @@
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     {{ with .Site.Params.social }}
-                        {{ with .instagram }}<p><a href="{{ . }}" class="footer-social"><span>Instagram</span></a></p>{{ end }}
-                        {{ with .facebook }}<p><a href="{{ . }}" class="footer-social"><span>Facebook</span></a></p>{{ end }}
-                        {{ with .twitter }}<p><a href="{{ . }}" class="footer-social"><span>Twitter</span></a></p>{{ end }}
+                        {{ with .etsy }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/etsy.svg" alt="Etsy" class="footer-social-icon"> Etsy</a></p>{{ end }}
+                        {{ with .instagram }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/instagram.svg" alt="Instagram" class="footer-social-icon"> Instagram</a></p>{{ end }}
+                        {{ with .facebook }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/facebook.svg" alt="Facebook" class="footer-social-icon"> Facebook</a></p>{{ end }}
+                        {{ with .twitter }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/twitter.svg" alt="Twitter" class="footer-social-icon"> Twitter</a></p>{{ end }}
                     {{ end }}
                 </div>
             </div>
             <div class="footer-cards">
-                <!-- Card icons (SVG or images) -->
                 <img src="/images/cards/visa.svg" alt="Visa" class="card-icon">
                 <img src="/images/cards/mastercard.svg" alt="Mastercard" class="card-icon">
                 <img src="/images/cards/amex.svg" alt="Amex" class="card-icon">
@@ -109,8 +112,10 @@
                 <img src="/images/cards/paypal.svg" alt="PayPal" class="card-icon">
                 <img src="/images/cards/applepay.svg" alt="Apple Pay" class="card-icon">
                 <img src="/images/cards/googlepay.svg" alt="Google Pay" class="card-icon">
+                <img src="/images/cards/etsy.svg" alt="Etsy" class="card-icon">
             </div>
             <p class="footer-copyright">© {{ now.Year }} wittle guys. All rights reserved.</p>
+            <p class="footer-copyright">All Wites Weserved. (All Rights Reserved.)</p>
         </div>
     </footer>
 
@@ -287,6 +292,16 @@ document.addEventListener('DOMContentLoaded', function() {
     return colors[Math.floor(Math.random() * colors.length)];
   }
   document.addEventListener('DOMContentLoaded', function() {
+    // Wittleguys title color randomization (desktop only)
+    var wgTitle = document.getElementById('wittleguys-title');
+    if (wgTitle && !isMobile()) {
+      Array.from(wgTitle.children).forEach(function(span) {
+        if (span.textContent !== ' ') {
+          span.style.color = randomColor();
+          span.style.fontWeight = 'bold';
+        }
+      });
+    }
     // Top banner color randomization
     var banner = document.getElementById('mobile-top-banner');
     if (banner && isMobile()) {
@@ -332,6 +347,15 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
       if (!isMobile()) mobileMenuOverlay.classList.remove('open');
     });
+    // Center caterpillar logo on mobile
+    var caterpillarLogo = document.getElementById('caterpillar-logo');
+    if (caterpillarLogo && isMobile()) {
+      caterpillarLogo.style.marginTop = '2.5rem';
+      caterpillarLogo.style.marginBottom = '1.5rem';
+      caterpillarLogo.style.display = 'block';
+      caterpillarLogo.style.marginLeft = 'auto';
+      caterpillarLogo.style.marginRight = 'auto';
+    }
   });
 </script>
 </body>

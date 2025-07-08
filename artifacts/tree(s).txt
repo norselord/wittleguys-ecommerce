@@ -1,0 +1,354 @@
+tree(s)
+-----------------------------------------------
+My arch machine 
+[nordak@archlinux wittleguys]$   tree -L 3
+.
+├── archetypes
+│   └── default.md
+├── artifacts
+│   ├── contact_form_implementation.md
+│   ├── cursor artifact wittleguys ecommerce v3.md
+│   ├── wittleguys_cart_project_status.md
+│   └── wittleguys_cart_recommendations_panel_issue.md
+├── assets
+│   ├── css
+│   │   └── main.css
+│   └── js
+│       └── wittleguys-ecommerce.code-workspace
+├── config.toml
+├── content
+│   ├── about.md
+│   ├── blog
+│   │   └── _index.md
+│   ├── cancel.md
+│   ├── contact.md
+│   ├── contact-success.md
+│   ├── en
+│   │   ├── posts
+│   │   ├── sidebar
+│   │   └── welcome-header
+│   ├── _index.md
+│   ├── jp
+│   │   ├── posts
+│   │   ├── sidebar
+│   │   └── welcome-header
+│   ├── philosophy.md
+│   ├── posts
+│   ├── products
+│   │   ├── hand-embroidered-dress.md
+│   │   ├── handmade-cotton-apron.md
+│   │   └── vintage-hand-sewn-bag.md
+│   ├── prose.md
+│   ├── shop
+│   │   ├── bags.md
+│   │   └── _index.md
+│   ├── shop.md
+│   ├── sidebar
+│   ├── success.md
+│   └── welcome-header
+│       └── _index.md
+├── data
+├── i18n
+│   └── en.toml
+├── layouts
+│   ├── cancel.html
+│   ├── _default
+│   │   ├── baseof.html
+│   │   ├── list.html
+│   │   └── single.html
+│   ├── index.html
+│   ├── page
+│   │   └── success.html
+│   ├── shop
+│   │   └── single.html
+│   ├── shop.html
+│   └── success.html
+├── package.json
+├── public
+│   ├── about
+│   │   └── index.html
+│   ├── cancel
+│   │   └── index.html
+│   ├── categories
+│   │   ├── index.html
+│   │   └── index.xml
+│   ├── contact
+│   │   └── index.html
+│   ├── contact-success
+│   │   └── index.html
+│   ├── css
+│   │   └── main.min.css
+│   ├── en
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── posts
+│   ├── favicon
+│   │   └── Caterpillar.png
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── 85dolla.png
+│   │   ├── bg-forest.jpg
+│   │   ├── cart.png
+│   │   ├── Caterpillar.png
+│   │   ├── cotton_apron.png
+│   │   ├── hand_embroidered_dress.png
+│   │   ├── Logo.png
+│   │   ├── nz.jpeg
+│   │   ├── nz.jpg
+│   │   └── vintage_hand_sewn_bag.png
+│   ├── index.html
+│   ├── index.xml
+│   ├── jp
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── posts
+│   ├── js
+│   │   └── cart.js
+│   ├── products
+│   │   ├── hand-embroidered-dress
+│   │   ├── handmade-cotton-apron
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── vintage-hand-sewn-bag
+│   ├── prose
+│   │   └── index.html
+│   ├── shop
+│   │   └── bags
+│   ├── sitemap.xml
+│   ├── success
+│   │   └── index.html
+│   └── tags
+│       ├── index.html
+│       ├── index.xml
+│       ├── meow
+│       ├── rawr
+│       ├── ゴゴ
+│       └── にゃー
+├── resources
+│   └── _gen
+│       ├── assets
+│       └── images
+├── server.js
+├── static
+│   ├── favicon
+│   │   └── Caterpillar.png
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── 85dolla.png
+│   │   ├── bg-forest.jpg
+│   │   ├── cart.png
+│   │   ├── Caterpillar.png
+│   │   ├── cotton_apron.png
+│   │   ├── hand_embroidered_dress.png
+│   │   ├── Logo.png
+│   │   ├── nz.jpeg
+│   │   ├── nz.jpg
+│   │   └── vintage_hand_sewn_bag.png
+│   └── js
+│       └── cart.js
+├── stripe-keys.txt
+├── themes
+│   ├── neopost
+│   │   ├── archetypes
+│   │   ├── config.toml
+│   │   ├── data
+│   │   ├── example
+│   │   ├── images
+│   │   ├── layouts
+│   │   ├── LICENSE
+│   │   ├── netlify.toml
+│   │   ├── README.md
+│   │   ├── themes
+│   │   └── theme.toml
+│   └── tailbliss
+│       └── assets
+├── wittleguys-backend
+│   ├── node_modules
+│   │   ├── accepts
+│   │   ├── array-flatten
+│   │   ├── body-parser
+│   │   ├── bytes
+│   │   ├── call-bind-apply-helpers
+│   │   ├── call-bound
+│   │   ├── content-disposition
+│   │   ├── content-type
+│   │   ├── cookie
+│   │   ├── cookie-signature
+│   │   ├── cors
+│   │   ├── debug
+│   │   ├── depd
+│   │   ├── destroy
+│   │   ├── dotenv
+│   │   ├── dunder-proto
+│   │   ├── ee-first
+│   │   ├── encodeurl
+│   │   ├── escape-html
+│   │   ├── es-define-property
+│   │   ├── es-errors
+│   │   ├── es-object-atoms
+│   │   ├── etag
+│   │   ├── express
+│   │   ├── finalhandler
+│   │   ├── forwarded
+│   │   ├── fresh
+│   │   ├── function-bind
+│   │   ├── get-intrinsic
+│   │   ├── get-proto
+│   │   ├── gopd
+│   │   ├── hasown
+│   │   ├── has-symbols
+│   │   ├── http-errors
+│   │   ├── iconv-lite
+│   │   ├── inherits
+│   │   ├── ipaddr.js
+│   │   ├── math-intrinsics
+│   │   ├── media-typer
+│   │   ├── merge-descriptors
+│   │   ├── methods
+│   │   ├── mime
+│   │   ├── mime-db
+│   │   ├── mime-types
+│   │   ├── ms
+│   │   ├── negotiator
+│   │   ├── object-assign
+│   │   ├── object-inspect
+│   │   ├── on-finished
+│   │   ├── parseurl
+│   │   ├── path-to-regexp
+│   │   ├── proxy-addr
+│   │   ├── qs
+│   │   ├── range-parser
+│   │   ├── raw-body
+│   │   ├── safe-buffer
+│   │   ├── safer-buffer
+│   │   ├── send
+│   │   ├── serve-static
+│   │   ├── setprototypeof
+│   │   ├── side-channel
+│   │   ├── side-channel-list
+│   │   ├── side-channel-map
+│   │   ├── side-channel-weakmap
+│   │   ├── statuses
+│   │   ├── stripe
+│   │   ├── toidentifier
+│   │   ├── type-is
+│   │   ├── @types
+│   │   ├── undici-types
+│   │   ├── unpipe
+│   │   ├── utils-merge
+│   │   └── vary
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+├── wittleguys-ecommerce.git
+│   ├── config
+│   ├── description
+│   ├── HEAD
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── push-to-checkout.sample
+│   │   ├── sendemail-validate.sample
+│   │   └── update.sample
+│   ├── info
+│   │   ├── exclude
+│   │   └── refs
+│   ├── objects
+│   │   ├── info
+│   │   └── pack
+│   └── packed-refs
+└── wittleguys-ecommerce.git.bfg-report
+    └── 2025-07-07
+        └── 12-49-39
+
+156 directories, 111 files
+--------------------------------------------
+My VPS (Debian server)
+wittleguys:/var/www/wittleguys.net# tree -L 3
+.
+|-- about
+|   `-- index.html
+|-- cancel
+|   `-- index.html
+|-- categories
+|   |-- index.html
+|   `-- index.xml
+|-- contact
+|   `-- index.html
+|-- contact-success
+|   `-- index.html
+|-- css
+|   `-- main.min.css
+|-- en
+|   |-- index.html
+|   |-- index.xml
+|   `-- posts
+|       |-- friends
+|       `-- mysterious-meow
+|-- favicon
+|   `-- Caterpillar.png
+|-- favicon.ico
+|-- images
+|   |-- 85dolla.png
+|   |-- Caterpillar.png
+|   |-- Logo.png
+|   |-- bg-forest.jpg
+|   |-- cart.png
+|   |-- cotton_apron.png
+|   |-- hand_embroidered_dress.png
+|   |-- nz.jpeg
+|   |-- nz.jpg
+|   `-- vintage_hand_sewn_bag.png
+|-- index.html
+|-- index.xml
+|-- jp
+|   |-- index.html
+|   |-- index.xml
+|   `-- posts
+|       |-- friends
+|       `-- mysterious-meow
+|-- js
+|   `-- cart.js
+|-- products
+|   |-- hand-embroidered-dress
+|   |   `-- index.html
+|   |-- handmade-cotton-apron
+|   |   `-- index.html
+|   |-- index.html
+|   |-- index.xml
+|   `-- vintage-hand-sewn-bag
+|       `-- index.html
+|-- prose
+|   `-- index.html
+|-- shop
+|   `-- bags
+|       `-- index.html
+|-- sitemap.xml
+|-- success
+|   `-- index.html
+`-- tags
+    |-- index.html
+    |-- index.xml
+    |-- meow
+    |   |-- index.html
+    |   `-- index.xml
+    |-- rawr
+    |   |-- index.html
+    |   `-- index.xml
+    |-- \343\201\253\343\202\203\343\203\274
+    |   |-- index.html
+    |   `-- index.xml
+    `-- \343\202\264\343\202\264
+        |-- index.html
+        `-- index.xml
+
+31 directories, 45 files

@@ -29,8 +29,11 @@
                 <a href="{{ .Site.BaseURL }}" class="logo" id="wittleguys-logo">
                   <span>w</span><span>i</span><span>t</span><span>t</span><span>l</span><span>e</span> <span>g</span><span>u</span><span>y</span><span>s</span><span>!</span><span>!</span>
                 </a>
+                <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+                  <span></span><span></span><span></span>
+                </button>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 {{ range .Site.Menus.main }}
                 <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
                     <a href="{{ .URL }}">{{ .Name }}</a>
@@ -262,6 +265,29 @@ document.addEventListener('DOMContentLoaded', function() {
     cartCountElement.style.transition = 'background 0.7s, color 0.7s';
   }
 });
+</script>
+<script>
+  function isMobile() {
+    return window.innerWidth <= 900;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.getElementById('nav-links');
+    const hamburger = document.getElementById('hamburger-btn');
+    const logo = document.getElementById('wittleguys-logo');
+    function toggleMenu() {
+      navLinks.classList.toggle('open');
+    }
+    hamburger.addEventListener('click', toggleMenu);
+    logo.addEventListener('click', function(e) {
+      if (isMobile()) {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+    window.addEventListener('resize', function() {
+      if (!isMobile()) navLinks.classList.remove('open');
+    });
+  });
 </script>
 </body>
 </html>

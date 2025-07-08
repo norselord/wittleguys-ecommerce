@@ -23,57 +23,56 @@
     <link rel="icon" type="image/png" href="/favicon/Caterpillar.png">
 </head>
 <body>
+    <!-- Mobile Top Banner -->
+    <div id="mobile-top-banner" class="mobile-top-banner">FREE USA SHIPPING ON ORDERS OVER $100</div>
     <header>
-        <nav class="container nav-flex" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
-            <div class="nav-left" style="display: flex; align-items: center; flex: 1;">
-                <a href="{{ .Site.BaseURL }}" class="logo" id="wittleguys-logo">
-                  <span>w</span><span>i</span><span>t</span><span>t</span><span>l</span><span>e</span> <span>g</span><span>u</span><span>y</span><span>s</span><span>!</span><span>!</span>
-                </a>
+        <nav class="container nav-flex desktop-nav">
+            <div class="nav-left">
+                <ul class="nav-links" id="nav-links">
+                    {{ range .Site.Menus.main }}
+                    <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
+                        <a href="{{ .URL }}">{{ .Name }}</a>
+                        {{ if eq .Name "Products" }}
+                        <div class="dropdown-menu">
+                            <div class="dropdown-category">
+                                <div class="dropdown-category-title">Bags</div>
+                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "bags" }}
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                {{ end }}
+                            </div>
+                            <div class="dropdown-category">
+                                <div class="dropdown-category-title">Dresses</div>
+                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "dresses" }}
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                {{ end }}
+                            </div>
+                            <div class="dropdown-category">
+                                <div class="dropdown-category-title">Aprons</div>
+                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "apron" }}
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                {{ end }}
+                            </div>
+                            <div class="dropdown-category">
+                                <div class="dropdown-category-title">Misc</div>
+                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "misc" }}
+                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
             </div>
-            <div class="nav-center" style="display: flex; flex: 1; justify-content: center; align-items: center;">
-                <img src="/images/Logo.png" alt="Wittle Guys Logo" id="caterpillar-logo" class="caterpillar-logo" style="height: 56px; width: auto; cursor: pointer;" tabindex="0">
+            <div class="nav-center">
+                <img src="/images/Logo.png" alt="Wittle Guys Logo" id="caterpillar-logo" class="caterpillar-logo" style="height: 56px; width: auto; display: block; margin: 0 auto;">
             </div>
-            <div class="nav-right" style="display: flex; align-items: center; flex: 1; justify-content: flex-end;">
-                <div class="cart-icon" onclick="showCart()" style="position:relative;cursor:pointer;">
-                  <img src="/images/cart.png" alt="Cart" style="height: 36px; width: 36px; vertical-align: middle; filter: drop-shadow(0 2px 6px #1e3228aa);">
-                  <span class="cart-count" id="cart-count" style="position:absolute;top:0.2em;right:0.2em;background:#3ec6a8;color:#1e3228;border-radius:50%;padding:0.1em 0.5em;font-size:1em;font-weight:700;">0</span>
+            <div class="nav-right">
+                <div class="cart-icon" onclick="showCart()">
+                    <img src="/images/cart.png" alt="Cart" style="height: 36px; width: 36px; vertical-align: middle; filter: drop-shadow(0 2px 6px #1e3228aa);">
+                    <span class="cart-count" id="cart-count">0</span>
                 </div>
             </div>
-            <ul class="nav-links" id="nav-links">
-                {{ range .Site.Menus.main }}
-                <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
-                    <a href="{{ .URL }}">{{ .Name }}</a>
-                    {{ if eq .Name "Products" }}
-                    <div class="dropdown-menu">
-                        <div class="dropdown-category">
-                            <div class="dropdown-category-title">Bags</div>
-                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "bags" }}
-                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ end }}
-                        </div>
-                        <div class="dropdown-category">
-                            <div class="dropdown-category-title">Dresses</div>
-                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "dresses" }}
-                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ end }}
-                        </div>
-                        <div class="dropdown-category">
-                            <div class="dropdown-category-title">Aprons</div>
-                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "apron" }}
-                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ end }}
-                        </div>
-                        <div class="dropdown-category">
-                            <div class="dropdown-category-title">Misc</div>
-                            {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "misc" }}
-                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ end }}
-                        </div>
-                    </div>
-                    {{ end }}
-                </li>
-                {{ end }}
-            </ul>
         </nav>
     </header>
 
@@ -82,28 +81,36 @@
     </main>
 
     <footer>
-        <div class="container">
+        <div class="footer-black">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>{{ .Site.Title }}</h3>
-                    <p>{{ .Site.Params.tagline | default "Crafting beautiful wooden products with passion and precision." }}</p>
+                    <p>{{ .Site.Params.tagline | default "Crafting beautiful handmade goods with pure materials and passion since 2024" }}</p>
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>Email: {{ .Site.Params.email | default "support@wittleguys.net" }}</p>
-                    <p>Phone: {{ .Site.Params.phone | default "(555) 123-4567" }}</p>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     {{ with .Site.Params.social }}
-                        {{ with .instagram }}<p><a href="{{ . }}" style="display: flex; align-items: center; gap: 0.5em;"><span style="display:inline-block;vertical-align:middle;">{{/* Instagram SVG */}}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aef6e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>Instagram</a></p>{{ end }}
-                        {{ with .facebook }}<p><a href="{{ . }}" style="display: flex; align-items: center; gap: 0.5em;"><span style="display:inline-block;vertical-align:middle;">{{/* Facebook SVG */}}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aef6e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H5v4h5v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>Facebook</a></p>{{ end }}
-                        {{ with .twitter }}<p><a href="{{ . }}" style="display: flex; align-items: center; gap: 0.5em;"><span style="display:inline-block;vertical-align:middle;">{{/* Twitter SVG */}}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aef6e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9.09 9.09 0 0 1-2.88 1.1A4.48 4.48 0 0 0 16.5 0c-2.5 0-4.5 2-4.5 4.5 0 .35.04.7.1 1.03A12.94 12.94 0 0 1 3 1.1a4.48 4.48 0 0 0-.61 2.27c0 1.56.8 2.93 2.02 3.74A4.48 4.48 0 0 1 2 6.13v.06c0 2.18 1.55 4 3.8 4.42a4.52 4.52 0 0 1-2.02.08c.57 1.78 2.23 3.08 4.2 3.12A9.05 9.05 0 0 1 1 19.54a12.8 12.8 0 0 0 6.95 2.04c8.36 0 12.94-6.93 12.94-12.94 0-.2 0-.39-.01-.58A9.22 9.22 0 0 0 23 3z"/></svg></span>Twitter</a></p>{{ end }}
+                        {{ with .instagram }}<p><a href="{{ . }}" class="footer-social"><span>Instagram</span></a></p>{{ end }}
+                        {{ with .facebook }}<p><a href="{{ . }}" class="footer-social"><span>Facebook</span></a></p>{{ end }}
+                        {{ with .twitter }}<p><a href="{{ . }}" class="footer-social"><span>Twitter</span></a></p>{{ end }}
                     {{ end }}
-                    <p><a href="https://www.etsy.com/shop/WittleGuys" style="display: flex; align-items: center; gap: 0.5em;"><span style="display:inline-block;vertical-align:middle;">{{/* Etsy SVG */}}<svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="none"/><path d="M8 8h16v16H8V8zm2.5 2.5v11h9v-2h-7v-2h6v-2h-6v-2h7v-2h-9z" fill="#aef6e2"/></svg></span>Etsy</a></p>
                 </div>
             </div>
-            <p>© {{ now.Year }} wittle guys. All wites weserved. (All rights reserved)</p>
+            <div class="footer-cards">
+                <!-- Card icons (SVG or images) -->
+                <img src="/images/cards/visa.svg" alt="Visa" class="card-icon">
+                <img src="/images/cards/mastercard.svg" alt="Mastercard" class="card-icon">
+                <img src="/images/cards/amex.svg" alt="Amex" class="card-icon">
+                <img src="/images/cards/discover.svg" alt="Discover" class="card-icon">
+                <img src="/images/cards/paypal.svg" alt="PayPal" class="card-icon">
+                <img src="/images/cards/applepay.svg" alt="Apple Pay" class="card-icon">
+                <img src="/images/cards/googlepay.svg" alt="Google Pay" class="card-icon">
+            </div>
+            <p class="footer-copyright">© {{ now.Year }} wittle guys. All rights reserved.</p>
         </div>
     </footer>
 
@@ -271,28 +278,59 @@ document.addEventListener('DOMContentLoaded', function() {
   function isMobile() {
     return window.innerWidth <= 900;
   }
+  function randomColor() {
+    const colors = [
+      '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
+      '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
+      '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
   document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.getElementById('nav-links');
-    const caterpillarLogo = document.getElementById('caterpillar-logo');
-    function toggleMenu() {
-      navLinks.classList.toggle('open');
+    // Top banner color randomization
+    var banner = document.getElementById('mobile-top-banner');
+    if (banner && isMobile()) {
+      var text = banner.textContent;
+      banner.innerHTML = '';
+      for (var i = 0; i < text.length; i++) {
+        var span = document.createElement('span');
+        span.textContent = text[i];
+        if (text[i] !== ' ') span.style.color = randomColor();
+        banner.appendChild(span);
+      }
     }
+    // Mobile menu logic
+    var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    var mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    var closeMobileMenu = document.getElementById('close-mobile-menu');
+    var caterpillarLogo = document.getElementById('caterpillar-logo');
+    function openMobileMenu() {
+      mobileMenuOverlay.classList.add('open');
+    }
+    function closeMenu() {
+      mobileMenuOverlay.classList.remove('open');
+    }
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+    if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMenu);
     if (caterpillarLogo) {
       caterpillarLogo.addEventListener('click', function(e) {
         if (isMobile()) {
           e.preventDefault();
-          toggleMenu();
+          openMobileMenu();
         }
       });
       caterpillarLogo.addEventListener('keypress', function(e) {
         if (isMobile() && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
-          toggleMenu();
+          openMobileMenu();
         }
       });
     }
+    mobileMenuOverlay.addEventListener('click', function(e) {
+      if (e.target === mobileMenuOverlay) closeMenu();
+    });
     window.addEventListener('resize', function() {
-      if (!isMobile()) navLinks.classList.remove('open');
+      if (!isMobile()) mobileMenuOverlay.classList.remove('open');
     });
   });
 </script>

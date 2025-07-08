@@ -34,13 +34,17 @@ languageCode = "en-us"
     url = "/products/"
     weight = 1
   [[menu.main]]
-    name = "About"
-    url = "/about/"
+    name = "Blog"
+    url = "/blog/"
     weight = 2
+  [[menu.main]]
+    name = "Our Vision"
+    url = "/about/"
+    weight = 3
   [[menu.main]]
     name = "Contact"
     url = "/contact/"
-    weight = 3
+    weight = 4
 
 # Assets are handled by Hugo's asset pipeline
 

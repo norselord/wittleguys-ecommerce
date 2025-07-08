@@ -301,3 +301,95 @@ window.hideCart = hideCart;
 window.applyDiscount = applyDiscount;
 
 console.log('Cart.js functions exposed globally');
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoader = submitBtn.querySelector('.btn-loader');
+  const formMessage = document.getElementById('formMessage');
+  const messageTextarea = document.getElementById('message');
+  const charCount = document.getElementById('charCount');
+  
+  // Character counter
+  messageTextarea.addEventListener('input', function() {
+    const count = this.value.length;
+    charCount.textContent = count;
+    
+    if (count > 3000) {
+      charCount.style.color = '#e53e3e';
+    } else if (count > 2500) {
+      charCount.style.color = '#d69e2e';
+    } else {
+      charCount.style.color = '#718096';
+    }
+  });
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Disable form
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'inline-flex';
+    formMessage.style.display = 'none';
+    
+    // Get form data
+    const formData = new FormData(form);
+    const data = {
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message')
+    };
+    
+    try {
+      const response = await fetch('https://api.wittleguys.net/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        // Success
+        submitBtn.classList.add('success');
+        btnText.textContent = 'Message Sent!';
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        
+        formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+        formMessage.className = 'form-message success';
+        formMessage.style.display = 'block';
+        
+        // Reset form
+        form.reset();
+        charCount.textContent = '0';
+        
+        // Redirect to success page after 2 seconds
+        setTimeout(() => {
+          window.location.href = '/contact-success';
+        }, 2000);
+        
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+      
+    } catch (error) {
+      // Error
+      formMessage.textContent = error.message || 'Failed to send message. Please try again.';
+      formMessage.className = 'form-message error';
+      formMessage.style.display = 'block';
+      
+      // Reset button
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message';
+      btnText.style.display = 'inline';
+      btnLoader.style.display = 'none';
+      submitBtn.classList.remove('success');
+    }
+  });
+});

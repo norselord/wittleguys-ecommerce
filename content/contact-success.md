@@ -1,9 +1,10 @@
 ---
-title: Message Sent!
-url: /contact-success/
+title: "Thank You!"
+layout: "single"
 ---
 
-# Fank you!
+# Thank You!
 
-Your message has been sent successfully.  
-We’ll get back to you as soon as possible. Fanks :D
+Your message has been sent successfully. We'll review it and get back to you as soon as possible.
+
+[← Back to Home](/)

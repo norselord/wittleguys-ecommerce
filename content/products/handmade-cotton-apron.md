@@ -2,7 +2,7 @@
 title: "Handmade Cotton Apron"
 category: "apron"
 price: 34.99
-stripe_price_id: "price_1Rgr3dGDLGsdgzhZEHoxXhlh"
+stripe_price_id: "price_1RhdWdGDLGsdgzhZFKuA5Ev5"
 image: "/images/cotton_apron.png"
 emoji: "👩‍🍳"
 description: "Handsewn cotton apron perfect for cooking, crafting, or gardening. Made from 100% pure cotton with adjustable ties and roomy pockets."

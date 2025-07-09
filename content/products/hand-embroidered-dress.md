@@ -2,9 +2,9 @@
 title: "Hand Embroidered Dress"
 category: "dresses"
 price: 120
-stripe_price_id: "price_1Rgr1hGDLGsdgzhZ9oYWpblq"
+stripe_price_id: "price_1RhdXmGDLGsdgzhZSOiHHrdt"
 image: "/images/hand_embroidered_dress.png"
-emoji: "👗"
+emoji: " 457"
 description: "Stunning hand-embroidered dress made from pure cotton and adorned with colorful floral embroidery. One of a kind."
 draft: false
 ---

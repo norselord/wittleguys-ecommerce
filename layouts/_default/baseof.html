@@ -25,7 +25,7 @@
             </div>
             <div class="cart-container">
                 <a href="/cart" class="cart-link">
-                    <div class="cart-icon">🛒</div>
+                    <img src="/images/cards/SVGs/cart icon.svg" alt="Cart" class="cart-icon">
                     <div class="cart-badge" id="cart-badge">0</div>
                 </a>
             </div>
@@ -42,26 +42,7 @@
             <li><a href="/contact">Contact Us</a></li>
         </ul>
     </nav>
-
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-        <div class="mobile-menu-toggle" id="mobileMenuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-close" id="mobileMenuClose">✕</div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">All Products</a></li>
-                <li><a href="/vision">Our Vision</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
-
+    
     <!-- Main Content Block -->
     <main class="main-content">
         {{ block "main" . }}{{ end }}

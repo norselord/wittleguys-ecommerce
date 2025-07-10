@@ -19,6 +19,26 @@
             <span class="banner-text">FREE USA SHIPPING ON ORDERS OVER $100 &nbsp; • &nbsp; FREE USA SHIPPING ON ORDERS OVER $100 &nbsp; • &nbsp; FREE USA SHIPPING ON ORDERS OVER $100 &nbsp; • &nbsp; FREE USA SHIPPING ON ORDERS OVER $100</span>
         </div>
     </div>
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var banners = document.querySelectorAll('.top-banner .banner-text');
+      var colors = ['#ff69b4','#3ec6a8','#ff9800','#ffe066','#a259e6','#4ade80','#b388ff','#a3ffb0','#7fdfff','#ff4d4f','#7cfb00','#00e6e6','#ffb347','#ff85a1','#aaff80','#e066ff','#baffc9','#bae1ff'];
+      banners.forEach(function(banner) {
+        var text = banner.textContent;
+        banner.innerHTML = '';
+        for (var i = 0; i < text.length; i++) {
+          var span = document.createElement('span');
+          span.textContent = text[i];
+          if (text[i] !== ' ' && text[i] !== '\u00a0' && text[i] !== '•') {
+            span.style.color = colors[Math.floor(Math.random()*colors.length)];
+          } else {
+            span.style.color = '#222';
+          }
+          banner.appendChild(span);
+        }
+      });
+    });
+    </script>
 
     <!-- Header: Centered Logo and Cart -->
     <header class="header">

@@ -1,40 +1,52 @@
 {{ define "main" }}
-<section class="hero">
-    <div class="container">
-        <h1>{{ .Params.hero.title | default "Handcrafted Wooden Products" }}</h1>
-        <p>{{ .Params.hero.subtitle | default "Beautiful, sustainable wooden items crafted with love and attention to detail. Each piece tells a story." }}</p>
+<!-- Hero Section with Landscape Background -->
+<section class="hero-section">
+    <div class="hero-background">
+        <img src="/images/cottagecore webpg.png" alt="Cottagecore Landscape" class="hero-bg-image">
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">wittle guys!!</h1>
+        <p class="hero-subtitle">Handcrafted with love</p>
     </div>
 </section>
 
-<section class="products" id="products">
-    <div class="container">
-        <h2 class="section-title">{{ .Params.products.title | default "Our Products" }}</h2>
-        <div class="product-grid">
+<!-- Products Section -->
+<section class="products-section">
+    <div class="products-container">
+        <h2>Our Products</h2>
+        <div class="products-grid">
             {{ range where .Site.RegularPages "Section" "products" }}
             <div class="product-card">
-                <a href="{{ .RelPermalink }}" style="text-decoration:none; color:inherit;">
-                    <div class="product-image">
-                        {{ if .Params.image }}
-                            <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                        {{ else }}
-                            {{ .Params.emoji | default "📦" }} {{ .Title }}
-                        {{ end }}
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">{{ .Title }}</h3>
-                        <p class="product-description">{{ .Params.description | default .Summary }}</p>
-                        <div class="product-price">${{ .Params.price | default "0.00" }}</div>
-                    </div>
+                <a href="{{ .RelPermalink }}">
+                    {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    {{ end }}
+                    <h3>{{ .Title }}</h3>
+                    <p class="price">${{ .Params.price }}</p>
                 </a>
-                <button class="btn" type="button" onclick="addToCart('{{ with .File }}{{ .BaseFileName }}{{ else }}{{ .Title | urlize }}{{ end }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}', '{{ .Params.stripe_price_id }}')">
-                    <span class="btn-text">Add to Cart</span>
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        Processing...
-                    </div>
-                </button>
             </div>
             {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="reviews-section">
+    <div class="reviews-container">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <p>"This product changed my life! Amazing quality and fast shipping."</p>
+                <cite>- Sarah K.</cite>
+            </div>
+            <div class="review-card">
+                <p>"Absolutely love everything about Wittle Guys. Will order again!"</p>
+                <cite>- Mike T.</cite>
+            </div>
+            <div class="review-card">
+                <p>"Best purchase I've made all year. Highly recommend!"</p>
+                <cite>- Emma R.</cite>
+            </div>
         </div>
     </div>
 </section>

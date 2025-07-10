@@ -23,101 +23,97 @@
     <link rel="icon" type="image/png" href="/favicon/Caterpillar.png">
 </head>
 <body>
-    <!-- Mobile Top Banner -->
-    <div id="mobile-top-banner" class="mobile-top-banner">FREE USA SHIPPING ON ORDERS OVER $100</div>
-    <header>
-        <nav class="container nav-flex desktop-nav">
-            <div class="nav-left">
-                <div id="wittleguys-title" class="wittleguys-title-desktop">
-                    <span>w</span><span>i</span><span>t</span><span>t</span><span>l</span><span>e</span> <span>g</span><span>u</span><span>y</span><span>s</span><span>!</span><span>!</span>
-                </div>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-text">FREE USA SHIPPING ON ORDERS OVER $100</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="/images/Logo.png" alt="Wittle Guys" class="logo">
             </div>
-            <div class="nav-center">
-                <img src="/images/Logo.png" alt="Wittle Guys Logo" id="caterpillar-logo" class="caterpillar-logo" tabindex="0">
-                <ul class="nav-links" id="nav-links">
-                    {{ range .Site.Menus.main }}
-                    <li class="nav-item{{ if eq .Name "Products" }} has-dropdown{{ end }}">
-                        <a href="{{ .URL }}">{{ .Name }}</a>
-                        {{ if eq .Name "Products" }}
-                        <div class="dropdown-menu">
-                            <div class="dropdown-category">
-                                <div class="dropdown-category-title">Bags</div>
-                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "bags" }}
-                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                {{ end }}
-                            </div>
-                            <div class="dropdown-category">
-                                <div class="dropdown-category-title">Dresses</div>
-                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "dresses" }}
-                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                {{ end }}
-                            </div>
-                            <div class="dropdown-category">
-                                <div class="dropdown-category-title">Aprons</div>
-                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "apron" }}
-                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                {{ end }}
-                            </div>
-                            <div class="dropdown-category">
-                                <div class="dropdown-category-title">Misc</div>
-                                {{ range where (where $.Site.RegularPages "Section" "products") "Params.category" "misc" }}
-                                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                {{ end }}
-                            </div>
-                        </div>
-                        {{ end }}
-                    </li>
-                    {{ end }}
-                </ul>
+            <div class="cart-container">
+                <a href="/cart" class="cart-link">
+                    <div class="cart-icon">🛒</div>
+                    <div class="cart-badge" id="cart-badge">0</div>
+                </a>
             </div>
-            <div class="nav-right">
-                <div class="cart-icon" onclick="showCart()">
-                    <img src="/images/cart.png" alt="Cart" style="height: 36px; width: 36px; vertical-align: middle; filter: drop-shadow(0 2px 6px #1e3228aa);">
-                    <span class="cart-count" id="cart-count">0</span>
-                </div>
-            </div>
-        </nav>
+        </div>
     </header>
-
-    <main>
+    
+    <!-- Navigation -->
+    <nav class="main-nav desktop-nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">All Products</a></li>
+            <li><a href="/vision">Our Vision</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-close" id="mobileMenuClose">✕</div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">All Products</a></li>
+                <li><a href="/vision">Our Vision</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="main-content">
         {{ block "main" . }}{{ end }}
     </main>
-
-    <footer>
-        <div class="footer-black">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>{{ .Site.Title }}</h3>
-                    <p>{{ .Site.Params.tagline | default "Crafting beautiful handmade goods with pure materials and passion since 2024" }}</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>Email: {{ .Site.Params.email | default "support@wittleguys.net" }}</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    {{ with .Site.Params.social }}
-                        {{ with .etsy }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/etsy.svg" alt="Etsy" class="footer-social-icon"> Etsy</a></p>{{ end }}
-                        {{ with .instagram }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/instagram.svg" alt="Instagram" class="footer-social-icon"> Instagram</a></p>{{ end }}
-                        {{ with .facebook }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/facebook.svg" alt="Facebook" class="footer-social-icon"> Facebook</a></p>{{ end }}
-                        {{ with .twitter }}<p><a href="{{ . }}" class="footer-social"><img src="/images/cards/twitter.svg" alt="Twitter" class="footer-social-icon"> Twitter</a></p>{{ end }}
-                    {{ end }}
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Stay Connected</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Etsy"><img src="/images/cards/SVGs/etsy.svg" alt="Etsy" class="footer-social-icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="/images/cards/SVGs/instagram.svg" alt="Instagram" class="footer-social-icon"></a>
+                    <a href="#" aria-label="Facebook"><img src="/images/cards/SVGs/facebook.svg" alt="Facebook" class="footer-social-icon"></a>
+                    <a href="#" aria-label="YouTube"><img src="/images/cards/SVGs/youtube.svg" alt="YouTube" class="footer-social-icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="/images/cards/SVGs/x.svg" alt="Twitter" class="footer-social-icon"></a>
                 </div>
             </div>
-            <div class="footer-cards">
-                <img src="/images/cards/visa.svg" alt="Visa" class="card-icon">
-                <img src="/images/cards/mastercard.svg" alt="Mastercard" class="card-icon">
-                <img src="/images/cards/amex.svg" alt="Amex" class="card-icon">
-                <img src="/images/cards/discover.svg" alt="Discover" class="card-icon">
-                <img src="/images/cards/paypal.svg" alt="PayPal" class="card-icon">
-                <img src="/images/cards/applepay.svg" alt="Apple Pay" class="card-icon">
-                <img src="/images/cards/googlepay.svg" alt="Google Pay" class="card-icon">
-                <img src="/images/cards/etsy.svg" alt="Etsy" class="card-icon">
+            <div class="footer-section">
+                <h3>We Accept</h3>
+                <div class="payment-methods">
+                    <img src="/images/cards/SVGs/visa.svg" alt="Visa" class="card-icon">
+                    <img src="/images/cards/SVGs/mastercard.svg" alt="Mastercard" class="card-icon">
+                    <img src="/images/cards/SVGs/americanexpress.svg" alt="American Express" class="card-icon">
+                    <img src="/images/cards/SVGs/discover.svg" alt="Discover" class="card-icon">
+                    <img src="/images/cards/SVGs/applepay.svg" alt="Apple Pay" class="card-icon">
+                    <img src="/images/cards/SVGs/googlepay.svg" alt="Google Pay" class="card-icon">
+                </div>
             </div>
-            <p class="footer-copyright">© {{ now.Year }} wittle guys. All rights reserved.</p>
-            <p class="footer-copyright">All Wites Weserved. (All Rights Reserved.)</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} Wittle Guys. All rights reserved.</p>
         </div>
     </footer>
+    <script src="/js/main.js"></script>
 
     <!-- Cart Overlay and Off-Canvas Cart Drawer -->
     <div id="cart-overlay" class="cart-overlay hidden" onclick="hideCart()"></div>
@@ -358,5 +354,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 </script>
+<div class="branding-credit">
+  Branding &amp; Website by Logan Miller
+  <img src="/images/cards/SVGs/power button.svg" alt="Power Button" class="power-icon">
+</div>
 </body>
 </html>

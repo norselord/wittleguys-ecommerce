@@ -83,7 +83,7 @@ function updateCartDrawer() {
     var subtotal = 0;
     list.innerHTML = '';
     cart.forEach(function(item, idx) {
-        subtotal += item.price * item.qty;
+        subtotal += Number(item.price) * Number(item.qty);
         var div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
@@ -92,9 +92,9 @@ function updateCartDrawer() {
                 <div class="cart-item-title">${item.title || 'Product'}</div>
                 <div class="cart-item-price">$${(item.price || 0).toFixed(2)}</div>
                 <div class="cart-item-qty">
-                    <button class="cart-item-qty-btn" onclick="changeCartQty(${idx}, -1)">-</button>
+                    <button class="cart-item-qty-btn cart-minus" style="color:#e53935;font-weight:700;" onclick="changeCartQty(${idx}, -1)">-</button>
                     <span>${item.qty || 1}</span>
-                    <button class="cart-item-qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
+                    <button class="cart-item-qty-btn cart-plus" style="color:#43a047;font-weight:700;" onclick="changeCartQty(${idx}, 1)">+</button>
                 </div>
             </div>
         `;
@@ -122,7 +122,7 @@ function updateCartDrawer() {
         document.getElementById('cart-tax').textContent = tax.toFixed(2);
         document.getElementById('cart-shipping').textContent = shipping.toFixed(2);
     }
-    updateCartBadge(cart.reduce((sum, i) => sum + i.qty, 0));
+    updateCartBadge(cart.reduce((sum, i) => sum + Number(i.qty), 0));
     updateFreeShippingTracker(subtotal);
 }
 function changeCartQty(idx, delta) {
@@ -141,12 +141,12 @@ function addToCart(id, title, price, image, stripePriceId, btn) {
     var cart = JSON.parse(localStorage.getItem('wittleguys_cart') || '[]');
     var found = cart.find(i => i.id === id);
     if (found) {
-        found.qty += 1;
+        found.qty = Number(found.qty) + 1;
     } else {
-        cart.push({ id, title, price, image, stripePriceId, qty: 1 });
+        cart.push({ id, title, price: Number(price), image, stripePriceId, qty: 1 });
     }
     localStorage.setItem('wittleguys_cart', JSON.stringify(cart));
-    updateCartBadge(cart.reduce((sum, i) => sum + i.qty, 0));
+    updateCartBadge(cart.reduce((sum, i) => sum + Number(i.qty), 0));
     showCartDrawer();
     if (btn) {
         btn.classList.add('processing');
@@ -158,7 +158,15 @@ function addToCart(id, title, price, image, stripePriceId, btn) {
     }
 }
 window.addEventListener('DOMContentLoaded', function() {
-    updateCartBadge((JSON.parse(localStorage.getItem('wittleguys_cart') || '[]')).reduce((sum, i) => sum + i.qty, 0));
+    // Fix legacy cart items with string qty/price
+    var cart = JSON.parse(localStorage.getItem('wittleguys_cart') || '[]');
+    var changed = false;
+    cart.forEach(function(item) {
+        if (typeof item.qty !== 'number') { item.qty = Number(item.qty) || 1; changed = true; }
+        if (typeof item.price !== 'number') { item.price = Number(item.price) || 0; changed = true; }
+    });
+    if (changed) localStorage.setItem('wittleguys_cart', JSON.stringify(cart));
+    updateCartBadge(cart.reduce((sum, i) => sum + Number(i.qty), 0));
 });
 
 // Add to Cart button logic

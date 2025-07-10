@@ -23,10 +23,13 @@ body {
 }
 
 .header {
-    background: #fff;
-    padding: 2rem 0 1rem 0;
-    text-align: center;
-    border-bottom: 1px solid #eee;
+    background: url('/images/cottagecore webpg.png') center/cover no-repeat;
+    padding: 2.5rem 0 1.5rem 0;
+    border-bottom: none;
+    box-shadow: none;
+}
+.header-container {
+    background: none;
 }
 
 .logo-container {
@@ -109,6 +112,13 @@ body {
 .main-nav a:hover {
     background: #f2f2f2;
     color: #007bff;
+}
+.main-nav ul li a {
+    color: #228B22 !important;
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-shadow: 0 1px 2px #fff, 0 0px 2px #228B22;
+    letter-spacing: 0.02em;
 }
 
 /* Hero/Landscape Section */
@@ -565,4 +575,21 @@ body {
 }
 .checkout-btn:hover {
     background: #388E3C;
+} 
+
+.add-to-cart-btn {
+    background: #43a047 !important;
+    color: #fff !important;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem 0;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(67,160,71,0.08);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.add-to-cart-btn:hover, .add-to-cart-btn:focus {
+    background: #2e7031 !important;
+    box-shadow: 0 4px 16px rgba(67,160,71,0.18);
 } 

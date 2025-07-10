@@ -25,15 +25,19 @@ body {
     white-space: nowrap;
     position: relative;
 }
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-continuous 24s linear infinite;
+}
+@keyframes ticker-continuous {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 .top-banner .banner-text {
     display: inline-block;
-    padding-left: 100vw;
-    animation: ticker 18s linear infinite;
     font-weight: 700;
-}
-@keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100vw); }
+    padding-right: 3rem;
 }
 .main-nav ul li a {
     background: #f5e9da !important;

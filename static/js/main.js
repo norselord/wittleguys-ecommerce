@@ -35,3 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 }); 
+
+// Add to Cart button logic
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-to-cart-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            var button = e.currentTarget;
+            button.classList.add('processing');
+            button.disabled = true;
+            setTimeout(function() {
+                button.classList.remove('processing');
+                button.disabled = false;
+            }, 1200); // Simulate processing, replace with real callback if needed
+        });
+    });
+}); 

@@ -51,8 +51,16 @@ function hideCartDrawer() {
     document.getElementById('cart-overlay').classList.add('hidden');
 }
 function updateCartBadge(count) {
-    document.getElementById('cart-badge').textContent = count;
+    var badge = document.getElementById('cart-badge');
+    badge.textContent = isNaN(count) ? 0 : count;
     document.getElementById('cart-count-drawer').textContent = count > 0 ? `• ${count}` : '';
+    // Animate cart icon
+    var cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.classList.remove('cart-bounce');
+        void cartIcon.offsetWidth; // trigger reflow
+        cartIcon.classList.add('cart-bounce');
+    }
 }
 function updateFreeShippingTracker(total) {
     var bar = document.getElementById('free-shipping-bar');
@@ -61,38 +69,61 @@ function updateFreeShippingTracker(total) {
     if (total >= 100) {
         bar.style.width = '100%';
         msg.textContent = 'Free shipping unlocked!';
+        msg.style.color = '#4CAF50';
     } else {
         var pct = Math.max(0, Math.min(100, (total / 100) * 100));
         bar.style.width = pct + '%';
         msg.textContent = `You’re $${needed.toFixed(2)} away from free shipping!`;
+        msg.style.color = '#7CA982';
     }
 }
 function updateCartDrawer() {
     var cart = JSON.parse(localStorage.getItem('wittleguys_cart') || '[]');
     var list = document.getElementById('cart-items-list');
-    var total = 0;
+    var subtotal = 0;
     list.innerHTML = '';
     cart.forEach(function(item, idx) {
-        total += item.price * item.qty;
+        subtotal += item.price * item.qty;
         var div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-            <img src="${item.image}" class="cart-item-img" alt="${item.title}">
+            <img src="${item.image || '/images/cart.png'}" class="cart-item-img" alt="${item.title}">
             <div class="cart-item-info">
-                <div class="cart-item-title">${item.title}</div>
-                <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                <div class="cart-item-title">${item.title || 'Product'}</div>
+                <div class="cart-item-price">$${(item.price || 0).toFixed(2)}</div>
                 <div class="cart-item-qty">
                     <button class="cart-item-qty-btn" onclick="changeCartQty(${idx}, -1)">-</button>
-                    <span>${item.qty}</span>
+                    <span>${item.qty || 1}</span>
                     <button class="cart-item-qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
                 </div>
             </div>
         `;
         list.appendChild(div);
     });
+    // Tax and shipping
+    var tax = subtotal * 0.07; // 7% tax
+    var shipping = subtotal >= 100 ? 0 : (subtotal > 0 ? 8.99 : 0);
+    var total = subtotal + tax + shipping;
     document.getElementById('cart-total').textContent = total.toFixed(2);
+    // Add tax and shipping rows
+    var footer = document.querySelector('.cart-drawer-footer');
+    if (footer && !document.getElementById('cart-tax-row')) {
+        var taxRow = document.createElement('div');
+        taxRow.id = 'cart-tax-row';
+        taxRow.style = 'font-size:1rem;color:#888;margin-bottom:0.3rem;text-align:right;';
+        taxRow.innerHTML = `Tax: $<span id="cart-tax">${tax.toFixed(2)}</span>`;
+        var shippingRow = document.createElement('div');
+        shippingRow.id = 'cart-shipping-row';
+        shippingRow.style = 'font-size:1rem;color:#888;margin-bottom:0.3rem;text-align:right;';
+        shippingRow.innerHTML = `Shipping: $<span id="cart-shipping">${shipping.toFixed(2)}</span>`;
+        footer.insertBefore(taxRow, footer.firstChild);
+        footer.insertBefore(shippingRow, footer.firstChild);
+    } else if (footer) {
+        document.getElementById('cart-tax').textContent = tax.toFixed(2);
+        document.getElementById('cart-shipping').textContent = shipping.toFixed(2);
+    }
     updateCartBadge(cart.reduce((sum, i) => sum + i.qty, 0));
-    updateFreeShippingTracker(total);
+    updateFreeShippingTracker(subtotal);
 }
 function changeCartQty(idx, delta) {
     var cart = JSON.parse(localStorage.getItem('wittleguys_cart') || '[]');
@@ -143,4 +174,27 @@ window.addEventListener('DOMContentLoaded', function() {
             }, 1200); // Simulate processing, replace with real callback if needed
         });
     });
+}); 
+
+// Cart icon bounce animation CSS
+(function(){
+    var style = document.createElement('style');
+    style.innerHTML = `.cart-bounce { animation: cart-bounce 0.5s; }
+    @keyframes cart-bounce { 0%{transform:scale(1);} 30%{transform:scale(1.25);} 60%{transform:scale(0.95);} 100%{transform:scale(1);} }`;
+    document.head.appendChild(style);
+})();
+// Randomized coloring for top banner
+window.addEventListener('DOMContentLoaded', function() {
+    var banner = document.querySelector('.top-banner .banner-text');
+    if (banner) {
+        var text = banner.textContent;
+        banner.innerHTML = '';
+        var colors = ['#ff69b4','#3ec6a8','#ff9800','#ffe066','#a259e6','#4ade80','#b388ff','#a3ffb0','#7fdfff','#ff4d4f','#7cfb00','#00e6e6','#ffb347','#ff85a1','#aaff80','#e066ff','#baffc9','#bae1ff'];
+        for (var i = 0; i < text.length; i++) {
+            var span = document.createElement('span');
+            span.textContent = text[i];
+            if (text[i] !== ' ') span.style.color = colors[Math.floor(Math.random()*colors.length)];
+            banner.appendChild(span);
+        }
+    }
 }); 

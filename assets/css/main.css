@@ -81,7 +81,7 @@ body {
 
 /* Navigation Bar */
 .main-nav {
-    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('/images/picnic blanket.jpg') center/cover repeat;
+    background: linear-gradient(rgba(255,80,80,0.92), rgba(255,80,80,0.92)), url('/images/picnic blanket.jpg') center/cover repeat;
     border-bottom: 1px solid #eee;
     padding: 0.5rem 0 0.5rem 0;
     margin-bottom: 0;

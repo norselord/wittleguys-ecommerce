@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', Arial, sans-serif;
-    
+    color: #222;
     min-height: 100vh;
     margin-top: 0 !important;
     padding-top: 0 !important;
@@ -68,9 +68,10 @@ body {
     border-bottom: none;
     box-shadow: none;
     margin-top: 0;
+    position: relative;
 }
 .header-container {
-    background: none;
+    background: transparent !important;
 }
 
 .logo-container {

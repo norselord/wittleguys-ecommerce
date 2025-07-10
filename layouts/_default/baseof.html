@@ -24,7 +24,7 @@
                 <img src="/images/Logo.png" alt="Wittle Guys" class="logo">
             </div>
             <div class="cart-container">
-                <a href="/cart" class="cart-link">
+                <a href="javascript:void(0);" class="cart-link" onclick="showCartDrawer()">
                     <img src="/images/cards/SVGs/cart icon.svg" alt="Cart" class="cart-icon">
                     <div class="cart-badge" id="cart-badge">0</div>
                 </a>
@@ -47,6 +47,28 @@
     <main class="main-content">
         {{ block "main" . }}{{ end }}
     </main>
+
+    <!-- Cart Drawer (hidden by default) -->
+    <div id="cart-drawer" class="cart-drawer hidden">
+        <div class="cart-drawer-header">
+            <span class="cart-drawer-title">Cart <span id="cart-count-drawer"></span></span>
+            <button class="cart-drawer-close" onclick="hideCartDrawer()">&times;</button>
+        </div>
+        <div class="cart-drawer-progress">
+            <div id="free-shipping-message">You’re $100 away from free shipping!</div>
+            <div class="progress-bar-bg">
+                <div id="free-shipping-bar" class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="cart-drawer-body">
+            <div id="cart-items-list"></div>
+        </div>
+        <div class="cart-drawer-footer">
+            <div class="cart-drawer-total">Total: $<span id="cart-total">0.00</span></div>
+            <button class="checkout-btn" onclick="checkoutCart()">Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay hidden" onclick="hideCartDrawer()"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -78,17 +100,13 @@
                     <img src="/images/cards/SVGs/applepay.svg" alt="Apple Pay" class="card-icon">
                     <img src="/images/cards/SVGs/googlepay.svg" alt="Google Pay" class="card-icon">
                 </div>
+                <div class="footer-branding">Branding &amp; Website by Logan Miller</div>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; {{ now.Year }} Wittle Guys. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Branding Credit -->
-    <div class="branding-credit">
-      Branding &amp; Website by Logan Miller
-    </div>
 
     <!-- Scripts -->
     <script src="/js/main.js"></script>

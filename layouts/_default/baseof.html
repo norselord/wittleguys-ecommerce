@@ -29,7 +29,7 @@
         for (var i = 0; i < text.length; i++) {
           var span = document.createElement('span');
           span.textContent = text[i];
-          if (text[i] !== ' ' && text[i] !== '\u00a0' && text[i] !== '•') {
+          if (text[i] !== ' ' && text[i] !== '\u00a0') {
             span.style.color = colors[Math.floor(Math.random()*colors.length)];
           } else {
             span.style.color = '#222';

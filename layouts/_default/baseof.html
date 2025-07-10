@@ -5,21 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
-    
-    <!-- Styles -->
-    {{ $css := resources.Get "css/main.css" }}
-    {{ if $css }}
-        {{ $css = $css | resources.Minify }}
-        <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
-    
-    <!-- Favicon -->
+    {{ $css := resources.Get "css/main.css" | resources.Minify }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
     <link rel="icon" type="image/png" href="/favicon/Caterpillar.png">
 </head>
 <body>
@@ -27,8 +16,8 @@
     <div class="top-banner">
         <div class="banner-text">FREE USA SHIPPING ON ORDERS OVER $100</div>
     </div>
-    
-    <!-- Header -->
+
+    <!-- Header: Centered Logo and Cart -->
     <header class="header">
         <div class="header-container">
             <div class="logo-container">
@@ -42,8 +31,8 @@
             </div>
         </div>
     </header>
-    
-    <!-- Navigation -->
+
+    <!-- Navigation Bar -->
     <nav class="main-nav desktop-nav">
         <ul>
             <li><a href="/">Home</a></li>
@@ -53,7 +42,7 @@
             <li><a href="/contact">Contact Us</a></li>
         </ul>
     </nav>
-    
+
     <!-- Mobile Navigation -->
     <nav class="mobile-nav">
         <div class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -72,11 +61,12 @@
             </ul>
         </div>
     </nav>
-    
+
+    <!-- Main Content Block -->
     <main class="main-content">
         {{ block "main" . }}{{ end }}
     </main>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -113,250 +103,15 @@
             <p>&copy; {{ now.Year }} Wittle Guys. All rights reserved.</p>
         </div>
     </footer>
-    <script src="/js/main.js"></script>
 
-    <!-- Cart Overlay and Off-Canvas Cart Drawer -->
-    <div id="cart-overlay" class="cart-overlay hidden" onclick="hideCart()"></div>
-    <div id="cart-drawer" class="cart-drawer hidden">
-      <div class="cart-drawer-content">
-        <div class="cart-drawer-header">
-          <span class="cart-drawer-title">Your Cart</span>
-          <button class="cart-drawer-close" onclick="hideCart()">&times;</button>
-        </div>
-        <div class="cart-drawer-body">
-          <div class="cart-items"></div>
-        </div>
-        <div class="cart-drawer-footer">
-          <div class="cart-summary">
-            <div>Subtotal: <span class="subtotal">$0.00</span></div>
-            <div><span style="color: #b3ffd9 !important; font-weight: 600 !important; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; text-rendering: optimizeLegibility !important;">Tax</span>: <span class="tax" style="color: #ffeb3b !important; font-weight: 600 !important; font-size: 1rem !important; line-height: 1.5 !important; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; text-rendering: optimizeLegibility !important;">$0.00</span></div>
-            <div>Total: <span class="total">$0.00</span></div>
-          </div>
-          <div class="cart-discount">
-            <input type="text" id="discount-code" placeholder="Discount code">
-            <button onclick="applyDiscount()">Apply</button>
-          </div>
-          <button id="checkout-btn" class="btn">Checkout</button>
-        </div>
-      </div>
+    <!-- Branding Credit -->
+    <div class="branding-credit">
+      Branding &amp; Website by Logan Miller
     </div>
 
     <!-- Scripts -->
-    <!-- Remove Hugo asset pipeline for cart.js and old Stripe init -->
-    
-    <!-- TEMPORARY DEBUG - Remove after fixing -->
-    <script>
-      console.log("Debug Info:");
-      console.log("Environment: {{ .Site.Params.environment }}");
-      console.log("Live key exists: {{ if .Site.Params.stripe.livePublishableKey }}true{{ else }}false{{ end }}");
-      console.log("Test key exists: {{ if .Site.Params.stripe.testPublishableKey }}true{{ else }}false{{ end }}");
-      console.log("Live key value: {{ .Site.Params.stripe.livePublishableKey }}");
-      console.log("Test key value: {{ .Site.Params.stripe.testPublishableKey }}");
-    </script>
-    
-    <script>
-      {{- if eq .Site.Params.environment "live" -}}
-        window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe.livePublishableKey }}";
-        window.BACKEND_URL = "https://api.wittleguys.net";
-      {{- else -}}
-        window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe.testPublishableKey }}";
-        window.BACKEND_URL = "http://localhost:3001";
-      {{- end -}}
-    </script>
-    {{- $all := slice -}}
-    {{- range where .Site.RegularPages "Section" "products" -}}
-      {{- $id := (or (and .File .File.BaseFileName) (.Title | urlize)) -}}
-      {{- $all = $all | append (dict "id" $id "name" .Title "price" .Params.price "image" .Params.image "stripePriceId" .Params.stripe_price_id) -}}
-    {{- end -}}
-    <script>
-      window.ALL_PRODUCTS = {{ $all | jsonify }};
-    </script>
+    <script src="/js/main.js"></script>
     <script src="/js/cart.js"></script>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Logo coloring (already present)
-  const logo = document.getElementById('wittleguys-logo');
-  if (logo) {
-    const colors = [
-      '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
-      '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
-      '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
-    ];
-    const used = new Set();
-    Array.from(logo.children).forEach(span => {
-      let color;
-      do {
-        color = colors[Math.floor(Math.random() * colors.length)];
-      } while (used.has(color) && used.size < colors.length);
-      used.add(color);
-      span.style.color = color;
-      span.style.fontWeight = 'bold';
-    });
-  }
-
-  // Positive palette for buttons and headers (pink allowed)
-  const positivePalette = [
-    '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#ff5eae', '#7cfb00', '#00e6e6', '#a259e6', '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9', '#d1b3ff', '#b3e6ff', '#baffea', '#ff69b4'
-  ];
-  // Strictly non-red/pink/orange/amber palette for prices and cart count
-  const pricePalette = [
-    '#3ec6e8', '#4ade80', '#b388ff', '#a3ffb0', '#7fdfff', '#7cfb00', '#00e6e6', '#a259e6', '#baffc9', '#bae1ff', '#e066ff', '#b3baff', '#b3fff6', '#c2f0fc', '#e0b3ff', '#b3ffd9', '#d1b3ff', '#b3e6ff', '#baffea'
-  ];
-
-  // Animate and randomize .btn (Add to Cart)
-  const btns = document.querySelectorAll('.btn');
-  btns.forEach(btn => {
-    // Always lime green background for buttons
-    btn.style.background = '#7cfb00';
-    btn.style.transition = 'background 0.7s, color 0.7s';
-    
-    // Randomize the text colors in the btn-text span
-    const btnTextSpan = btn.querySelector('.btn-text');
-    if (btnTextSpan) {
-      const text = btnTextSpan.textContent;
-      btnTextSpan.innerHTML = '';
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        // Use darker colors for better contrast against lime green
-        const darkColors = [
-          '#1e3228', '#2d4a3e', '#1a3d2e', '#2c5530', '#1e4a2e', '#2d3e2a',
-          '#1e2e28', '#2a3d2e', '#1e3a2e', '#2d4a2e', '#1e322a', '#2a3d28',
-          '#1e2e2a', '#2d3e2e', '#1e4a2a', '#2c5532', '#1a3d2a', '#2d4a32'
-        ];
-        span.style.color = darkColors[Math.floor(Math.random() * darkColors.length)];
-        span.style.fontWeight = 'bold';
-        span.style.textShadow = '0 1px 2px rgba(255,255,255,0.8)'; // White text shadow for contrast
-        btnTextSpan.appendChild(span);
-      }
-    }
-    
-    btn.addEventListener('mouseenter', function() {
-      btn.style.filter = 'brightness(1.15)';
-    });
-    btn.addEventListener('mouseleave', function() {
-      btn.style.filter = '';
-    });
-  });
-
-  // Animate and randomize .product-price (each character different)
-  const prices = document.querySelectorAll('.product-price');
-  prices.forEach(price => {
-    const text = price.textContent;
-    price.innerHTML = '';
-    for (let i = 0; i < text.length; i++) {
-      let color;
-      // All price characters (including $) are seafoam green
-      color = '#b3ffd9';
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      span.style.color = color;
-      span.style.fontWeight = 'bold';
-      price.appendChild(span);
-    }
-    price.style.transition = 'color 0.7s';
-  });
-
-  // Animate and randomize .section-title and h1 (for Products, About, Contact)
-  const headers = document.querySelectorAll('.section-title, h1');
-  headers.forEach(header => {
-    let color = positivePalette[Math.floor(Math.random() * positivePalette.length)];
-    header.style.color = color;
-    header.style.transition = 'color 0.7s';
-  });
-
-  // Randomize cart notification number color (no red/orange/pink/amber)
-  const cartCountElement = document.querySelector('.cart-count');
-  if (cartCountElement) {
-    let color = pricePalette[Math.floor(Math.random() * pricePalette.length)];
-    cartCountElement.style.background = color;
-    cartCountElement.style.color = ['#a3ffb0','#baffc9','#bae1ff','#7cfb00','#4ade80','#b388ff','#3ec6e8','#7fdfff','#b3ffd9','#b3e6ff','#baffea','#b3fff6','#c2f0fc','#e0b3ff','#d1b3ff'].includes(color) ? '#222' : '#fff';
-    cartCountElement.style.transition = 'background 0.7s, color 0.7s';
-  }
-});
-</script>
-<script>
-  function isMobile() {
-    return window.innerWidth <= 900;
-  }
-  function randomColor() {
-    const colors = [
-      '#ff69b4', '#ff9800', '#ffe066', '#a259e6', '#3ec6e8', '#4ade80',
-      '#b388ff', '#a3ffb0', '#7fdfff', '#ff4d4f', '#ff5eae', '#7cfb00',
-      '#00e6e6', '#ffb347', '#ff85a1', '#aaff80', '#e066ff', '#ffb3ba', '#baffc9', '#bae1ff'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    // Wittleguys title color randomization (desktop only)
-    var wgTitle = document.getElementById('wittleguys-title');
-    if (wgTitle && !isMobile()) {
-      Array.from(wgTitle.children).forEach(function(span) {
-        if (span.textContent !== ' ') {
-          span.style.color = randomColor();
-          span.style.fontWeight = 'bold';
-        }
-      });
-    }
-    // Top banner color randomization
-    var banner = document.getElementById('mobile-top-banner');
-    if (banner && isMobile()) {
-      var text = banner.textContent;
-      banner.innerHTML = '';
-      for (var i = 0; i < text.length; i++) {
-        var span = document.createElement('span');
-        span.textContent = text[i];
-        if (text[i] !== ' ') span.style.color = randomColor();
-        banner.appendChild(span);
-      }
-    }
-    // Mobile menu logic
-    var mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    var mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-    var closeMobileMenu = document.getElementById('close-mobile-menu');
-    var caterpillarLogo = document.getElementById('caterpillar-logo');
-    function openMobileMenu() {
-      mobileMenuOverlay.classList.add('open');
-    }
-    function closeMenu() {
-      mobileMenuOverlay.classList.remove('open');
-    }
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
-    if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMenu);
-    if (caterpillarLogo) {
-      caterpillarLogo.addEventListener('click', function(e) {
-        if (isMobile()) {
-          e.preventDefault();
-          openMobileMenu();
-        }
-      });
-      caterpillarLogo.addEventListener('keypress', function(e) {
-        if (isMobile() && (e.key === 'Enter' || e.key === ' ')) {
-          e.preventDefault();
-          openMobileMenu();
-        }
-      });
-    }
-    mobileMenuOverlay.addEventListener('click', function(e) {
-      if (e.target === mobileMenuOverlay) closeMenu();
-    });
-    window.addEventListener('resize', function() {
-      if (!isMobile()) mobileMenuOverlay.classList.remove('open');
-    });
-    // Center caterpillar logo on mobile
-    var caterpillarLogo = document.getElementById('caterpillar-logo');
-    if (caterpillarLogo && isMobile()) {
-      caterpillarLogo.style.marginTop = '2.5rem';
-      caterpillarLogo.style.marginBottom = '1.5rem';
-      caterpillarLogo.style.display = 'block';
-      caterpillarLogo.style.marginLeft = 'auto';
-      caterpillarLogo.style.marginRight = 'auto';
-    }
-  });
-</script>
-<div class="branding-credit">
-  Branding &amp; Website by Logan Miller
-  <img src="/images/cards/SVGs/power button.svg" alt="Power Button" class="power-icon">
-</div>
+    <!-- Stripe and contact form scripts are preserved if needed by page content -->
 </body>
 </html>

@@ -13,7 +13,7 @@
 <!-- Products Section -->
 <section class="products-section">
     <div class="products-container">
-        <h2>Our Products</h2>
+        <h2 class="section-title">Our Products</h2>
         <div class="products-grid">
             {{ range where .Site.RegularPages "Section" "products" }}
             <div class="product-card">
@@ -22,7 +22,7 @@
                         <img src="{{ .Params.image }}" alt="{{ .Title }}">
                     {{ end }}
                     <h3>{{ .Title }}</h3>
-                    <p class="price">${{ .Params.price }}</p>
+                    <p class="product-price">${{ .Params.price }}</p>
                 </a>
             </div>
             {{ end }}

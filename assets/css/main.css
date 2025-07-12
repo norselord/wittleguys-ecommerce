@@ -633,17 +633,11 @@ body {
     box-shadow: 0 4px 16px rgba(67,160,71,0.18);
 } 
 
-.header, .header-container {
-    background: none !important;
-}
+
 .main-content, .products-section, .reviews-section, .products-container, .reviews-container, .footer, .contact-form, .page-section, .cart-drawer, .cart-drawer-body, .cart-drawer-footer, .newsletter-form, .footer-section, .product-card, .content, .section-title, .container, .page-content {
     background: #f5e9da !important;
 } 
 
-/* Remove beige from header area */
-.header, .header-container {
-    background: none !important;
-}
 
 .main-nav ul li a {
     color: #7fdfff !important;

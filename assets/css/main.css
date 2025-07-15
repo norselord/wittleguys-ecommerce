@@ -45,13 +45,15 @@ body, html, * {
     padding-right: 3rem;
 }
 
-.header, nav {
+.header-nav-bg {
     background: url('/images/cottagecore.png') center/cover no-repeat !important;
-    min-height: 200px;
-    border-bottom: none;
+}
+.header, nav {
+    background: transparent !important;
+    margin: 0;
+    padding: 0;
+    border: none;
     box-shadow: none;
-    margin-top: 0;
-    position: relative;
 }
 .header-container {
     background: none;

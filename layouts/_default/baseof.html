@@ -136,7 +136,6 @@
     <script src="/js/main.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Super Monkey Ball color palette
       const colors = [
         '#ff2d2d', '#ffe066', '#43a047', '#3ec6a8', '#7fdfff',
         '#ff69b4', '#a259e6', '#ffb347', '#ff4444', '#4ade80'
@@ -149,10 +148,10 @@
           charSpan.textContent = text[i];
           if (text[i] !== ' ') {
             charSpan.style.color = colors[Math.floor(Math.random() * colors.length)];
-          } else {
-            charSpan.style.color = 'inherit';
           }
-          charSpan.style.fontFamily = "'Kirby', Arial, sans-serif";
+          charSpan.style.fontFamily = "'Kirby No Kira Kizzu BRK', Arial, sans-serif";
+          charSpan.style.webkitFontSmoothing = 'antialiased';
+          charSpan.style.mozOsxFontSmoothing = 'grayscale';
           tabSpan.appendChild(charSpan);
         }
       });

@@ -717,3 +717,41 @@ body, html, * {
     color: #7fdfff !important;
     background: #f2e3c6 !important;
 } 
+
+.bubble-tab {
+    display: inline-block;
+    padding: 0.7rem 2.2rem;
+    margin: 0 0.3rem;
+    border-radius: 999px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);
+    border: 5px solid;
+    position: relative;
+    background: linear-gradient(180deg, #fff 60%, #e0e0e0 100%);
+    color: #222;
+    transition: transform 0.1s, box-shadow 0.18s;
+}
+.bubble-tab:hover, .bubble-tab:focus {
+    transform: scale(1.08);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+}
+.bubble-tab.red    { border-color: #ff2d2d; background: radial-gradient(circle at 30% 30%, #fff 60%, #ff2d2d 100%); }
+.bubble-tab.yellow { border-color: #ffe066; background: radial-gradient(circle at 30% 30%, #fff 60%, #ffe066 100%); }
+.bubble-tab.green  { border-color: #43a047; background: radial-gradient(circle at 30% 30%, #fff 60%, #43a047 100%); }
+.bubble-tab.blue   { border-color: #3ec6a8; background: radial-gradient(circle at 30% 30%, #fff 60%, #3ec6a8 100%); }
+.bubble-tab.purple { border-color: #a259e6; background: radial-gradient(circle at 30% 30%, #fff 60%, #a259e6 100%); }
+.bubble-tab::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 12%;
+    left: 18%;
+    width: 40%;
+    height: 30%;
+    background: rgba(255,255,255,0.5);
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(1px);
+} 

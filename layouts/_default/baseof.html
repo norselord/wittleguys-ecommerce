@@ -134,6 +134,30 @@
 
     <!-- Scripts -->
     <script src="/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Super Monkey Ball color palette
+      const colors = [
+        '#ff2d2d', '#ffe066', '#43a047', '#3ec6a8', '#7fdfff',
+        '#ff69b4', '#a259e6', '#ffb347', '#ff4444', '#4ade80'
+      ];
+      document.querySelectorAll('.main-nav ul li a span').forEach(function(tabSpan) {
+        const text = tabSpan.textContent;
+        tabSpan.innerHTML = '';
+        for (let i = 0; i < text.length; i++) {
+          const charSpan = document.createElement('span');
+          charSpan.textContent = text[i];
+          if (text[i] !== ' ') {
+            charSpan.style.color = colors[Math.floor(Math.random() * colors.length)];
+          } else {
+            charSpan.style.color = 'inherit';
+          }
+          charSpan.style.fontFamily = "'Kirby', Arial, sans-serif";
+          tabSpan.appendChild(charSpan);
+        }
+      });
+    });
+    </script>
     <!-- Stripe and contact form scripts are preserved if needed by page content -->
 </body>
 </html>

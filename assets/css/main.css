@@ -48,9 +48,10 @@ body {
     padding: 0 !important;
     border: none;
     box-shadow: none;
+    min-height: 0;
+    padding: 0.2rem 0 0.2rem 0;
 }
 nav {
-    min-height: 0;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -58,18 +59,19 @@ nav {
     z-index: 2;
 }
 .header-container {
-    background: none;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    min-height: 200px;
-    height: 100%;
+    min-height: 110px;
+    height: auto;
+    padding: 0 2.5vw;
 }
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 1 1 auto;
     height: 100%;
 }
 .logo {
@@ -84,8 +86,9 @@ nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 1.2rem;
-    margin-right: 2rem;
+    margin-top: 0;
+    margin-right: 0;
+    flex: 0 0 auto;
 }
 .cart-link {
     color: #222;

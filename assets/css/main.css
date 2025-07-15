@@ -1,24 +1,21 @@
 @font-face {
-    font-family: 'Kirby No Kira Kizzu BRK';
-    src: url('/fonts/Kirby No Kira Kizzu BRK.ttf') format('truetype');
+    font-family: 'Unkempt';
+    src: url('/fonts/Unkempt.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
 body, html, * {
     font-family: 'Unkempt', Arial, sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+body {
+    background: url('/images/cottagecore.png') center top/cover no-repeat, #f2e3c6 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+}
 .top-banner {
     background: #111;
     color: #222;
@@ -45,13 +42,6 @@ body, html, * {
     padding-right: 3rem;
 }
 
-.header-nav-bg {
-    background: url('/images/cottagecore.png') center/cover no-repeat !important;
-    position: relative;
-    min-height: 260px; /* Adjust as needed for your design */
-    margin: 0;
-    padding: 0;
-}
 .header, nav {
     background: transparent !important;
     margin: 0 !important;
@@ -600,27 +590,6 @@ nav {
     background: #f5e9da !important;
 } 
 
-
-.main-nav ul li a {
-    color: #7fdfff !important;
-    background: #f5e9da !important;
-}
-.main-nav ul li a:hover, .main-nav ul li a:focus, .main-nav ul li a.active {
-    color: #7fdfff !important;
-    background: #f2e3c6 !important;
-} 
-
-nav {
-    background: url('/images/cottagecore.png') center/cover no-repeat !important;
-    min-height: 0;
-    margin: 0;
-    padding: 0.5rem 0 0.5rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    box-shadow: none;
-    border: none;
-}
 nav ul {
     display: flex;
     gap: 1.1rem;
@@ -641,8 +610,6 @@ nav ul {
     box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);
     border: 5px solid;
     position: relative;
-    background: linear-gradient(180deg, #fff 60%, #e0e0e0 100%);
-    color: #222;
     transition: transform 0.1s, box-shadow 0.18s;
 }
 .bubble-tab:hover, .bubble-tab:focus {

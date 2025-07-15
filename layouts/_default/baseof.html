@@ -51,7 +51,7 @@
                         <img src="/images/Logo.png" alt="Wittle Guys" class="logo">
                     </a>
                 </div>
-                <div class="cart-container">
+                <div class="cart-container" style="margin-top: 2.5rem;">
                     <a href="javascript:void(0);" class="cart-link" onclick="showCartDrawer()">
                         <img src="/images/cards/SVGs/cart icon.svg" alt="Cart" class="cart-icon">
                         <div class="cart-badge" id="cart-badge">0</div>
@@ -112,7 +112,7 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
-                    <a href="#" aria-label="Etsy"><img src="/images/cards/SVGs/etsy.svg" alt="Etsy" class="footer-social-icon"></a>
+                    <a href="https://www.etsy.com/shop/WittleGuys" aria-label="Etsy" target="_blank" rel="noopener"><img src="/images/cards/SVGs/etsy.svg" alt="Etsy" class="footer-social-icon"></a>
                     <a href="#" aria-label="Instagram"><img src="/images/cards/SVGs/instagram.svg" alt="Instagram" class="footer-social-icon"></a>
                     <a href="#" aria-label="Facebook"><img src="/images/cards/SVGs/facebook.svg" alt="Facebook" class="footer-social-icon"></a>
                     <a href="#" aria-label="YouTube"><img src="/images/cards/SVGs/youtube.svg" alt="YouTube" class="footer-social-icon"></a>
@@ -133,7 +133,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p style="color: #000;">&copy; 2025 wittleguys. All Wites Weserved. (All Rights Reserved.)</p>
+            <p id="footer-copyright" style="color: #000;">
+              &copy; 2025 <span id="footer-wittleguys">wittleguys</span>. All Wites Weserved. (All Rights Reserved.)
+            </p>
         </div>
     </footer>
 
@@ -160,6 +162,18 @@
           tabSpan.appendChild(charSpan);
         }
       });
+      // Randomize footer 'wittleguys' colors
+      var footerWg = document.getElementById('footer-wittleguys');
+      if (footerWg) {
+        var text = footerWg.textContent;
+        var footerColors = ['#ff2d2d','#ffe066','#43a047','#3ec6a8','#7fdfff','#ff69b4','#a259e6','#ffb347','#ff4444','#4ade80'];
+        var html = '';
+        for (var i = 0; i < text.length; i++) {
+          var c = footerColors[Math.floor(Math.random()*footerColors.length)];
+          html += '<span style="color:' + c + '">' + text[i] + '</span>';
+        }
+        footerWg.innerHTML = html;
+      }
     });
     </script>
     <!-- Stripe and contact form scripts are preserved if needed by page content -->

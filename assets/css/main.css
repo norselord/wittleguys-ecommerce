@@ -1,21 +1,12 @@
 @font-face {
-    font-family: 'Ash';
-    src: url('/fonts/Ash.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Kirby';
+    font-family: 'Kirby No Kira Kizzu BRK';
     src: url('/fonts/Kirby No Kira Kizzu BRK.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-body, html {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
+body, html, * {
+    font-family: 'Kirby No Kira Kizzu BRK', Arial, sans-serif !important;
 }
 
 .top-banner {
@@ -85,7 +76,7 @@ body, html {
 }
 
 .main-nav ul li a {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 700;
     padding: 0.7rem 2rem;
     margin: 0 0.3rem;
@@ -100,7 +91,7 @@ body, html {
     letter-spacing: 0;
 }
 .main-nav ul li a span {
-    font-family: 'Kirby', Arial, sans-serif !important;
+    font-family: inherit !important;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

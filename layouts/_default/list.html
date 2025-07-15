@@ -18,10 +18,12 @@
                     <h3>{{ .Title }}</h3>
                     <p class="product-price">${{ .Params.price }}</p>
                 </a>
+                {{ if eq .Section "products" }}
                 <button class="add-to-cart-btn" type="button" onclick="addToCart('{{ with .File }}{{ .BaseFileName }}{{ else }}{{ .Title | urlize }}{{ end }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}', '{{ .Params.stripe_price_id }}', this)">
                     <span class="btn-text">Add to Cart</span>
                     <span class="loading">Processing...</span>
                 </button>
+                {{ end }}
             </div>
             {{ end }}
         </div>

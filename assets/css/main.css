@@ -11,7 +11,7 @@ body, html, * {
     -moz-osx-font-smoothing: grayscale;
 }
 body {
-    background: url('/images/cottagecore.png') center top/cover no-repeat, #f2e3c6 !important;
+    background: url('/images/cottagecore.png') center top/100% auto no-repeat, #f2e3c6 !important;
     margin: 0 !important;
     padding: 0 !important;
     min-height: 100vh;
@@ -59,12 +59,18 @@ nav {
 }
 .header-container {
     background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    height: 100%;
 }
-
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 .logo {
     height: 90px;
@@ -601,10 +607,10 @@ nav ul {
 }
 .bubble-tab {
     display: inline-block;
-    padding: 0.62rem 1.96rem;
+    padding: 0.55rem 1.74rem;
     margin: 0 0.18rem;
     border-radius: 999px;
-    font-size: 1.335rem;
+    font-size: 1.188rem;
     font-weight: 700;
     text-align: center;
     box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.08);

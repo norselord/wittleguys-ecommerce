@@ -63,15 +63,17 @@ body, html {
 }
 .main-nav ul li a span {
     font-family: 'Kirby', Arial, sans-serif !important;
-    background: linear-gradient(90deg, #ff2d2d 0%, #ffe066 30%, #43a047 60%, #3ec6a8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    text-fill-color: transparent;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Remove gradient, background-clip, and color rules so JS can set color */
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: inherit !important;
+    text-fill-color: initial !important;
+    letter-spacing: 0.04em;
 }
 .main-nav ul li a:hover, .main-nav ul li a:focus, .main-nav ul li a.active {
     background: radial-gradient(circle at 70% 70%, #ffb347 60%, #ffe066 100%);

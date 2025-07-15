@@ -1,16 +1,12 @@
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face {
+    font-family: 'Ash';
+    src: url('/fonts/Ash.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body {
-    font-family: 'Inter', Arial, sans-serif;
-    color: #222;
-    min-height: 100vh;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+body, html, * {
+    font-family: 'Ash', Arial, sans-serif !important;
 }
 
 .top-banner {

@@ -53,3 +53,8 @@ languageCode = "en-us"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true 
+
+# Sitemap configuration
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5 

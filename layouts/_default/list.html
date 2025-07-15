@@ -1,37 +1,30 @@
 {{ define "main" }}
-<div class="container" style="padding: 4rem 0;">
-    <h1 class="section-title">{{ .Title }}</h1>
-    
-    {{ if .Content }}
-    <div class="content" style="margin-bottom: 3rem;">
-        {{ .Content }}
-    </div>
-    {{ end }}
-    
-    <div class="product-grid">
-        {{ range .Pages }}
-        <div class="product-card">
-            <div class="product-image">
-                {{ if .Params.image }}
-                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                {{ else }}
-                    {{ .Params.emoji | default "📦" }} {{ .Title }}
-                {{ end }}
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">{{ .Title }}</h3>
-                <p class="product-description">{{ .Params.description | default .Summary }}</p>
-                <div class="product-price">${{ .Params.price | default "0.00" }}</div>
-                <button class="btn" onclick="addToCart('{{ with .File }}{{ .BaseFileName }}{{ else }}{{ .Title | urlize }}{{ end }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}', '{{ .Params.stripe_price_id }}')">
-                    <span class="btn-text">Add to Cart</span>
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        Processing...
-                    </div>
-                </button>
-            </div>
+<!-- Products Section -->
+<section class="products-section">
+    <div class="products-container">
+        <h2 class="section-title">{{ .Title }}</h2>
+        {{ if .Content }}
+        <div class="content" style="margin-bottom: 3rem;">
+            {{ .Content }}
         </div>
         {{ end }}
+        <div class="products-grid">
+            {{ range .Pages }}
+            <div class="product-card">
+                <a href="{{ .RelPermalink }}">
+                    {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    {{ end }}
+                    <h3>{{ .Title }}</h3>
+                    <p class="product-price">${{ .Params.price }}</p>
+                </a>
+                <button class="add-to-cart-btn" type="button" onclick="addToCart('{{ with .File }}{{ .BaseFileName }}{{ else }}{{ .Title | urlize }}{{ end }}', '{{ .Title }}', {{ .Params.price }}, '{{ .Params.image }}', '{{ .Params.stripe_price_id }}', this)">
+                    <span class="btn-text">Add to Cart</span>
+                    <span class="loading">Processing...</span>
+                </button>
+            </div>
+            {{ end }}
+        </div>
     </div>
-</div>
+</section>
 {{ end }} 

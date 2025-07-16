@@ -876,6 +876,9 @@ html, body {
     pointer-events: none;
     background: none;
   }
+  .mobile-bottom-menu.menu-open {
+    pointer-events: auto;
+  }
   .mobile-menu-btn {
     font-family: 'Unkempt', Arial, sans-serif;
     background: #a259e6;
@@ -994,5 +997,11 @@ html, body {
   /* Ticker font size smaller on mobile */
   .top-banner, .top-banner .banner-text {
     font-size: 0.75rem !important;
+  }
+} 
+
+@media (max-width: 900px) {
+  body.cart-open .mobile-bottom-menu {
+    display: none !important;
   }
 } 

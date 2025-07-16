@@ -41,6 +41,7 @@ function showCartDrawer() {
     document.getElementById('cart-drawer').classList.add('open');
     document.getElementById('cart-drawer').classList.remove('hidden');
     document.getElementById('cart-overlay').classList.remove('hidden');
+    document.body.classList.add('cart-open'); // Hide mobile menu when cart is open
     updateCartDrawer();
 }
 function hideCartDrawer() {
@@ -49,6 +50,7 @@ function hideCartDrawer() {
         document.getElementById('cart-drawer').classList.add('hidden');
     }, 350);
     document.getElementById('cart-overlay').classList.add('hidden');
+    document.body.classList.remove('cart-open'); // Show mobile menu when cart is closed
 }
 function updateCartBadge(count) {
     var badge = document.getElementById('cart-badge');

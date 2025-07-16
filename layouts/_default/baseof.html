@@ -226,10 +226,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close menu when clicking a link (do not block navigation)
     popup.querySelectorAll('a').forEach(function(link) {
       ['click','pointerup'].forEach(function(evt) {
-        link.addEventListener(evt, function() {
+        link.addEventListener(evt, function(e) {
+          e.preventDefault();
           popup.classList.remove('open');
           menuBar.classList.remove('menu-open');
           console.log('Mobile menu closed by link');
+          // Delay navigation to allow menu to close
+          setTimeout(function() {
+            window.location.href = link.href;
+          }, 120);
         });
       });
     });

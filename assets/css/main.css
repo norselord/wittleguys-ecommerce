@@ -855,7 +855,9 @@ html, body {
   .header-nav-bg .bubble-tab {
     display: none !important;
   }
-  /* Ensure popup nav is always visible */
+  /* Force popup nav and all children to be visible */
+  .mobile-menu-popup,
+  .mobile-menu-popup.open,
   .mobile-menu-popup nav,
   .mobile-menu-popup nav ul,
   .mobile-menu-popup nav ul li,
@@ -863,6 +865,15 @@ html, body {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    color: #fff !important;
+    background: none !important;
+    border: none !important;
+    z-index: 10001 !important;
+  }
+  /* Debug: add border and background to popup */
+  .mobile-menu-popup {
+    border: 2px solid #ff2d2d !important;
+    background: #111 !important;
   }
   /* Mobile bottom menu bar */
   .mobile-bottom-menu {
@@ -913,7 +924,7 @@ html, body {
     position: fixed;
     left: 0; right: 0; bottom: 0;
     width: 100vw;
-    background: #111;
+    background: #111 !important;
     color: #fff;
     border-radius: 32px 32px 0 0;
     box-shadow: 0 -4px 32px rgba(0,0,0,0.18);
@@ -922,13 +933,14 @@ html, body {
     z-index: 10000;
     text-align: center;
     animation: slideUpMenu 0.32s cubic-bezier(.68,-0.55,.27,1.55);
+    border: 2px solid #ff2d2d !important;
   }
   @keyframes slideUpMenu {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
   }
   .mobile-menu-popup.open {
-    display: block;
+    display: block !important;
   }
   .mobile-menu-popup nav ul {
     list-style: none;
@@ -940,7 +952,7 @@ html, body {
   }
   .mobile-menu-popup nav ul li a {
     font-family: 'Unkempt', Arial, sans-serif;
-    color: #fff;
+    color: #fff !important;
     font-size: 2.1rem;
     font-weight: 700;
     text-decoration: none;
@@ -948,14 +960,16 @@ html, body {
     letter-spacing: 0.04em;
     display: block;
     padding: 0.2em 0;
+    background: none !important;
+    border: none !important;
   }
   .mobile-menu-popup nav ul li a:hover {
-    color: #a259e6;
+    color: #a259e6 !important;
   }
   .close-mobile-menu {
-    background: none;
-    border: none;
-    color: #ff2d2d;
+    background: none !important;
+    border: none !important;
+    color: #ff2d2d !important;
     font-size: 2.5rem;
     position: absolute;
     left: 0; right: 0; bottom: 1.2rem;
@@ -965,11 +979,12 @@ html, body {
     cursor: pointer;
     opacity: 0.95;
     transition: color 0.18s;
-    z-index: 10001;
+    z-index: 10001 !important;
+    display: block !important;
   }
   .close-mobile-menu:active,
   .close-mobile-menu:focus {
-    color: #b71c1c;
+    color: #b71c1c !important;
   }
   /* Fix right-side overflow for all containers */
   html, body, .main-content, .products-section, .products-container, .reviews-section, .reviews-container, .footer, .page-section, .container {

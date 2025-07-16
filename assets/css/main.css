@@ -893,17 +893,17 @@ html, body {
     border: none !important;
     color: #ff2d2d !important;
     font-size: 2.5rem;
-    position: absolute;
-    left: 0; right: 0; bottom: 1.2rem;
-    margin: 0 auto;
+    position: static;
+    display: block !important;
+    margin: 2.2rem auto 0 auto;
     width: 48px;
     height: 48px;
     cursor: pointer;
     opacity: 0.95;
     transition: color 0.18s;
     z-index: 10001 !important;
-    display: block !important;
     pointer-events: auto !important;
+    text-align: center;
   }
   .close-mobile-menu:active,
   .close-mobile-menu:focus {

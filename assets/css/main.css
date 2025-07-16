@@ -857,12 +857,54 @@ html, body {
 }
 
 @media (max-width: 900px) {
-  /* Hide only the top nav in header-nav-bg, not all navs */
-  .header-nav-bg > nav,
-  .header-nav-bg .bubble-tab {
-    display: none !important;
+  .mobile-bottom-menu {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    background: none;
   }
-  /* Force popup nav and all children to be visible */
+  .mobile-menu-btn {
+    font-family: 'Unkempt', Arial, sans-serif;
+    background: #a259e6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1.1rem 0;
+    width: 90vw;
+    max-width: 420px;
+    margin: 0 0 1.2rem 0;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    pointer-events: auto;
+    transition: background 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.1em;
+    text-align: center;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .mobile-menu-btn:active,
+  .mobile-menu-btn:focus {
+    background: #7c3aed;
+    color: #fff;
+  }
+  .mobile-menu-btn .menu-rainbow {
+    letter-spacing: 0.1em;
+    font-size: 1.5rem;
+    font-family: 'Unkempt', Arial, sans-serif;
+    font-weight: 700;
+    background: none;
+    border: none;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   .mobile-menu-popup {
     position: fixed;
     left: 0; right: 0; bottom: 0;
@@ -871,22 +913,49 @@ html, body {
     color: #fff;
     border-radius: 32px 32px 0 0;
     box-shadow: 0 -4px 32px rgba(0,0,0,0.18);
-    padding: 1.2rem 0 0.7rem 0;
+    padding: 0.7rem 0 0.3rem 0;
     display: none;
     z-index: 10000;
     text-align: center;
     animation: slideUpMenu 0.32s cubic-bezier(.68,-0.55,.27,1.55);
   }
   .mobile-menu-popup.open {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .mobile-menu-popup nav ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 0.7rem 0;
+    margin: 0 0 0.2rem 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
   }
   .mobile-menu-popup nav ul li {
-    margin: 0.7rem 0;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-menu-popup nav ul li a {
+    font-family: 'Unkempt', Arial, sans-serif;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.18s;
+    letter-spacing: 0.04em;
+    display: block;
+    padding: 0.2em 0.5em;
+    background: none;
+    border: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .mobile-menu-popup nav ul li a:hover {
+    color: #a259e6;
   }
   .close-mobile-menu {
     background: none !important;
@@ -895,7 +964,7 @@ html, body {
     font-size: 2.5rem;
     position: static;
     display: block !important;
-    margin: 0.7rem auto 0 auto;
+    margin: 0.2rem auto 0 auto;
     width: 48px;
     height: 48px;
     cursor: pointer;

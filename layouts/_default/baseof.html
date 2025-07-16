@@ -208,14 +208,18 @@ document.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
       popup.classList.add('open');
     });
-    closeBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      popup.classList.remove('open');
+    ['click','pointerup'].forEach(function(evt) {
+      closeBtn.addEventListener(evt, function(e) {
+        e.stopPropagation();
+        popup.classList.remove('open');
+      });
     });
     // Close menu when clicking a link
     popup.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        popup.classList.remove('open');
+      ['click','pointerup'].forEach(function(evt) {
+        link.addEventListener(evt, function() {
+          popup.classList.remove('open');
+        });
       });
     });
     // Optional: close menu when clicking outside

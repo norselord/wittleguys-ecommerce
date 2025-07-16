@@ -857,6 +857,14 @@ html, body {
 }
 
 @media (max-width: 900px) {
+  /* Hide desktop nav tabs on mobile */
+  .header-nav-bg > nav,
+  .header-nav-bg .bubble-tab {
+    display: none !important;
+  }
+  .mobile-bottom-menu.menu-open .mobile-menu-btn {
+    display: none !important;
+  }
   .mobile-bottom-menu {
     position: fixed;
     left: 0; right: 0; bottom: 0;

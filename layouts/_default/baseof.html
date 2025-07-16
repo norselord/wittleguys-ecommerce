@@ -177,5 +177,41 @@
     });
     </script>
     <!-- Stripe and contact form scripts are preserved if needed by page content -->
+
+<!-- Mobile Bottom Menu Bar -->
+<div class="mobile-bottom-menu">
+  <button class="mobile-menu-btn" id="openMobileMenu">MENU</button>
+  <div class="mobile-menu-popup" id="mobileMenuPopup">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/shop/">All Products</a></li>
+        <li><a href="/our-vision/">Our Vision</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact/">Contact Us</a></li>
+      </ul>
+    </nav>
+    <button class="close-mobile-menu" id="closeMobileMenu">&times;</button>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var openBtn = document.getElementById('openMobileMenu');
+  var closeBtn = document.getElementById('closeMobileMenu');
+  var popup = document.getElementById('mobileMenuPopup');
+  if (openBtn && closeBtn && popup) {
+    openBtn.addEventListener('click', function() {
+      popup.classList.add('open');
+    });
+    closeBtn.addEventListener('click', function() {
+      popup.classList.remove('open');
+    });
+    // Optional: close menu when clicking outside
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) popup.classList.remove('open');
+    });
+  }
+});
+</script>
 </body>
 </html>

@@ -216,27 +216,25 @@ document.addEventListener('DOMContentLoaded', function() {
       menuBar.classList.add('menu-open');
       console.log('Mobile menu opened');
     });
-    ['click','pointerup'].forEach(function(evt) {
-      closeBtn.addEventListener(evt, function(e) {
-        e.stopPropagation();
-        popup.classList.remove('open');
-        menuBar.classList.remove('menu-open');
-        console.log('Mobile menu closed by X');
-      });
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      popup.classList.remove('open');
+      menuBar.classList.remove('menu-open');
+      openBtn.blur();
+      console.log('Mobile menu closed by X');
     });
     // Close menu when clicking a link (do not block navigation)
     popup.querySelectorAll('a').forEach(function(link) {
-      ['click','pointerup'].forEach(function(evt) {
-        link.addEventListener(evt, function(e) {
-          e.preventDefault();
-          popup.classList.remove('open');
-          menuBar.classList.remove('menu-open');
-          console.log('Mobile menu closed by link');
-          // Delay navigation to allow menu to close
-          setTimeout(function() {
-            window.location.href = link.href;
-          }, 120);
-        });
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        popup.classList.remove('open');
+        menuBar.classList.remove('menu-open');
+        openBtn.blur();
+        console.log('Mobile menu closed by link');
+        // Delay navigation to allow menu to close
+        setTimeout(function() {
+          window.location.href = link.href;
+        }, 120);
       });
     });
     // Optional: close menu when clicking outside
@@ -244,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.target === popup) {
         popup.classList.remove('open');
         menuBar.classList.remove('menu-open');
+        openBtn.blur();
         console.log('Mobile menu closed by outside click');
       }
     });

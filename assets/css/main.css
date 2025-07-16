@@ -1007,6 +1007,12 @@ html, body {
 } 
 
 @media (max-width: 900px) {
+  .footer-bottom {
+    padding-bottom: 80px !important;
+  }
+} 
+
+@media (max-width: 900px) {
   .close-mobile-menu {
     z-index: 10001 !important;
     pointer-events: auto !important;

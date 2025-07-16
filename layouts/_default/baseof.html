@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     ['click','pointerup'].forEach(function(evt) {
       closeBtn.addEventListener(evt, function(e) {
+        e.stopPropagation();
         popup.classList.remove('open');
         menuBar.classList.remove('menu-open');
         console.log('Mobile menu closed by X');

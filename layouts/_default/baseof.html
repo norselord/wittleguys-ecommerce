@@ -246,6 +246,21 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Mobile menu closed by outside click');
       }
     });
+    // Color each character in mobile menu tab links to match MENU button colors
+    var menuTabColors = ['#43a047', '#ff2d2d', '#3ec6a8', '#ffe066'];
+    var menuTabLinks = popup.querySelectorAll('nav ul li a');
+    menuTabLinks.forEach(function(link) {
+      var text = link.textContent;
+      link.innerHTML = '';
+      for (var i = 0; i < text.length; i++) {
+        var span = document.createElement('span');
+        span.textContent = text[i];
+        if (text[i] !== ' ') {
+          span.style.color = menuTabColors[i % menuTabColors.length];
+        }
+        link.appendChild(span);
+      }
+    });
   }
 });
 </script>

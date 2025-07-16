@@ -850,12 +850,9 @@ html, body {
 
 /* --- VanMan-style Mobile Bottom Menu Bar --- */
 @media (max-width: 900px) {
-  /* Hide top nav and bubble tabs on mobile */
-  nav, nav ul, nav li, .bubble-tab, .header-nav-bg nav, .header-nav-bg .bubble-tab {
-    display: none !important;
-  }
-  /* Hide any nav in header-nav-bg */
-  .header-nav-bg nav {
+  /* Hide only the top nav in header-nav-bg, not all navs */
+  .header-nav-bg > nav,
+  .header-nav-bg .bubble-tab {
     display: none !important;
   }
   /* Mobile bottom menu bar */
@@ -872,7 +869,7 @@ html, body {
   }
   .mobile-menu-btn {
     font-family: 'Unkempt', Arial, sans-serif;
-    background: #a259e6; /* purple from Contact Us tab */
+    background: #a259e6;
     color: #fff;
     border: none;
     border-radius: 999px;
@@ -893,6 +890,15 @@ html, body {
   .mobile-menu-btn:focus {
     background: #7c3aed;
     color: #fff;
+  }
+  .mobile-menu-btn .menu-rainbow {
+    letter-spacing: 0.1em;
+    font-size: 1.5rem;
+    font-family: 'Unkempt', Arial, sans-serif;
+    font-weight: 700;
+    background: none;
+    border: none;
+    outline: none;
   }
   .mobile-menu-popup {
     position: fixed;
@@ -940,7 +946,7 @@ html, body {
   .close-mobile-menu {
     background: none;
     border: none;
-    color: #fff;
+    color: #ff2d2d;
     font-size: 2.5rem;
     position: absolute;
     left: 0; right: 0; bottom: 1.2rem;
@@ -948,7 +954,12 @@ html, body {
     width: 48px;
     height: 48px;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.9;
+    transition: color 0.18s;
+  }
+  .close-mobile-menu:active,
+  .close-mobile-menu:focus {
+    color: #b71c1c;
   }
   /* Fix right-side overflow for all containers */
   html, body, .main-content, .products-section, .products-container, .reviews-section, .reviews-container, .footer, .page-section, .container {

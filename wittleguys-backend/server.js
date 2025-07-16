@@ -18,6 +18,32 @@ app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
+// Add checkout page route
+app.get('/checkout', (req, res) => {
+  // Option 1: Redirect to cart if no items
+  res.redirect('/');
+  
+  // Option 2: Serve a simple checkout page
+  // res.send(`
+  //   <!DOCTYPE html>
+  //   <html>
+  //   <head>
+  //     <title>Checkout - wittleguys™</title>
+  //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  //     <link rel="icon" type="image/png" href="/favicon/Caterpillar.png">
+  //   </head>
+  //   <body>
+  //     <h1>Checkout</h1>
+  //     <p>Redirecting to Stripe checkout...</p>
+  //     <script>
+  //       // Redirect back to main site to trigger checkout
+  //       window.location.href = '${process.env.FRONTEND_URL}';
+  //     </script>
+  //   </body>
+  //   </html>
+  // `);
+});
+
 app.post('/api/create-checkout-session', async (req, res) => {
   try {
     const { items } = req.body;

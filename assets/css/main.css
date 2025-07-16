@@ -643,3 +643,202 @@ nav ul {
     pointer-events: none;
     filter: blur(1px);
 } 
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+    /* Header and Navigation */
+    .header-container {
+        min-height: 80px;
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .logo {
+        height: 60px;
+    }
+    
+    .cart-container {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        margin-top: 0;
+    }
+    
+    /* Navigation Tabs */
+    nav ul {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0 1rem;
+        justify-content: center;
+    }
+    
+    .bubble-tab {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        margin: 0 0.1rem;
+        border-width: 3px;
+    }
+    
+    /* Product Grid */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .product-card {
+        padding-bottom: 1rem;
+    }
+    
+    .product-card img {
+        height: 180px;
+    }
+    
+    .product-card h3 {
+        font-size: 1rem;
+        margin: 0.8rem 0 0.3rem 0;
+    }
+    
+    .product-price {
+        font-size: 1rem;
+    }
+    
+    /* Reviews Section */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .review-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .footer-section {
+        min-width: auto;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+    }
+    
+    .social-links {
+        gap: 0.8rem;
+    }
+    
+    .footer-social-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .payment-methods {
+        gap: 0.3rem;
+    }
+    
+    .card-icon {
+        width: 32px;
+        height: 20px;
+    }
+    
+    /* Section Titles */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .reviews-container h2 {
+        font-size: 1.6rem;
+    }
+    
+    /* Cart Drawer */
+    .cart-drawer {
+        width: 100vw;
+    }
+    
+    .cart-drawer-header {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .cart-drawer-body {
+        padding: 1rem;
+    }
+    
+    .cart-drawer-footer {
+        padding: 1rem;
+    }
+    
+    /* Buttons */
+    .btn, .add-to-cart-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .checkout-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .header-container {
+        min-height: 70px;
+        padding: 0 0.5rem;
+    }
+    
+    .logo {
+        height: 50px;
+    }
+    
+    .bubble-tab {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+        border-width: 2px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+    
+    .product-card img {
+        height: 160px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .reviews-container h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Ensure bubble tabs don't overflow on very small screens */
+@media (max-width: 360px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .bubble-tab {
+        width: 100%;
+        max-width: 200px;
+    }
+} 

@@ -264,5 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+    <script>
+      window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe_publishable_key }}";
+    </script>
 </body>
 </html>

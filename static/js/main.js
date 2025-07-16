@@ -136,7 +136,28 @@ function changeCartQty(idx, delta) {
     updateCartDrawer();
 }
 function checkoutCart() {
-    window.location.href = '/checkout';
+    var cart = JSON.parse(localStorage.getItem('wittleguys_cart') || '[]');
+    if (!cart.length) {
+        alert('Your cart is empty!');
+        return;
+    }
+    fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart })
+    })
+    .then(res => res.json())
+    .then(async data => {
+        if (data.sessionId) {
+            var stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
+            await stripe.redirectToCheckout({ sessionId: data.sessionId });
+        } else {
+            alert('Error creating checkout session: ' + (data.error || 'Unknown error'));
+        }
+    })
+    .catch(err => {
+        alert('Checkout error: ' + err.message);
+    });
 }
 // Add to Cart logic
 function addToCart(id, title, price, image, stripePriceId, btn) {

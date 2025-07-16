@@ -190,7 +190,7 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/shop/">All Products</a></li>
-        <li><a href="/our-vision/">Our Vision</a></li>
+        <li><a href="/vision/">Our Vision</a></li>
         <li><a href="/blog/">Blog</a></li>
         <li><a href="/contact/">Contact Us</a></li>
       </ul>
@@ -208,14 +208,19 @@ document.addEventListener('DOMContentLoaded', function() {
       e.stopPropagation();
       popup.classList.add('open');
     });
-    closeBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      popup.classList.remove('open');
-    });
-    // Close menu when clicking a link
-    popup.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
+    // Use mousedown/touchstart for instant close
+    ['mousedown','touchstart'].forEach(function(evt) {
+      closeBtn.addEventListener(evt, function(e) {
+        e.stopPropagation();
         popup.classList.remove('open');
+      });
+    });
+    // Close menu when clicking a link (mousedown/touchstart)
+    popup.querySelectorAll('a').forEach(function(link) {
+      ['mousedown','touchstart'].forEach(function(evt) {
+        link.addEventListener(evt, function() {
+          popup.classList.remove('open');
+        });
       });
     });
     // Optional: close menu when clicking outside

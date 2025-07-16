@@ -203,15 +203,22 @@ document.addEventListener('DOMContentLoaded', function() {
   var openBtn = document.getElementById('openMobileMenu');
   var closeBtn = document.getElementById('closeMobileMenu');
   var popup = document.getElementById('mobileMenuPopup');
+  // Force remove .open on page load
+  if (popup) {
+    popup.classList.remove('open');
+    console.log('Mobile menu popup forced closed on load');
+  }
   if (openBtn && closeBtn && popup) {
     openBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       popup.classList.add('open');
+      console.log('Mobile menu opened');
     });
     ['click','pointerup'].forEach(function(evt) {
       closeBtn.addEventListener(evt, function(e) {
         e.stopPropagation();
         popup.classList.remove('open');
+        console.log('Mobile menu closed by X');
       });
     });
     // Close menu when clicking a link
@@ -219,12 +226,16 @@ document.addEventListener('DOMContentLoaded', function() {
       ['click','pointerup'].forEach(function(evt) {
         link.addEventListener(evt, function() {
           popup.classList.remove('open');
+          console.log('Mobile menu closed by link');
         });
       });
     });
     // Optional: close menu when clicking outside
     popup.addEventListener('click', function(e) {
-      if (e.target === popup) popup.classList.remove('open');
+      if (e.target === popup) {
+        popup.classList.remove('open');
+        console.log('Mobile menu closed by outside click');
+      }
     });
   }
 });

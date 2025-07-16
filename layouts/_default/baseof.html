@@ -180,7 +180,11 @@
 
 <!-- Mobile Bottom Menu Bar -->
 <div class="mobile-bottom-menu">
-  <button class="mobile-menu-btn" id="openMobileMenu"><span class="menu-rainbow">MENU</span></button>
+  <button class="mobile-menu-btn" id="openMobileMenu">
+    <span class="menu-rainbow">
+      <span style="color:#43a047">M</span><span style="color:#ff2d2d">E</span><span style="color:#3ec6a8">N</span><span style="color:#ffe066">U</span>
+    </span>
+  </button>
   <div class="mobile-menu-popup" id="mobileMenuPopup">
     <nav>
       <ul>
@@ -212,18 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
     popup.addEventListener('click', function(e) {
       if (e.target === popup) popup.classList.remove('open');
     });
-  }
-  // Rainbow MENU text
-  var menuSpan = document.querySelector('.mobile-menu-btn .menu-rainbow');
-  if (menuSpan) {
-    var text = menuSpan.textContent;
-    var colors = ['#ff2d2d','#ffe066','#43a047','#3ec6a8','#7fdfff','#ff69b4','#a259e6','#ffb347','#ff4444','#4ade80'];
-    var html = '';
-    for (var i = 0; i < text.length; i++) {
-      var c = colors[Math.floor(Math.random()*colors.length)];
-      html += '<span style="color:' + c + '">' + text[i] + '</span>';
-    }
-    menuSpan.innerHTML = html;
   }
 });
 </script>

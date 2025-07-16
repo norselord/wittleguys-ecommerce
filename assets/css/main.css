@@ -855,6 +855,15 @@ html, body {
   .header-nav-bg .bubble-tab {
     display: none !important;
   }
+  /* Ensure popup nav is always visible */
+  .mobile-menu-popup nav,
+  .mobile-menu-popup nav ul,
+  .mobile-menu-popup nav ul li,
+  .mobile-menu-popup nav ul li a {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
   /* Mobile bottom menu bar */
   .mobile-bottom-menu {
     position: fixed;
@@ -954,8 +963,9 @@ html, body {
     width: 48px;
     height: 48px;
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 0.95;
     transition: color 0.18s;
+    z-index: 10001;
   }
   .close-mobile-menu:active,
   .close-mobile-menu:focus {

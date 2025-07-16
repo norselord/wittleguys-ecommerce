@@ -851,7 +851,8 @@ html, body {
 /* --- VanMan-style Mobile Bottom Menu Bar --- */
 @media (min-width: 900px) {
   .mobile-bottom-menu,
-  .mobile-menu-popup {
+  .mobile-menu-popup,
+  .close-mobile-menu {
     display: none !important;
   }
 }

@@ -863,21 +863,6 @@ html, body {
     display: none !important;
   }
   /* Force popup nav and all children to be visible */
-  .mobile-menu-popup,
-  .mobile-menu-popup.open,
-  .mobile-menu-popup nav,
-  .mobile-menu-popup nav ul,
-  .mobile-menu-popup nav ul li,
-  .mobile-menu-popup nav ul li a {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: #fff !important;
-    background: none !important;
-    border: none !important;
-    z-index: 10001 !important;
-  }
-  /* Remove debug border and ensure popup is hidden by default */
   .mobile-menu-popup {
     position: fixed;
     left: 0; right: 0; bottom: 0;

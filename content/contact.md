@@ -8,42 +8,124 @@ description: Contact Wittle Guys
 
 ## Contact
 
-<script type="text/javascript">
-  if (typeof MauticSDKLoaded == 'undefined') {
-    var MauticSDKLoaded = true;
-    var head   = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src  = 'https://mautic.wittleguys.net/media/js/mautic-form.js?v3073047c';
-    script.onload = function() { if (typeof MauticSDK !== 'undefined') { MauticSDK.onLoad(); } };
-    head.appendChild(script);
-    var MauticDomain = 'https://mautic.wittleguys.net';
-    var MauticLang   = { 'submittingMessage': 'Please wait...' };
-  } else if (typeof MauticSDK != 'undefined') {
-    MauticSDK.onLoad();
-  }
-</script>
-
 <style type="text/css" scoped>
-  .mauticform_wrapper { max-width: 600px; margin: 10px auto; }
-  .mauticform-innerform {}
-  .mauticform-post-success {}
-  .mauticform-name { font-weight: bold; font-size: 1.5em; margin-bottom: 3px; }
-  .mauticform-description { margin-top: 2px; margin-bottom: 10px; }
-  .mauticform-error { margin-bottom: 10px; color: red; }
-  .mauticform-message { margin-bottom: 10px; color: green; }
-  .mauticform-row { display: block; margin-bottom: 20px; }
-  .mauticform-label { font-size: 1.1em; display: block; font-weight: bold; margin-bottom: 5px; }
-  .mauticform-row.mauticform-required .mauticform-label:after { color: #e32; content: " *"; display: inline; }
-  .mauticform-helpmessage { display: block; font-size: 0.9em; margin-bottom: 3px; }
-  .mauticform-errormsg { display: block; color: red; margin-top: 2px; }
-  .mauticform-selectbox, .mauticform-input, .mauticform-textarea { width: 100%; padding: 0.5em 0.5em; border: 1px solid #CCC; background: #fff; box-shadow: 0px 0px 0px #fff inset; border-radius: 4px; box-sizing: border-box; }
-  .mauticform-button-wrapper .mauticform-button.btn-ghost, .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost { color: #5d6c7c;background-color: #ffffff;border-color: #dddddd;}
-  .mauticform-button-wrapper .mauticform-button, .mauticform-pagebreak-wrapper .mauticform-pagebreak { display: inline-block;margin-bottom: 0;font-weight: 600;text-align: center;vertical-align: middle;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 6px 12px;font-size: 13px;line-height: 1.3856;border-radius: 3px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
-  .mauticform-button-wrapper .mauticform-button.btn-ghost[disabled], .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-ghost[disabled] { background-color: #ffffff; border-color: #dddddd; opacity: 0.75; cursor: not-allowed; }
-  .mauticform-pagebreak-wrapper .mauticform-button-wrapper {  display: inline; }
+  .contact-form-wrapper { max-width: 600px; margin: 20px auto; }
+  .form-row { display: block; margin-bottom: 20px; }
+  .form-label { font-size: 1.1em; display: block; font-weight: bold; margin-bottom: 5px; }
+  .form-label.required:after { color: #e32; content: " *"; display: inline; }
+  .form-input, .form-textarea { width: 100%; padding: 0.5em; border: 1px solid #CCC; background: #fff; border-radius: 4px; box-sizing: border-box; }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-button { display: inline-block; margin-bottom: 0; font-weight: 600; text-align: center; cursor: pointer; background: #3ec6a8; color: white; border: 1px solid #3ec6a8; white-space: nowrap; padding: 12px 24px; font-size: 14px; border-radius: 4px; transition: all 0.3s ease; }
+  .form-button:hover { background: #359268; border-color: #359268; }
+  .form-button:disabled { opacity: 0.75; cursor: not-allowed; }
+  .form-error { color: red; margin-top: 5px; font-size: 0.9em; }
+  .form-success { color: green; margin-bottom: 20px; padding: 10px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; }
+  .recaptcha-wrapper { margin: 20px 0; }
 </style>
 
-<!-- Use Mautic dynamic embed to avoid any HTML-escaping issues -->
-<div id="mauticform_wrapper_contactform" class="mauticform_wrapper"></div>
-<script type="text/javascript" src="https://mautic.wittleguys.net/form/generate.js?id=2"></script>
+<div class="contact-form-wrapper">
+  <form id="contact-form" action="https://mautic.wittleguys.net/form/submit?formId=2" method="post">
+    <div id="form-messages"></div>
+    
+    <div class="form-row">
+      <label for="email" class="form-label required">Email</label>
+      <input type="email" id="email" name="mauticform[email]" class="form-input" required>
+      <div class="form-error" id="email-error" style="display:none;">Please enter a valid email address.</div>
+    </div>
+    
+    <div class="form-row">
+      <label for="message" class="form-label required">Message</label>
+      <textarea id="message" name="mauticform[f_message]" class="form-textarea" placeholder="How can we help?" required></textarea>
+      <div class="form-error" id="message-error" style="display:none;">Please enter your message.</div>
+    </div>
+    
+    <div class="form-row recaptcha-wrapper">
+      <div class="g-recaptcha" data-sitekey="6Ldvb68rAAAAAIE0RKFT-W9iKk1JbOpnrjYlJvXD"></div>
+      <div class="form-error" id="recaptcha-error" style="display:none;">Please complete the reCAPTCHA verification.</div>
+    </div>
+    
+    <input type="hidden" name="mauticform[formId]" value="2">
+    <input type="hidden" name="mauticform[formName]" value="contactform">
+    
+    <div class="form-row">
+      <button type="submit" class="form-button" id="submit-btn">
+        <span class="btn-text">Send Message</span>
+        <span class="btn-loading" style="display:none;">Sending...</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Clear previous errors
+  document.querySelectorAll('.form-error').forEach(el => el.style.display = 'none');
+  
+  // Basic validation
+  let isValid = true;
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const recaptchaResponse = grecaptcha.getResponse();
+  
+  if (!email || !email.includes('@')) {
+    document.getElementById('email-error').style.display = 'block';
+    isValid = false;
+  }
+  
+  if (!message) {
+    document.getElementById('message-error').style.display = 'block';
+    isValid = false;
+  }
+  
+  if (!recaptchaResponse) {
+    document.getElementById('recaptcha-error').style.display = 'block';
+    isValid = false;
+  }
+  
+  if (!isValid) return;
+  
+  // Show loading state
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+  
+  submitBtn.disabled = true;
+  btnText.style.display = 'none';
+  btnLoading.style.display = 'inline';
+  
+  // Submit the form
+  const formData = new FormData(this);
+  formData.append('g-recaptcha-response', recaptchaResponse);
+  
+  fetch(this.action, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      // Success - redirect or show success message
+      document.getElementById('form-messages').innerHTML = 
+        '<div class="form-success">Thank you! Your message has been sent successfully. We\'ll get back to you soon!</div>';
+      this.reset();
+      grecaptcha.reset();
+    } else {
+      throw new Error('Form submission failed');
+    }
+  })
+  .catch(error => {
+    console.error('Form submission error:', error);
+    document.getElementById('form-messages').innerHTML = 
+      '<div class="form-error">Sorry, there was an error sending your message. Please try again or contact us directly at support@wittleguys.net</div>';
+  })
+  .finally(() => {
+    // Reset button state
+    submitBtn.disabled = false;
+    btnText.style.display = 'inline';
+    btnLoading.style.display = 'none';
+  });
+});
+
+console.log('Contact form with working reCAPTCHA loaded successfully');
+</script>

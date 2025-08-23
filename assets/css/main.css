@@ -16,6 +16,11 @@ body {
     padding: 0 !important;
     min-height: 100vh;
 }
+
+/* Ensure consistent tan background throughout */
+.home-content, .main-content, .products-section, .reviews-section {
+    background: transparent !important;
+}
 .top-banner {
     background: #111;
     color: #222;

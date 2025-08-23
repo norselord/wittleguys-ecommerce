@@ -105,10 +105,12 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h3>Stay Connected</h3>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
+                <h3>subscwibe to our newswetta!!!</h3>
+                <form class="newsletter-form" id="newsletter-form" action="https://mautic.wittleguys.net/form/submit?formId=3" method="post">
+                    <input type="email" name="mauticform[email]" placeholder="Enter your email" required id="newsletter-email">
+                    <input type="hidden" name="mauticform[formId]" value="3">
+                    <input type="hidden" name="mauticform[formName]" value="newsletter">
+                    <button type="submit">subscwibe</button>
                 </form>
             </div>
             <div class="footer-section">
@@ -268,6 +270,53 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
     <script>
       window.STRIPE_PUBLISHABLE_KEY = "{{ .Site.Params.stripe_publishable_key }}";
+      
+      // Newsletter form handler
+      document.addEventListener('DOMContentLoaded', function() {
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+          newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletter-email').value.trim();
+            if (!email || !email.includes('@')) {
+              alert('Please enter a valid email address.');
+              return;
+            }
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'subscribing...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+              method: 'POST',
+              body: formData,
+              redirect: 'manual'
+            })
+            .then(response => {
+              console.log('Newsletter response:', response.status, response.type);
+              // Assume success for most responses since Mautic often redirects
+              if (response.ok || response.status === 302 || response.type === 'opaqueredirect' || response.status < 400) {
+                alert('Thank you for subscribing to our newswetta!!! You should receive a welcome email from howdy@wittleguys.net soon.');
+                this.reset();
+              } else {
+                throw new Error('Subscription failed');
+              }
+            })
+            .catch(error => {
+              console.error('Newsletter error:', error);
+              alert('There was an issue with your subscription. Please try again or contact us at howdy@wittleguys.net');
+            })
+            .finally(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            });
+          });
+        }
+      });
     </script>
 </body>
 </html>

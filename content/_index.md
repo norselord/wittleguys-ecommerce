@@ -7,6 +7,3 @@ products:
   title: "Our Handmade Collection"
 ---
 
-Welcome to our handcrafted collection of sustainable, environmentally conscious sewn goods. Each piece is made with pure cotton and natural materials, handsewn with care and attention to detail.
-
-[Visit our collection](/products/) to see our latest handmade creations.

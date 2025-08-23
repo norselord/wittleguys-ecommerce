@@ -9,14 +9,13 @@ description: Contact Wittle Guys
 ## Contact
 
 <script type="text/javascript">
-  /** This section is only needed once per page if manually copying **/
   if (typeof MauticSDKLoaded == 'undefined') {
     var MauticSDKLoaded = true;
     var head   = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src  = 'https://mautic.wittleguys.net/media/js/mautic-form.js?v3073047c';
-    script.onload = function() { MauticSDK.onLoad(); };
+    script.onload = function() { if (typeof MauticSDK !== 'undefined') { MauticSDK.onLoad(); } };
     head.appendChild(script);
     var MauticDomain = 'https://mautic.wittleguys.net';
     var MauticLang   = { 'submittingMessage': 'Please wait...' };
@@ -45,34 +44,6 @@ description: Contact Wittle Guys
   .mauticform-pagebreak-wrapper .mauticform-button-wrapper {  display: inline; }
 </style>
 
-<div id="mauticform_wrapper_contactform" class="mauticform_wrapper">
-  <form autocomplete="false" role="form" method="post" action="https://mautic.wittleguys.net/form/submit?formId=2" id="mauticform_contactform" data-mautic-form="contactform" enctype="multipart/form-data">
-    <div class="mauticform-error" id="mauticform_contactform_error"></div>
-    <div class="mauticform-message" id="mauticform_contactform_message"></div>
-    <div class="mauticform-innerform">
-      <div id="mauticform_contactform_email" class="mauticform-row mauticform-email mauticform-field-1 mauticform-required" data-validate="email" data-validation-type="email">
-        <label id="mauticform_label_contactform_email" for="mauticform_input_contactform_email" class="mauticform-label">Email</label>
-        <input id="mauticform_input_contactform_email" name="mauticform[email]" value="" class="mauticform-input" type="email" />
-        <span class="mauticform-errormsg" style="display:none;">This is required.</span>
-      </div>
-
-      <div id="mauticform_contactform_message" class="mauticform-row mauticform-text mauticform-textarea mauticform-field-2 mauticform-required" data-validate="message" data-validation-type="textarea">
-        <label id="mauticform_label_contactform_message" for="mauticform_input_contactform_message" class="mauticform-label">Message</label>
-        <textarea id="mauticform_input_contactform_message" name="mauticform[message]" class="mauticform-textarea" rows="5" placeholder="How can we help?"></textarea>
-        <span class="mauticform-errormsg" style="display:none;">Please enter your message</span>
-      </div>
-
-      <div id="mauticform_contactform_captcha_google_recaptcha" class="mauticform-row mauticform-captcha mauticform-captcha-google_recaptcha mauticform-field-3">
-        <label id="mauticform_label_contactform_captcha_google_recaptcha" for="mauticform_input_contactform_captcha_google_recaptcha" class="mauticform-label">Captcha (Google reCAPTCHA)</label>
-        <div class="g-recaptcha" data-sitekey="6Ldvb68rAAAAAIE0RKFT-W9iKk1JbOpnrjYlJvXD"></div>
-      </div>
-
-      <div id="mauticform_contactform_submit" class="mauticform-row mauticform-button-wrapper mauticform-field-4">
-        <button type="submit" name="mauticform[submit]" id="mauticform_input_contactform_submit" value="1" class="mauticform-button btn btn-default">Submit</button>
-      </div>
-    </div>
-    <input type="hidden" name="mauticform[formId]" id="mauticform_contactform_id" value="2">
-    <input type="hidden" name="mauticform[return]" id="mauticform_contactform_return" value="">
-    <input type="hidden" name="mauticform[formName]" id="mauticform_contactform_name" value="contactform">
-  </form>
-</div>
+<!-- Use Mautic dynamic embed to avoid any HTML-escaping issues -->
+<div id="mauticform_wrapper_contactform" class="mauticform_wrapper"></div>
+<script type="text/javascript" src="https://mautic.wittleguys.net/form/generate.js?id=2"></script>

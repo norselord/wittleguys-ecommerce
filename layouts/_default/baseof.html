@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
+    <!-- Ensure Google reCAPTCHA API is available for embedded Mautic forms -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     {{ $css := resources.Get "css/main.css" | resources.Minify }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
     <link rel="icon" type="image/png" href="/favicon/Caterpillar.png">
